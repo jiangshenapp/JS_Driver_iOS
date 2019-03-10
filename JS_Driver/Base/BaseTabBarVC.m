@@ -21,7 +21,6 @@
     [self createTabBar];
 }
 
-//创建tabbar
 - (void)createTabBar {
     //视图数组
     NSArray *controllerArr = @[@"JSFindGoodsVC",@"JSRouteVC",@"JSMessageVC",@"JSServiceVC",@"JSMineVC"];
@@ -39,14 +38,22 @@
         controller.title = titleArr[i];
         
         BaseNC *nv = [[BaseNC alloc] initWithRootViewController:controller];
+        nv.tabBarItem.title = titleArr[i];
         nv.tabBarItem.image = [[UIImage imageNamed:[NSString stringWithFormat:@"%@",picArr[i]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //设置选中时的图片
         nv.tabBarItem.selectedImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@_pre",picArr[i]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //设置选中时字体的颜色(也可更改字体大小)
-        [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:AppThemeColor} forState:UIControlStateSelected];
-        [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
         [array addObject:nv];
     }
+    
+    //设置字体的颜色和大小
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:AppThemeColor,NSFontAttributeName:[UIFont systemFontOfSize:10.5]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kBlackColor,NSFontAttributeName:[UIFont systemFontOfSize:10.5]} forState:UIControlStateNormal];
+    
+    //改变tabBar的背景颜色
+    UIView *barBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, kTabBarH)];
+    barBgView.backgroundColor = [UIColor whiteColor];
+    [self.tabBar insertSubview:barBgView atIndex:0];
+    self.tabBar.opaque = YES;
+    
     self.viewControllers = array;
 }
 
