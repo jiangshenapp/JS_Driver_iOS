@@ -10,7 +10,7 @@
 #import "BaseNC.h"
 
 @interface BaseTabBarVC ()
-
+@property (nonatomic,assign) NSInteger  indexFlag;　　//记录上一次点击tabbar，使用时，记得先在init或viewDidLoad里 初始化 = 0
 @end
 
 @implementation BaseTabBarVC
@@ -23,13 +23,14 @@
 
 - (void)createTabBar {
     //视图数组
-    NSArray *controllerArr = @[@"JSFindGoodsVC",@"JSRouteVC",@"JSMessageVC",@"JSServiceVC",@"JSMineVC"];
+    NSArray *controllerArr = @[@"JSFindGoodsVC",@"JSServiceVC",@"JSMessageVC",@"JSCommunityVC",@"JSMineVC"];
     //标题数组
-    NSArray *titleArr = @[@"找货",@"路线",@"消息",@"服务",@"我的"];
+    NSArray *titleArr = @[@"找货",@"服务",@"消息",@"社区",@"我的"];
     //图片数组
-    NSArray *picArr = @[@"nav_home",@"nav_chat",@"nav_search",@"nav_mine",@"nav_mine"];
+    NSArray *picArr = @[@"app_menubar_icon_searchcar_black",@"app_menubar_icon_goods_black",@"app_menubar_icon_news_black",@"app_menubar_icon_community_black",@"app_menubar_icon_my_black"];
+    
     //storyboard name 数组
-    NSArray *storyArr = @[@"FindGoods",@"Route",@"Message",@"Service",@"Mine"];
+    NSArray *storyArr = @[@"FindGoods",@"Service",@"Message",@"Community",@"Mine"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
@@ -39,8 +40,9 @@
         
         BaseNC *nv = [[BaseNC alloc] initWithRootViewController:controller];
         nv.tabBarItem.title = titleArr[i];
-        nv.tabBarItem.image = [[UIImage imageNamed:[NSString stringWithFormat:@"%@",picArr[i]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        nv.tabBarItem.selectedImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@_pre",picArr[i]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        NSString *norName = picArr[i];
+        nv.tabBarItem.image = [[UIImage imageNamed:norName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        nv.tabBarItem.selectedImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@",[norName stringByReplacingOccurrencesOfString:@"black" withString:@"yellow"]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [array addObject:nv];
     }
     
@@ -55,6 +57,50 @@
     self.tabBar.opaque = YES;
     
     self.viewControllers = array;
+}
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    NSInteger index = [self.tabBar.items indexOfObject:item];
+    if (index != self.indexFlag) {
+        //执行动画
+        NSMutableArray *arry = [NSMutableArray array];
+        for (UIView *btn in self.tabBar.subviews) {
+            if ([btn isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+                [arry addObject:btn];
+            }
+        }
+        //添加动画
+        //        //放大效果
+        //        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        //        //速度控制函数，控制动画运行的节奏
+        //        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        //        animation.duration = 0.2;       //执行时间
+        //        animation.repeatCount = 1;      //执行次数
+        //        animation.removedOnCompletion = NO;
+        //        animation.fillMode = kCAFillModeForwards;           //保证动画效果延续
+        //        animation.fromValue = [NSNumber numberWithFloat:1.0];   //初始伸缩倍数
+        //        animation.toValue = [NSNumber numberWithFloat:1.15];     //结束伸缩倍数
+        //        [[arry[index] layer] addAnimation:animation forKey:nil];
+        //        //移除其他tabbar的动画
+        //        for (int i = 0; i<arry.count; i++) {
+        //            if (i != index) {
+        //                [[arry[i] layer] removeAllAnimations];
+        //            }
+        //        }
+        
+        //放大效果，并回到原位
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        //速度控制函数，控制动画运行的节奏
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.duration = 0.2;       //执行时间
+        animation.repeatCount = 1;      //执行次数
+        animation.autoreverses = YES;    //完成动画后会回到执行动画之前的状态
+        animation.fromValue = [NSNumber numberWithFloat:0.8];   //初始伸缩倍数
+        animation.toValue = [NSNumber numberWithFloat:1.2];     //结束伸缩倍数
+        [[arry[index] layer] addAnimation:animation forKey:nil];
+        
+        self.indexFlag = index;
+    }
 }
 
 @end

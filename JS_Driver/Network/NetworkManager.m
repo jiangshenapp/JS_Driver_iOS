@@ -46,7 +46,7 @@ static NetworkManager *_manager = nil;
         NSLog(@"token值：%@",[UserInfo share].token);
         [paramDic setObject:[UserInfo share].token forKey:@"token"];
     }
-
+    
     [self POST:urlStr parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [JHHJView hideLoading]; //结束加载
@@ -61,13 +61,12 @@ static NetworkManager *_manager = nil;
         [self printLogInfoWith:urlStr WithParam:paramDic andResult:object];
         
         NSString *code = [NSString stringWithFormat:@"%@",object[@"code"]];
-        if ([code isEqualToString:@"200"]) { //成功
+        if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             completion(dataObject,Request_Success,nil);
-        } else if ([code intValue]>=600&&[code intValue]<700) { //重新登录
+        }
+        else if ([code intValue]>=600&&[code intValue]<700) { //重新登录
             [self reLogin];
-        } else if ([code isEqualToString:@"210"]&&[name isEqualToString:URL_CheckVersion]) {
-            //已经是最新版本
         }
         else {
             completion(nil,Request_Fail,nil);
@@ -114,7 +113,7 @@ static NetworkManager *_manager = nil;
         }
         
         id _Nullable object = [NSDictionary changeType:responseObject];
-        if ([object[@"code"] isEqualToString:@"200"]) { //成功
+        if ([object[@"code"] isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             if ([dataObject isKindOfClass:[NSString class]]) {
                 completion(@"",Request_Success,nil);
@@ -146,7 +145,7 @@ static NetworkManager *_manager = nil;
 
 - (void)postJSON:(NSString *)name
       parameters:(NSDictionary *)parameters
-      imageDataArr:(NSMutableArray *)imgDataArr
+    imageDataArr:(NSMutableArray *)imgDataArr
        imageName:(NSString *)imageName
       completion:(RequestCompletion)completion {
     
@@ -196,7 +195,7 @@ static NetworkManager *_manager = nil;
         [self printLogInfoWith:urlStr WithParam:paramDic andResult:object];
         
         NSString *code = [NSString stringWithFormat:@"%@",object[@"code"]];
-        if ([code isEqualToString:@"200"]) { //成功
+        if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             completion(dataObject,Request_Success,nil);
         } else if ([code intValue]>=600&&[code intValue]<700) { //重新登录
@@ -239,11 +238,12 @@ static NetworkManager *_manager = nil;
     //response.removesKeysWithNullValues = YES;
     self.responseSerializer = response;
     self.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json", @"application/json", nil];
+    [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-//    if ([Utils isLoginWithJump:NO]) {
-//        NSLog(@"token值：%@",[UserInfo share].token);
-//        [self.requestSerializer setValue:[UserInfo share].token forHTTPHeaderField:@"Token"];
-//    }
+    //    if ([Utils isLoginWithJump:NO]) {
+    //        NSLog(@"token值：%@",[UserInfo share].token);
+    //        [self.requestSerializer setValue:[UserInfo share].token forHTTPHeaderField:@"Token"];
+    //    }
 }
 
 //token失效判断

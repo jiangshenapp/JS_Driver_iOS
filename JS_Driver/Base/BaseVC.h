@@ -15,11 +15,14 @@
 //self.navBar.hidden = YES; //隐藏导航条,在子类viewWillAppear里面调用
 @property (nonatomic,retain) BaseNavBar *navBar;
 @property (nonatomic,retain) UINavigationItem *navItem;
+@property (nonatomic,retain) UIButton *backBtn;
 
 //self.isPanForbid = YES; //禁用iOS自带侧滑返回手势(1、手势冲突，比如地图；2、不是继承基类的VC，比如继承UIViewController/UITableViewController/UISearchController),在子类viewDidLoad方法里面调用
 @property (nonatomic,assign) BOOL isPanForbid;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewConstraintH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopY;
+@property (weak, nonatomic) IBOutlet UITableView *baseTabView;
+
 
 @property (nonatomic,retain) UITableView *tableView;
 @property (nonatomic,assign) CGRect tableFrame;

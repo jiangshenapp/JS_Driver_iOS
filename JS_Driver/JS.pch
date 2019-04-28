@@ -105,7 +105,7 @@
 #define RGBValue(value) [UIColor colorWithRed:((float)((value & 0xFF0000) >> 16))/255.0 green:((float)((value & 0xFF00) >> 8))/255.0 blue:((float)(value & 0xFF))/255.0 alpha:1.0]
 #define RGBAValue(value,a) [UIColor colorWithRed:((float)((value & 0xFF0000) >> 16))/255.0 green:((float)((value & 0xFF00) >> 8))/255.0 blue:((float)(value & 0xFF))/255.0 alpha:a] //a:透明度
 
-#define AppThemeColor RGBValue(0xC31A1F)
+#define AppThemeColor RGBValue(0xECA73F)
 #define PageColor RGBValue(0xF5F5F5)
 #define kTitleColor RGBValue(0x030303)
 #define kShadowColor RGBValue(0x24709C)

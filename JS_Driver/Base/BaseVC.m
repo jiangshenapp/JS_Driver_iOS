@@ -123,11 +123,11 @@
     [self.navBar setItems:@[self.navItem]];
     
     if ([[self.navigationController viewControllers] count] != 1) { //根VC不加返回按钮
-        UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
-        [backBtn setImage:[UIImage imageNamed:@"Back"] forState:UIControlStateNormal];
-        backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn];;
+        self.backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
+        [self.backBtn setImage:[UIImage imageNamed:@"app_navigationbar_back_black"] forState:UIControlStateNormal];
+        self.backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.backBtn];;
         self.navItem.leftBarButtonItem = backBarButtonItem;
     }
 }
