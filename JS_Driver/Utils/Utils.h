@@ -66,4 +66,24 @@
 
 + (UIViewController *)getViewController:(NSString *)stordyName WithVCName:(NSString *)name;
 
+/*!
+ *  @brief 判断系统相机权限
+ */
++ (BOOL)isCameraPermissionOn;
+
+/*!
+ *  @brief 判断系统照片权限
+ */
++ (BOOL)isPhotoPermissionOn;
+
+/*!
+ *  @brief 判断系统通讯录权限
+ */
++ (void)checkAddressBookAuthorization:(void (^)(bool isAuthorized))block;
+
+/*!
+ *  @brief 判断系统麦克风权限
+ */
++ (void)checkMicrophoneAuthorization:(void (^)(bool isAuthorized))block;
+
 @end

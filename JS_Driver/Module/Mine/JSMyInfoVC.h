@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyInfoVC : BaseVC
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImgView;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLab;
+@property (weak, nonatomic) IBOutlet UILabel *authStateLab;
+@property (weak, nonatomic) IBOutlet UILabel *versionLab;
+@property (weak, nonatomic) IBOutlet UILabel *cacheLab;
+
 @end
 
 NS_ASSUME_NONNULL_END

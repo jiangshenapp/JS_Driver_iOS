@@ -22,6 +22,10 @@
     [super viewDidLoad];
     self.title = @"我的订单";
     classNameArr = @[@"JSReleaseOrderVC",@"JSConfirmOrderVC",@"JSDeliveryOrderVC",@"JSCommentOrderVC",@"JSTransportOrderVC",@"JSFinishOrderVC",@"JSCancleOrderVC"];
+    if (_typeFlage>0) {
+        UIButton *sender = [self.view viewWithTag:100+_typeFlage];
+        [self titleBtnAction:sender];
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -57,6 +61,7 @@
         UIButton *btn = [self.view viewWithTag:tag];
         btn.selected = [btn isEqual:sender]?YES:NO;;
     }
+    [self.baseTabView reloadData];
 }
 @end
 

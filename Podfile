@@ -18,6 +18,8 @@ def pods
   pod 'SDCycleScrollView'
   pod 'JPush-iOS-SDK'
   pod 'UMengAnalytics-NO-IDFA'
+  pod 'FXToast'
+  pod 'JSONModel'
 end
  target 'JS_Driver' do
 

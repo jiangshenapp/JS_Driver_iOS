@@ -11,6 +11,8 @@
 #import "Toast.h"
 #import "NetworkUtil.h"
 #import "BaseNC.h"
+#import "TZImageManager.h"
+#import <AddressBook/AddressBook.h>
 
 @interface Utils ()
 {
@@ -27,7 +29,7 @@ static Utils *_utils = nil;
 
 /**
  类单例方法
-
+ 
  @return 类实例
  */
 + (instancetype)share {
@@ -73,7 +75,7 @@ static Utils *_utils = nil;
 
 /**
  判断网络状态
-
+ 
  @return YES 有网
  */
 + (BOOL)getNetStatus {
@@ -86,7 +88,7 @@ static Utils *_utils = nil;
 
 /**
  获取当前时间
-
+ 
  @return 1990-09-18 12:23:22
  */
 + (NSString *)getCurrentDate {
@@ -98,7 +100,7 @@ static Utils *_utils = nil;
 
 /**
  获取当前控制器
-
+ 
  @return 当前控制器
  */
 + (UIViewController *)getCurrentVC {
@@ -133,13 +135,13 @@ static Utils *_utils = nil;
     else {
         result = window.rootViewController;
     }
-
+    
     return result;
 }
 
 /**
  1、判断是否登录，2、是否跳转到登录页面
-
+ 
  @param isJump YES：跳转
  @return YES：登录
  */
@@ -150,7 +152,7 @@ static Utils *_utils = nil;
     } else {
         if (isJump==YES) {
             //跳转到登录页面
-            UIViewController *vc = [Utils getViewController:@"Main" WithVCName:@"CZLoginVC"];
+            UIViewController *vc = [Utils getViewController:@"Login" WithVCName:@"JSPaswdLoginVC"];
             vc.hidesBottomBarWhenPushed = YES;
             [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
         }
@@ -160,7 +162,7 @@ static Utils *_utils = nil;
 
 /**
  1、退出登录，2、是否跳转到登录页面
-
+ 
  @param isJumpLoginVC YES：跳转
  */
 + (void)logout:(BOOL)isJumpLoginVC {
@@ -168,8 +170,7 @@ static Utils *_utils = nil;
     [[UserInfo share] setUserInfo:nil]; //清除用户信息
     
     if (isJumpLoginVC==YES) {
-        //跳转到登录页面
-        UIViewController *vc = [Utils getViewController:@"Main" WithVCName:@"CZLoginVC"];
+        UIViewController *vc = [Utils getViewController:@"Login" WithVCName:@"JSPaswdLoginVC"];
         vc.hidesBottomBarWhenPushed = YES;
         [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
     }
@@ -177,7 +178,7 @@ static Utils *_utils = nil;
 
 /**
  判断字符串是否为空
-
+ 
  @param string 字符串
  @return YES 空
  */
@@ -212,7 +213,7 @@ static Utils *_utils = nil;
 
 /**
  仿安卓消息提示
-
+ 
  @param message 提示内容
  */
 + (void)showToast:(NSString *)message {
@@ -229,7 +230,7 @@ static Utils *_utils = nil;
 
 /**
  设置控件阴影
-
+ 
  @param view 视图View
  */
 + (void)setViewShadowStyle:(UIView *)view {
@@ -243,7 +244,7 @@ static Utils *_utils = nil;
 
 /**
  设置按钮显示、点击效果
-
+ 
  @param btn 按钮
  @param shadow 是否显示阴影
  @param normalBorderColor 正常边框颜色
@@ -284,7 +285,7 @@ static Utils *_utils = nil;
 
 /**
  屏幕快照
-
+ 
  @param view 视图View
  @return 屏幕截图
  */
@@ -296,9 +297,89 @@ static Utils *_utils = nil;
     return image;
 }
 
-+(UIViewController *)getViewController:(NSString *)stordyName WithVCName:(NSString *)name{
++ (UIViewController *)getViewController:(NSString *)stordyName WithVCName:(NSString *)name{
     UIStoryboard *story = [UIStoryboard storyboardWithName:stordyName bundle:nil];
     return [story instantiateViewControllerWithIdentifier:name];
+}
+
+#pragma mark - 系统权限判断
+
++ (BOOL)isCameraPermissionOn {
+    //相机
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        NSString *mediaType = AVMediaTypeVideo;
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+        if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
+            [self permissionSetup:@"“匠神马帮”想访问您的相机"];
+            return NO;
+        } else {
+            return YES;
+        }
+    } else {
+        [Toast showBottomWithText:@"没有相机功能" bottomOffset:100.0 duration:1.2];
+        return NO;
+    }
+}
+
++ (BOOL)isPhotoPermissionOn {
+    if (![[TZImageManager manager] authorizationStatusAuthorized]) {
+        [self permissionSetup:@"“匠神马帮”想访问您的相册"];
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
++ (void)checkAddressBookAuthorization:(void (^)(bool isAuthorized))block {
+    
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
+    
+    if (authStatus != kABAuthorizationStatusAuthorized) {
+        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    NSLog(@"Error：%@",(__bridge NSError *)error);
+                } else if (!granted) {
+                    [self permissionSetup:@"“匠神马帮”想访问您的通讯录"];
+                    block(NO);
+                } else {
+                    block(YES);
+                }
+            });
+        });
+    } else {
+        block(YES);
+    }
+}
+
++ (void)checkMicrophoneAuthorization:(void (^)(bool isAuthorized))block {
+    [[AVAudioSession sharedInstance]requestRecordPermission:^(BOOL granted) {
+        if (!granted){
+            [self permissionSetup:@"“匠神马帮”想访问您的麦克风"];
+            block(NO);
+        } else {
+            block(YES);
+        }
+    }];
+}
+
+//跳转到系统权限设置页面
++ (void)permissionSetup:(NSString *)title {
+    //初始化提示框；
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle: UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"不允许" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //跳转到系统设置
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }]];
+    //弹出提示框；
+    [[Utils getCurrentVC] presentViewController:alert animated:true completion:nil];
 }
 
 @end

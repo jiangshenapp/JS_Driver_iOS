@@ -8,7 +8,7 @@
 
 #import "JSMessageVC.h"
 
-@interface JSMessageVC ()
+@interface JSMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -16,8 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"消息";
     // Do any additional setup after loading the view.
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MessageHomeTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageHomeTabCell"];
+    return cell;
+}
+
+
 
 /*
 #pragma mark - Navigation
@@ -28,5 +40,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+@end
+@implementation MessageHomeTabCell
 
 @end

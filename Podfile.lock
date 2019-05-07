@@ -14,8 +14,10 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FXToast (1.1.4)
   - IQKeyboardManager (6.2.0)
   - JPush-iOS-SDK (3.0.5)
+  - JSONModel (1.8.0)
   - lottie-ios (2.5.2)
   - Masonry (1.1.0)
   - MJExtension (3.0.15.1)
@@ -23,10 +25,10 @@ PODS:
   - ReactiveObjC (3.1.0)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
-  - SDWebImage (4.4.3):
-    - SDWebImage/Core (= 4.4.3)
-  - SDWebImage/Core (4.4.3)
-  - TZImagePickerController (3.1.6)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - TZImagePickerController (3.1.0)
   - UMengAnalytics-NO-IDFA (4.2.5)
   - XLGCategory (1.1.0):
     - XLGCategory/NSCategory (= 1.1.0)
@@ -37,8 +39,10 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FXToast
   - IQKeyboardManager
   - JPush-iOS-SDK
+  - JSONModel
   - lottie-ios
   - Masonry
   - MJExtension
@@ -54,8 +58,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FXToast
     - IQKeyboardManager
     - JPush-iOS-SDK
+    - JSONModel
     - lottie-ios
     - Masonry
     - MJExtension
@@ -70,20 +76,22 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FXToast: 981bd9826b0cf9ce1838603ff08c00a1415efcd4
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   JPush-iOS-SDK: f80e435b524449fd5101e247b044d4e48174ef5f
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
-  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
-  TZImagePickerController: 733aa6fd217f87c61656764f8e76b2137b6c8f47
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  TZImagePickerController: c9584b67b97d5a20b4dbbb58505fa0b6be590255
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   XLGCategory: b93fda8378ccd3e04deb87033c02ad3e6dee3c4a
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: bf2a8af32467a5ed84160844425de276ca2ececf
+PODFILE CHECKSUM: 89251423db2acb785027072ab8f13c9b871d59df
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.0.beta.2

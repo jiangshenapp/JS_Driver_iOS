@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSAllOrderVC : BaseVC
+/** 0全部  1发布中 2待支付 3待配送 4待收货 */
+@property (nonatomic,assign) NSInteger typeFlage;
 - (IBAction)titleBtnAction:(UIButton *)sender;
 
 @end

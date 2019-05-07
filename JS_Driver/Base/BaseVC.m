@@ -87,7 +87,9 @@
     _viewConstraintH.constant = MIN(autoScaleH(50), 60);
     _viewTopY.constant = 44;
     self.tableFrame = CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH);
-    
+    if (self.baseTabView.tableFooterView==nil) {
+        self.baseTabView.tableFooterView = [[UIView alloc]init];
+    }
     [self setNavBar];
     
     __weak id weakSelf = self;

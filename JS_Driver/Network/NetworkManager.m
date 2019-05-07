@@ -21,7 +21,7 @@ static NetworkManager *_manager = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _manager = [[NetworkManager alloc] initWithBaseURL:[NSURL URLWithString:domainUrl()]];
+        _manager = [[NetworkManager alloc] initWithBaseURL:[NSURL URLWithString:ROOT_URL()]];
     });
     return _manager;
 }
@@ -37,17 +37,11 @@ static NetworkManager *_manager = nil;
     
     [self configNetManager];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",domainUrl(),name];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",ROOT_URL(),name];
     
     [JHHJView showLoadingOnTheKeyWindowWithType:JHHJViewTypeSingleLine]; //开始加载
     
-    NSMutableDictionary *paramDic = [parameters mutableCopy];
-    if ([Utils isLoginWithJump:NO]) {
-        NSLog(@"token值：%@",[UserInfo share].token);
-        [paramDic setObject:[UserInfo share].token forKey:@"token"];
-    }
-    
-    [self POST:urlStr parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [JHHJView hideLoading]; //结束加载
         
@@ -58,15 +52,12 @@ static NetworkManager *_manager = nil;
         }
         
         id _Nullable object = [NSDictionary changeType:responseObject];
-        [self printLogInfoWith:urlStr WithParam:paramDic andResult:object];
+        [self printLogInfoWith:urlStr WithParam:parameters andResult:object];
         
         NSString *code = [NSString stringWithFormat:@"%@",object[@"code"]];
         if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             completion(dataObject,Request_Success,nil);
-        }
-        else if ([code intValue]>=600&&[code intValue]<700) { //重新登录
-            [self reLogin];
         }
         else {
             completion(nil,Request_Fail,nil);
@@ -79,9 +70,8 @@ static NetworkManager *_manager = nil;
         if([self isTokenInvalid:(int)response.statusCode]) {
             return;
         }
-        
         completion(nil,Request_TimeoOut,error);
-        [self printLogInfoWith:urlStr WithParam:paramDic andResult:[error localizedDescription]];
+        [self printLogInfoWith:urlStr WithParam:parameters andResult:[error localizedDescription]];
         [Utils showToast:@"请求超时"];
         [JHHJView hideLoading]; //结束加载
     }];
@@ -98,7 +88,7 @@ static NetworkManager *_manager = nil;
     
     [self configNetManager];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",domainUrl(),name];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",ROOT_URL(),name];
     
     [JHHJView showLoadingOnTheKeyWindowWithType:JHHJViewTypeSingleLine]; //开始加载
     
@@ -113,15 +103,14 @@ static NetworkManager *_manager = nil;
         }
         
         id _Nullable object = [NSDictionary changeType:responseObject];
-        if ([object[@"code"] isEqualToString:@"0"]) { //成功
+        NSString *code = [NSString stringWithFormat:@"%@",object[@"code"]];
+        if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             if ([dataObject isKindOfClass:[NSString class]]) {
                 completion(@"",Request_Success,nil);
             } else {
                 completion(dataObject,Request_Success,nil);
             }
-        } else if ([object[@"code"] intValue]>=600&&[object[@"code"] intValue]<700) { //重新登录
-            [self reLogin];
         }
         else {
             completion(nil,Request_Fail,nil);
@@ -135,7 +124,6 @@ static NetworkManager *_manager = nil;
         if([self isTokenInvalid:(int)response.statusCode]) {
             return;
         }
-        
         completion(nil,Request_TimeoOut,error);
         [self printLogInfoWith:urlStr WithParam:parameters andResult:[error localizedDescription]];
         [Utils showToast:@"请求超时"];
@@ -156,17 +144,12 @@ static NetworkManager *_manager = nil;
     
     [self configNetManager];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",domainUrl(),name];
-    
+    if (![name containsString:@"http"]) {
+        name = [NSString stringWithFormat:@"%@%@",ROOT_URL(),name];
+    }
     [JHHJView showLoadingOnTheKeyWindowWithType:JHHJViewTypeSingleLine]; //开始加载
     
-    NSMutableDictionary *paramDic = [parameters mutableCopy];
-    if ([Utils isLoginWithJump:NO]) {
-        NSLog(@"token值：%@",[UserInfo share].token);
-        [paramDic setObject:[UserInfo share].token forKey:@"token"];
-    }
-    
-    [self POST:urlStr parameters:paramDic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [self POST:name parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         if (imgDataArr.count > 0) {
             //在网络开发中，上传文件时，是文件不允许被覆盖，文件重名。要解决此问题，可以在上传时使用当前的系统事件作为文件名
@@ -192,14 +175,12 @@ static NetworkManager *_manager = nil;
         }
         
         id _Nullable object = [NSDictionary changeType:responseObject];
-        [self printLogInfoWith:urlStr WithParam:paramDic andResult:object];
+        [self printLogInfoWith:name WithParam:parameters andResult:object];
         
         NSString *code = [NSString stringWithFormat:@"%@",object[@"code"]];
         if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             completion(dataObject,Request_Success,nil);
-        } else if ([code intValue]>=600&&[code intValue]<700) { //重新登录
-            [self reLogin];
         }
         else {
             completion(nil,Request_Fail,nil);
@@ -212,9 +193,8 @@ static NetworkManager *_manager = nil;
         if([self isTokenInvalid:(int)response.statusCode]) {
             return;
         }
-        
         completion(nil,Request_TimeoOut,error);
-        [self printLogInfoWith:urlStr WithParam:paramDic andResult:[error localizedDescription]];
+        [self printLogInfoWith:name WithParam:parameters andResult:[error localizedDescription]];
         [Utils showToast:@"请求超时"];
         [JHHJView hideLoading]; //结束加载
     }];
@@ -240,10 +220,10 @@ static NetworkManager *_manager = nil;
     self.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json", @"application/json", nil];
     [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    //    if ([Utils isLoginWithJump:NO]) {
-    //        NSLog(@"token值：%@",[UserInfo share].token);
-    //        [self.requestSerializer setValue:[UserInfo share].token forHTTPHeaderField:@"Token"];
-    //    }
+    if ([Utils isLoginWithJump:NO]) {
+        NSLog(@"token值：%@",[UserInfo share].token);
+        [self.requestSerializer setValue:[UserInfo share].token forHTTPHeaderField:@"token"];
+    }
 }
 
 //token失效判断
