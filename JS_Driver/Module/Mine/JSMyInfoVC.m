@@ -23,14 +23,22 @@
 
     self.nickNameLab.text = [UserInfo share].nickName;
     
-    if ([[UserInfo share].personConsignorVerified integerValue] == 0
-        && [[UserInfo share].companyConsignorVerified integerValue] == 0) {
-        self.authStateLab.text = @"未认证";
+    //失败》已审核〉审核中》未提交
+    if ([[UserInfo share].driverVerified integerValue] == 3
+        || [[UserInfo share].parkVerified integerValue] == 3) {
+        self.authStateLab.text = @"认证失败";
     }
-    
-    if ([[UserInfo share].personConsignorVerified integerValue] == 1
-        || [[UserInfo share].companyConsignorVerified integerValue] == 1) {
-        self.authStateLab.text = @"审核中";
+    else if ([[UserInfo share].driverVerified integerValue] == 2
+        || [[UserInfo share].parkVerified integerValue] == 2) {
+        self.authStateLab.text = @"已认证";
+    }
+    else if ([[UserInfo share].driverVerified integerValue] == 1
+        || [[UserInfo share].parkVerified integerValue] == 1) {
+        self.authStateLab.text = @"认证中";
+    }
+    else if ([[UserInfo share].driverVerified integerValue] == 0
+        && [[UserInfo share].parkVerified integerValue] == 0) {
+        self.authStateLab.text = @"未提交";
     }
     
     self.cacheLab.text = [AEFilePath folderSizeAtPath:kCachePath];

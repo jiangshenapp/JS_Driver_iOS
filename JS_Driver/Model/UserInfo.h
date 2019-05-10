@@ -17,10 +17,10 @@
 @property (nonatomic,copy) NSString *nickName; //昵称
 @property (nonatomic,copy) NSString *lastPosition; //
 @property (nonatomic,copy) NSString *lastPositionTime; //
-@property (nonatomic,copy) NSString *driverVerified; //
-@property (nonatomic,copy) NSString *parkVerified; //
-@property (nonatomic,copy) NSString *personConsignorVerified; //个人货主认证状态
-@property (nonatomic,copy) NSString *companyConsignorVerified; //公司货主认证状态
+@property (nonatomic,copy) NSString *driverVerified; //是否认证司机身份，0未认证，1审核中，2已认证，3认证失败
+@property (nonatomic,copy) NSString *parkVerified; //是否认证园区身份，0未认证，1审核中，2已认证，3认证失败
+@property (nonatomic,copy) NSString *personConsignorVerified; //是否认证个人货主，0未认证，1审核中，2已认证，3认证失败
+@property (nonatomic,copy) NSString *companyConsignorVerified; //是否认证企业货主身份，0未认证，1审核中，2已认证，3认证失败
 
 + (UserInfo *)share;
 

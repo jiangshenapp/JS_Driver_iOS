@@ -27,13 +27,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSInteger authState = 0;
     if (_type==0) {
         self.title = @"司机身份认证";
         self.companyTabview.hidden = YES;
+        authState = [[UserInfo share].driverVerified integerValue];
     }
     else if (_type==1) {
         self.title = @"园区成员认证";
         self.driverTabView.hidden = YES;
+        authState = [[UserInfo share].parkVerified integerValue];
+    }
+    if (authState == 0) {
+        self.authStateLabH.constant = 0;
+    } else {
+        self.authStateLab.text = kAuthStateStrDic[@(authState)];
+        self.authStateLab.textColor = kAuthStateColorDic[@(authState)];
     }
     self.photoType = 0;
     self.idCardFrontPhoto = @"";

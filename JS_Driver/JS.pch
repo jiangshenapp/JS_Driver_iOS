@@ -48,6 +48,9 @@
 #define kWifiKey   @"WifiKey"
 #define kSelectCourseIDKey   @"SelectCourseIDKey"
 
+#define kAuthStateStrDic @{@(0):@"未提交",@(1):@"认证中",@(2):@"已认证",@(3):@"认证失败"}
+#define kAuthStateColorDic @{@(0):kVerifiedUnCommitColor,@(1):kVerifiedOnColor,@(2):AppThemeColor,@(3):kVerifiedFailColor}
+
 /******************************通知****************************/
 
 #define kLoginSuccNotification  @"kLoginSuccNotification"
@@ -120,6 +123,9 @@
 #define kSeparatorColor RGB(235,235,235) // 分割线颜色
 #define ButtonColor RGBValue(0x00CD07)
 #define kBlack55Color RGBValue(0x555555)
+#define kVerifiedUnCommitColor RGBValue(0xB4B4B4)
+#define kVerifiedOnColor RGBValue(0x0091FF)
+#define kVerifiedFailColor RGBValue(0xE02020)
 
 #ifdef DEBUG
 #define KOnline NO
