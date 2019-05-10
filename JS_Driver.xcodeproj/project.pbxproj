@@ -13,7 +13,6 @@
 		203DF0492280299E00015587 /* JSMyWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF0222280299E00015587 /* JSMyWalletVC.m */; };
 		203DF04A2280299E00015587 /* JSRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF0232280299E00015587 /* JSRechargeVC.m */; };
 		203DF04B2280299E00015587 /* JSBillDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF0242280299E00015587 /* JSBillDetailsVC.m */; };
-		203DF04C2280299E00015587 /* JSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF02A2280299E00015587 /* JSAuthenticationVC.m */; };
 		203DF04D2280299E00015587 /* JSFeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF02D2280299E00015587 /* JSFeedBackVC.m */; };
 		203DF04E2280299E00015587 /* JSMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF02F2280299E00015587 /* JSMineVC.m */; };
 		203DF04F2280299E00015587 /* JSPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF0302280299E00015587 /* JSPayVC.m */; };
@@ -39,6 +38,7 @@
 		203DF07522802AFC00015587 /* HmSelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07022802AFC00015587 /* HmSelectAdView.m */; };
 		203DF07622802AFC00015587 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07122802AFC00015587 /* UIView+Extension.m */; };
 		203DF07922802FE200015587 /* JSMyDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07822802FE200015587 /* JSMyDepositVC.m */; };
+		2045454C22852EDE00E65742 /* JSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2045454B22852EDE00E65742 /* JSAuthenticationVC.m */; };
 		205D52692275933B0053F176 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205D52682275933B0053F176 /* Login.storyboard */; };
 		205D52752275934B0053F176 /* JSCodeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D526C2275934A0053F176 /* JSCodeLoginVC.m */; };
 		205D52762275934B0053F176 /* JSRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D526D2275934A0053F176 /* JSRegisterVC.m */; };
@@ -109,13 +109,10 @@
 		203DF0252280299E00015587 /* JSWithdrawalMoneyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSWithdrawalMoneyVC.h; sourceTree = "<group>"; };
 		203DF0262280299E00015587 /* JSMyWalletVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSMyWalletVC.h; sourceTree = "<group>"; };
 		203DF0272280299E00015587 /* JSRechargeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRechargeVC.h; sourceTree = "<group>"; };
-		203DF0282280299E00015587 /* JSPayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPayVC.h; sourceTree = "<group>"; };
 		203DF0292280299E00015587 /* JSMineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSMineVC.h; sourceTree = "<group>"; };
-		203DF02A2280299E00015587 /* JSAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAuthenticationVC.m; sourceTree = "<group>"; };
 		203DF02B2280299E00015587 /* JSAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAboutVC.h; sourceTree = "<group>"; };
 		203DF02C2280299E00015587 /* JSMyInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSMyInfoVC.h; sourceTree = "<group>"; };
 		203DF02D2280299E00015587 /* JSFeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSFeedBackVC.m; sourceTree = "<group>"; };
-		203DF02E2280299E00015587 /* JSAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAuthenticationVC.h; sourceTree = "<group>"; };
 		203DF02F2280299E00015587 /* JSMineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSMineVC.m; sourceTree = "<group>"; };
 		203DF0302280299E00015587 /* JSPayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPayVC.m; sourceTree = "<group>"; };
 		203DF0312280299E00015587 /* JSAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAboutVC.m; sourceTree = "<group>"; };
@@ -158,6 +155,8 @@
 		203DF07122802AFC00015587 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		203DF07722802FE200015587 /* JSMyDepositVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMyDepositVC.h; sourceTree = "<group>"; };
 		203DF07822802FE200015587 /* JSMyDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMyDepositVC.m; sourceTree = "<group>"; };
+		2045454A22852EDE00E65742 /* JSAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAuthenticationVC.h; sourceTree = "<group>"; };
+		2045454B22852EDE00E65742 /* JSAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAuthenticationVC.m; sourceTree = "<group>"; };
 		205D52682275933B0053F176 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		205D526B2275934A0053F176 /* JSForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSForgetPwdVC.h; sourceTree = "<group>"; };
 		205D526C2275934A0053F176 /* JSCodeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCodeLoginVC.m; sourceTree = "<group>"; };
@@ -282,14 +281,7 @@
 		203DF01D2280299E00015587 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				203DF01F2280299E00015587 /* 钱包 */,
-				203DF0322280299E00015587 /* 我的订单 */,
-				203DF02B2280299E00015587 /* JSAboutVC.h */,
-				203DF0312280299E00015587 /* JSAboutVC.m */,
-				203DF02E2280299E00015587 /* JSAuthenticationVC.h */,
-				203DF02A2280299E00015587 /* JSAuthenticationVC.m */,
 				203DF01E2280299E00015587 /* JSFeedBackVC.h */,
-				203DF02D2280299E00015587 /* JSFeedBackVC.m */,
 				203DF0292280299E00015587 /* JSMineVC.h */,
 				203DF02B2280299E00015587 /* JSAboutVC.h */,
 				203DF02C2280299E00015587 /* JSMyInfoVC.h */,
@@ -407,10 +399,10 @@
 		2068A8952281346500287CD0 /* 认证 */ = {
 			isa = PBXGroup;
 			children = (
-				203DF02E2280299E00015587 /* JSAuthenticationVC.h */,
-				203DF02A2280299E00015587 /* JSAuthenticationVC.m */,
 				2068A8962281348F00287CD0 /* JSAuthencationHomeVC.h */,
 				2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */,
+				2045454A22852EDE00E65742 /* JSAuthenticationVC.h */,
+				2045454B22852EDE00E65742 /* JSAuthenticationVC.m */,
 			);
 			path = "认证";
 			sourceTree = "<group>";
@@ -898,13 +890,13 @@
 				203DF0552280299E00015587 /* JSReleaseOrderVC.m in Sources */,
 				A0A9F15B222FF1C100580C6A /* XLGLottie.m in Sources */,
 				203DF07922802FE200015587 /* JSMyDepositVC.m in Sources */,
-				203DF04C2280299E00015587 /* JSAuthenticationVC.m in Sources */,
 				A0A9F160222FF1C100580C6A /* BaseNC.m in Sources */,
 				A0A9F151222FF1C100580C6A /* KeyChainUtil.m in Sources */,
 				A0A9F150222FF1C100580C6A /* Reachability.m in Sources */,
 				A0A9F155222FF1C100580C6A /* JHHJCenterBGView.m in Sources */,
 				203DF01A228028C500015587 /* JSCommunityVC.m in Sources */,
 				203DF061228029AD00015587 /* JSSystemMessageVC.m in Sources */,
+				2045454C22852EDE00E65742 /* JSAuthenticationVC.m in Sources */,
 				A0A9F17A222FF35500580C6A /* Config.m in Sources */,
 				A0A9F171222FF1C100580C6A /* NetworkUtil.m in Sources */,
 				A0A9F15A222FF1C100580C6A /* XLGAlertView.m in Sources */,

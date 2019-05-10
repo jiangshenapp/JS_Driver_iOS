@@ -10,9 +10,6 @@
 #import "HmSelectAdView.h"
 
 @interface JSAuthenticationVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-{
-    BOOL isPerson;//判断是个人还是公司
-}
 
 @property (nonatomic, assign) NSInteger photoType; //1、身份证正面 2、身份证反面 3、手持身份证 4、公司营业执照
 @property (nonatomic, copy) NSString *idCardFrontPhoto;
@@ -30,49 +27,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"货主身份认证";
-    isPerson = YES;
+    if (_type==0) {
+        self.title = @"司机身份认证";
+        self.companyTabview.hidden = YES;
+    }
+    else if (_type==1) {
+        self.title = @"园区成员认证";
+        self.driverTabView.hidden = YES;
+    }
     self.photoType = 0;
     self.idCardFrontPhoto = @"";
     self.idCardBehindPhoto = @"";
     self.idCardHandPhoto = @"";
-
-    [self.baseTabView addSubview:_personTabHeadView];
-    [self.baseTabView addSubview:_companyTabHeadView];
-    _personTabHeadView.width = self.baseTabView.width;
-    _companyTabHeadView.width = self.baseTabView.width;
-    self.baseTabView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, _personTabHeadView.height)];
-    self.baseTabView.tableHeaderView.userInteractionEnabled = NO;
+    _companyTabview.tableFooterView = [[UIView alloc]init];
+    _driverTabView.tableFooterView = [[UIView alloc]init];
 }
 
-#pragma mark - methods
-
-/* 切换个人/公司 */
-- (IBAction)titleViewAction:(UIButton *)sender {
-    isPerson = sender.tag==100?YES:NO;
-    for (NSInteger tag = 100; tag<102; tag++) {
-        UIButton *btn = [self.view viewWithTag:tag];
-        if ([btn isEqual:sender]) {
-            btn.backgroundColor = AppThemeColor;
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        }
-        else {
-            btn.backgroundColor = [UIColor clearColor];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        }
-    }
-    _personTabHeadView.hidden = !isPerson;
-    _companyTabHeadView.hidden = isPerson;
-    if (isPerson) {
-        self.baseTabView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, _personTabHeadView.height)];
-    }
-    else {
-        self.baseTabView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, _companyTabHeadView.height)];
-    }
-    [self.baseTabView setContentOffset:CGPointMake(0, 0)];
-    self.baseTabView.tableHeaderView.userInteractionEnabled = NO;
-}
 
 /* 上传身份证正面 */
 - (IBAction)uploadIdCardFrontAction:(id)sender {
@@ -226,7 +196,7 @@
     
     [self.view endEditing:YES];
     
-    if (isPerson == YES) { //个人
+    if (_type == YES) { //个人
         if ([NSString isEmpty:self.idCardFrontPhoto]) {
             [Utils showToast:@"请上传货主本人真实身份证正面"];
             return;
