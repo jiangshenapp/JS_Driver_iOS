@@ -38,6 +38,7 @@
 		203DF07522802AFC00015587 /* HmSelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07022802AFC00015587 /* HmSelectAdView.m */; };
 		203DF07622802AFC00015587 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07122802AFC00015587 /* UIView+Extension.m */; };
 		203DF07922802FE200015587 /* JSMyDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07822802FE200015587 /* JSMyDepositVC.m */; };
+		2045454C22852EDE00E65742 /* JSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2045454B22852EDE00E65742 /* JSAuthenticationVC.m */; };
 		205D52692275933B0053F176 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205D52682275933B0053F176 /* Login.storyboard */; };
 		205D52752275934B0053F176 /* JSCodeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D526C2275934A0053F176 /* JSCodeLoginVC.m */; };
 		205D52762275934B0053F176 /* JSRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D526D2275934A0053F176 /* JSRegisterVC.m */; };
@@ -155,6 +156,8 @@
 		203DF07122802AFC00015587 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		203DF07722802FE200015587 /* JSMyDepositVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMyDepositVC.h; sourceTree = "<group>"; };
 		203DF07822802FE200015587 /* JSMyDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMyDepositVC.m; sourceTree = "<group>"; };
+		2045454A22852EDE00E65742 /* JSAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAuthenticationVC.h; sourceTree = "<group>"; };
+		2045454B22852EDE00E65742 /* JSAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAuthenticationVC.m; sourceTree = "<group>"; };
 		205D52682275933B0053F176 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		205D526B2275934A0053F176 /* JSForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSForgetPwdVC.h; sourceTree = "<group>"; };
 		205D526C2275934A0053F176 /* JSCodeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCodeLoginVC.m; sourceTree = "<group>"; };
@@ -399,10 +402,10 @@
 		2068A8952281346500287CD0 /* 认证 */ = {
 			isa = PBXGroup;
 			children = (
-				A0E9270722852F9D00D07C58 /* JSAuthenticationVC.h */,
-				A0E9270622852F9D00D07C58 /* JSAuthenticationVC.m */,
 				2068A8962281348F00287CD0 /* JSAuthencationHomeVC.h */,
 				2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */,
+				2045454A22852EDE00E65742 /* JSAuthenticationVC.h */,
+				2045454B22852EDE00E65742 /* JSAuthenticationVC.m */,
 			);
 			path = "认证";
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				A0A9F155222FF1C100580C6A /* JHHJCenterBGView.m in Sources */,
 				203DF01A228028C500015587 /* JSCommunityVC.m in Sources */,
 				203DF061228029AD00015587 /* JSSystemMessageVC.m in Sources */,
+				2045454C22852EDE00E65742 /* JSAuthenticationVC.m in Sources */,
 				A0A9F17A222FF35500580C6A /* Config.m in Sources */,
 				A0A9F171222FF1C100580C6A /* NetworkUtil.m in Sources */,
 				A0A9F15A222FF1C100580C6A /* XLGAlertView.m in Sources */,

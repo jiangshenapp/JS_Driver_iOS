@@ -12,11 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSAuthenticationVC : BaseVC
 
-- (IBAction)titleViewAction:(UIButton *)sender;
+/** 0司机认证  1园区网点认证 */
+@property (nonatomic,assign) NSInteger type;
 
 @property (weak, nonatomic) IBOutlet UIView *personTabHeadView;
-@property (weak, nonatomic) IBOutlet UIView *companyTabHeadView;
-@property (weak, nonatomic) IBOutlet UIView *titleBgView;
 
 /* 个人 */
 @property (weak, nonatomic) IBOutlet UIButton *idCardFrontBtn;
@@ -25,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *idCardTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
+
+@property (weak, nonatomic) IBOutlet UITableView *driverTabView;
+@property (weak, nonatomic) IBOutlet UITableView *companyTabview;
 
 /* 公司 */
 @property (weak, nonatomic) IBOutlet UITextField *companyNameTF;
