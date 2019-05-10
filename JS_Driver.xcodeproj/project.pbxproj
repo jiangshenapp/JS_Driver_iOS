@@ -47,6 +47,7 @@
 		205D52792275934B0053F176 /* JSPaswdLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D52742275934A0053F176 /* JSPaswdLoginVC.m */; };
 		205D5343227597300053F176 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205D5342227597300053F176 /* Community.storyboard */; };
 		2068A89422811DC600287CD0 /* JSRechargeDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068A89322811DC600287CD0 /* JSRechargeDepositVC.m */; };
+		2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */; };
 		A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F2222DE8C30017F2AC /* AppDelegate.m */; };
 		A07FE5F6222DE8C30017F2AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F5222DE8C30017F2AC /* ViewController.m */; };
 		A07FE5FB222DE8C60017F2AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07FE5FA222DE8C60017F2AC /* Assets.xcassets */; };
@@ -171,6 +172,8 @@
 		205D5342227597300053F176 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		2068A89222811DC600287CD0 /* JSRechargeDepositVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRechargeDepositVC.h; sourceTree = "<group>"; };
 		2068A89322811DC600287CD0 /* JSRechargeDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRechargeDepositVC.m; sourceTree = "<group>"; };
+		2068A8962281348F00287CD0 /* JSAuthencationHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAuthencationHomeVC.h; sourceTree = "<group>"; };
+		2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAuthencationHomeVC.m; sourceTree = "<group>"; };
 		A07FE5EE222DE8C30017F2AC /* JS_Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JS_Driver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07FE5F1222DE8C30017F2AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A07FE5F2222DE8C30017F2AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -288,11 +291,16 @@
 				203DF01E2280299E00015587 /* JSFeedBackVC.h */,
 				203DF02D2280299E00015587 /* JSFeedBackVC.m */,
 				203DF0292280299E00015587 /* JSMineVC.h */,
-				203DF02F2280299E00015587 /* JSMineVC.m */,
+				203DF02B2280299E00015587 /* JSAboutVC.h */,
 				203DF02C2280299E00015587 /* JSMyInfoVC.h */,
 				203DF0472280299E00015587 /* JSMyInfoVC.m */,
-				203DF0282280299E00015587 /* JSPayVC.h */,
+				203DF02D2280299E00015587 /* JSFeedBackVC.m */,
+				203DF02F2280299E00015587 /* JSMineVC.m */,
 				203DF0302280299E00015587 /* JSPayVC.m */,
+				203DF0312280299E00015587 /* JSAboutVC.m */,
+				2068A8952281346500287CD0 /* 认证 */,
+				203DF01F2280299E00015587 /* 钱包 */,
+				203DF0322280299E00015587 /* 我的订单 */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -394,6 +402,17 @@
 				203DF019228028C500015587 /* JSCommunityVC.m */,
 			);
 			path = Community;
+			sourceTree = "<group>";
+		};
+		2068A8952281346500287CD0 /* 认证 */ = {
+			isa = PBXGroup;
+			children = (
+				203DF02E2280299E00015587 /* JSAuthenticationVC.h */,
+				203DF02A2280299E00015587 /* JSAuthenticationVC.m */,
+				2068A8962281348F00287CD0 /* JSAuthencationHomeVC.h */,
+				2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */,
+			);
+			path = "认证";
 			sourceTree = "<group>";
 		};
 		6978B2C9C09A07301325AF8B /* Pods */ = {
@@ -912,6 +931,7 @@
 				A0A9F16D222FF1C100580C6A /* XLGChangeServerModel.m in Sources */,
 				A0E927022285284400D07C58 /* AEFilePath.m in Sources */,
 				A0A9F152222FF1C100580C6A /* CacheUtil.m in Sources */,
+				2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */,
 				A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */,
 				A0A9F16E222FF1C100580C6A /* XLGChangeServerVC.m in Sources */,
 				203DF04F2280299E00015587 /* JSPayVC.m in Sources */,

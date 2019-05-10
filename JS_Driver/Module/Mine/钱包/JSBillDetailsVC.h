@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSBillDetailsVC : BaseVC
-@property (weak, nonatomic) IBOutlet UIButton *allOrderBtn;
-@property (weak, nonatomic) IBOutlet UIButton *balanceOrderBtn;
+/**  0 全部  1余额  2保证金 */
+@property (nonatomic,assign) NSInteger type;
+
 - (IBAction)titleBtnAction:(UIButton *)sender;
 
 @end
