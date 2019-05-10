@@ -28,6 +28,7 @@ NSString *PIC_URL(void);
 
 #define URL_Login @"/app/subscriber/login" //密码登录
 #define URL_SmsLogin @"/app/subscriber/smsLogin" //短信验证码登录
+#define URL_Logout @"/app/subscriber/logout" //退出登录
 #define URL_Profile @"/app/subscriber/profile" //获取当前登录人信息
 #define URL_Registry @"/app/subscriber/registry" //会员注册
 #define URL_ResetPwdStep1 @"/app/subscriber/resetPwdStep1" //重置密码步骤1
