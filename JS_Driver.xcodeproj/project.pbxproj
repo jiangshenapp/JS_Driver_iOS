@@ -40,6 +40,8 @@
 		203DF07922802FE200015587 /* JSMyDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF07822802FE200015587 /* JSMyDepositVC.m */; };
 		2045454C22852EDE00E65742 /* JSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2045454B22852EDE00E65742 /* JSAuthenticationVC.m */; };
 		204545532285552000E65742 /* JSMyDriverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 204545522285552000E65742 /* JSMyDriverVC.m */; };
+		20583A762285653900090E2F /* JSMyCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20583A752285653900090E2F /* JSMyCarVC.m */; };
+		20583A7922856A0D00090E2F /* JSAddCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20583A7822856A0D00090E2F /* JSAddCarVC.m */; };
 		205D52692275933B0053F176 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205D52682275933B0053F176 /* Login.storyboard */; };
 		205D52752275934B0053F176 /* JSCodeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D526C2275934A0053F176 /* JSCodeLoginVC.m */; };
 		205D52762275934B0053F176 /* JSRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 205D526D2275934A0053F176 /* JSRegisterVC.m */; };
@@ -160,6 +162,10 @@
 		2045454B22852EDE00E65742 /* JSAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAuthenticationVC.m; sourceTree = "<group>"; };
 		204545512285552000E65742 /* JSMyDriverVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMyDriverVC.h; sourceTree = "<group>"; };
 		204545522285552000E65742 /* JSMyDriverVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMyDriverVC.m; sourceTree = "<group>"; };
+		20583A742285653900090E2F /* JSMyCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMyCarVC.h; sourceTree = "<group>"; };
+		20583A752285653900090E2F /* JSMyCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMyCarVC.m; sourceTree = "<group>"; };
+		20583A7722856A0D00090E2F /* JSAddCarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAddCarVC.h; sourceTree = "<group>"; };
+		20583A7822856A0D00090E2F /* JSAddCarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAddCarVC.m; sourceTree = "<group>"; };
 		205D52682275933B0053F176 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		205D526B2275934A0053F176 /* JSForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSForgetPwdVC.h; sourceTree = "<group>"; };
 		205D526C2275934A0053F176 /* JSCodeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCodeLoginVC.m; sourceTree = "<group>"; };
@@ -390,6 +396,10 @@
 		20583A72228563A800090E2F /* 我的车辆 */ = {
 			isa = PBXGroup;
 			children = (
+				20583A742285653900090E2F /* JSMyCarVC.h */,
+				20583A752285653900090E2F /* JSMyCarVC.m */,
+				20583A7722856A0D00090E2F /* JSAddCarVC.h */,
+				20583A7822856A0D00090E2F /* JSAddCarVC.m */,
 			);
 			path = "我的车辆";
 			sourceTree = "<group>";
@@ -979,10 +989,12 @@
 				2068A89422811DC600287CD0 /* JSRechargeDepositVC.m in Sources */,
 				205D52762275934B0053F176 /* JSRegisterVC.m in Sources */,
 				203DF04A2280299E00015587 /* JSRechargeVC.m in Sources */,
+				20583A762285653900090E2F /* JSMyCarVC.m in Sources */,
 				A0A9F156222FF1C100580C6A /* JHHJView.m in Sources */,
 				A0A9F195222FFC9F00580C6A /* JSServiceVC.m in Sources */,
 				205D52782275934B0053F176 /* JSResetPswVC.m in Sources */,
 				203DF05A2280299E00015587 /* JSDeliveryOrderVC.m in Sources */,
+				20583A7922856A0D00090E2F /* JSAddCarVC.m in Sources */,
 				A0A9F180222FF57200580C6A /* BaseTabBarVC.m in Sources */,
 				A0A9F172222FF1C100580C6A /* NetworkManager.m in Sources */,
 				203DF0502280299E00015587 /* JSAboutVC.m in Sources */,
