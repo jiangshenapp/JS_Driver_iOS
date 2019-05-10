@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 0司机认证  1园区网点认证 */
 @property (nonatomic,assign) NSInteger type;
-
+/** 认证状态 */
+@property (weak, nonatomic) IBOutlet UILabel *authStateLab;
 @property (weak, nonatomic) IBOutlet UIView *personTabHeadView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *authStateLabH;
 
 /* 个人 */
 @property (weak, nonatomic) IBOutlet UIButton *idCardFrontBtn;
