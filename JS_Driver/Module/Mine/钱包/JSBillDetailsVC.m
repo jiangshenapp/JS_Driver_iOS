@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"账单明细";
+    if (_type>0) {
+        UIButton *sender = [self.view viewWithTag:100+_type];
+        [self titleBtnAction:sender];
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -40,13 +44,12 @@
 */
 
 - (IBAction)titleBtnAction:(UIButton *)sender {
-    [sender setTitleColor:AppThemeColor forState:UIControlStateNormal];
-    if ([sender isEqual:_allOrderBtn]) {
-        [_balanceOrderBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
+    for (NSInteger index = 100; index<103; index++) {
+        UIButton *tampBtn = [self.view viewWithTag:index];
+        tampBtn.selected = NO;
     }
-    else {
-        [_allOrderBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
-    }
+    sender.selected = YES;
+    _type = sender.tag-100;
 }
 @end
 @implementation JSBillListTabCell
