@@ -92,6 +92,7 @@
 		A0A9F180222FF57200580C6A /* BaseTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F17F222FF57200580C6A /* BaseTabBarVC.m */; };
 		A0A9F18C222FFC5300580C6A /* JSFindGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F18B222FFC5300580C6A /* JSFindGoodsVC.m */; };
 		A0A9F195222FFC9F00580C6A /* JSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F194222FFC9F00580C6A /* JSServiceVC.m */; };
+		A0E927022285284400D07C58 /* AEFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E927002285284300D07C58 /* AEFilePath.m */; };
 		C4E2E61BA69A23F1952E5B4B /* libPods-JS_Driver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D27DC42609271027D306F2 /* libPods-JS_Driver.a */; };
 /* End PBXBuildFile section */
 
@@ -259,6 +260,8 @@
 		A0A9F18B222FFC5300580C6A /* JSFindGoodsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSFindGoodsVC.m; sourceTree = "<group>"; };
 		A0A9F193222FFC9F00580C6A /* JSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSServiceVC.h; sourceTree = "<group>"; };
 		A0A9F194222FFC9F00580C6A /* JSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSServiceVC.m; sourceTree = "<group>"; };
+		A0E927002285284300D07C58 /* AEFilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEFilePath.m; sourceTree = "<group>"; };
+		A0E927012285284400D07C58 /* AEFilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFilePath.h; sourceTree = "<group>"; };
 		AE7315DD7F81A3DDD59C5C4C /* Pods-JS_Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JS_Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JS_Driver/Pods-JS_Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D27DC42609271027D306F2 /* libPods-JS_Driver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JS_Driver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E578D31DC4BE0A8D8095EBC1 /* Pods-JS_Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JS_Driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-JS_Driver/Pods-JS_Driver.release.xcconfig"; sourceTree = "<group>"; };
@@ -279,8 +282,14 @@
 		203DF01D2280299E00015587 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				203DF01F2280299E00015587 /* 钱包 */,
+				203DF0322280299E00015587 /* 我的订单 */,
+				203DF02B2280299E00015587 /* JSAboutVC.h */,
+				203DF0312280299E00015587 /* JSAboutVC.m */,
+				203DF02E2280299E00015587 /* JSAuthenticationVC.h */,
+				203DF02A2280299E00015587 /* JSAuthenticationVC.m */,
 				203DF01E2280299E00015587 /* JSFeedBackVC.h */,
-				203DF0282280299E00015587 /* JSPayVC.h */,
+				203DF02D2280299E00015587 /* JSFeedBackVC.m */,
 				203DF0292280299E00015587 /* JSMineVC.h */,
 				203DF02B2280299E00015587 /* JSAboutVC.h */,
 				203DF02C2280299E00015587 /* JSMyInfoVC.h */,
@@ -318,26 +327,26 @@
 		203DF0322280299E00015587 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
-				203DF0332280299E00015587 /* JSConfirmOrderVC.m */,
-				203DF0342280299E00015587 /* JSReleaseOrderVC.h */,
+				203DF03E2280299E00015587 /* JSAllOrderVC.h */,
 				203DF0352280299E00015587 /* JSAllOrderVC.m */,
 				203DF0362280299E00015587 /* JSBaseOrderDetailsVC.h */,
-				203DF0372280299E00015587 /* JSCommentOrderVC.m */,
-				203DF0382280299E00015587 /* JSTransportOrderVC.h */,
-				203DF0392280299E00015587 /* JSFinishOrderVC.h */,
-				203DF03A2280299E00015587 /* JSCancleOrderVC.h */,
-				203DF03B2280299E00015587 /* JSDeliveryOrderVC.h */,
-				203DF03C2280299E00015587 /* JSOrderDetailMapVC.m */,
-				203DF03D2280299E00015587 /* JSConfirmOrderVC.h */,
-				203DF03E2280299E00015587 /* JSAllOrderVC.h */,
-				203DF03F2280299E00015587 /* JSReleaseOrderVC.m */,
-				203DF0402280299E00015587 /* JSCancleOrderVC.m */,
-				203DF0412280299E00015587 /* JSFinishOrderVC.m */,
-				203DF0422280299E00015587 /* JSTransportOrderVC.m */,
-				203DF0432280299E00015587 /* JSCommentOrderVC.h */,
 				203DF0442280299E00015587 /* JSBaseOrderDetailsVC.m */,
-				203DF0452280299E00015587 /* JSOrderDetailMapVC.h */,
+				203DF03A2280299E00015587 /* JSCancleOrderVC.h */,
+				203DF0402280299E00015587 /* JSCancleOrderVC.m */,
+				203DF0432280299E00015587 /* JSCommentOrderVC.h */,
+				203DF0372280299E00015587 /* JSCommentOrderVC.m */,
+				203DF03D2280299E00015587 /* JSConfirmOrderVC.h */,
+				203DF0332280299E00015587 /* JSConfirmOrderVC.m */,
+				203DF03B2280299E00015587 /* JSDeliveryOrderVC.h */,
 				203DF0462280299E00015587 /* JSDeliveryOrderVC.m */,
+				203DF0392280299E00015587 /* JSFinishOrderVC.h */,
+				203DF0412280299E00015587 /* JSFinishOrderVC.m */,
+				203DF0452280299E00015587 /* JSOrderDetailMapVC.h */,
+				203DF03C2280299E00015587 /* JSOrderDetailMapVC.m */,
+				203DF0342280299E00015587 /* JSReleaseOrderVC.h */,
+				203DF03F2280299E00015587 /* JSReleaseOrderVC.m */,
+				203DF0382280299E00015587 /* JSTransportOrderVC.h */,
+				203DF0422280299E00015587 /* JSTransportOrderVC.m */,
 			);
 			path = "我的订单";
 			sourceTree = "<group>";
@@ -345,10 +354,10 @@
 		203DF05C228029AC00015587 /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				203DF05D228029AC00015587 /* JSSystemMessageVC.h */,
 				203DF05E228029AC00015587 /* JSMessageVC.h */,
-				203DF05F228029AC00015587 /* JSSystemMessageVC.m */,
 				203DF060228029AC00015587 /* JSMessageVC.m */,
+				203DF05D228029AC00015587 /* JSSystemMessageVC.h */,
+				203DF05F228029AC00015587 /* JSSystemMessageVC.m */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -356,14 +365,14 @@
 		203DF06822802AFC00015587 /* AddressSelect */ = {
 			isa = PBXGroup;
 			children = (
-				203DF06922802AFC00015587 /* HmAddressModel.m */,
-				203DF06A22802AFC00015587 /* UIView+Extension.h */,
 				203DF06B22802AFC00015587 /* Area.txt */,
-				203DF06C22802AFC00015587 /* HmSelectAdView.h */,
+				203DF06F22802AFC00015587 /* HmAddressCityModel.h */,
 				203DF06D22802AFC00015587 /* HmAddressCityModel.m */,
 				203DF06E22802AFC00015587 /* HmAddressModel.h */,
-				203DF06F22802AFC00015587 /* HmAddressCityModel.h */,
+				203DF06922802AFC00015587 /* HmAddressModel.m */,
+				203DF06C22802AFC00015587 /* HmSelectAdView.h */,
 				203DF07022802AFC00015587 /* HmSelectAdView.m */,
+				203DF06A22802AFC00015587 /* UIView+Extension.h */,
 				203DF07122802AFC00015587 /* UIView+Extension.m */,
 			);
 			path = AddressSelect;
@@ -372,16 +381,16 @@
 		205D526A2275934A0053F176 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				205D526B2275934A0053F176 /* JSForgetPwdVC.h */,
-				205D526C2275934A0053F176 /* JSCodeLoginVC.m */,
-				205D526D2275934A0053F176 /* JSRegisterVC.m */,
-				205D526E2275934A0053F176 /* JSPaswdLoginVC.h */,
-				205D526F2275934A0053F176 /* JSResetPswVC.h */,
-				205D52702275934A0053F176 /* JSForgetPwdVC.m */,
-				205D52712275934A0053F176 /* JSRegisterVC.h */,
 				205D52722275934A0053F176 /* JSCodeLoginVC.h */,
-				205D52732275934A0053F176 /* JSResetPswVC.m */,
+				205D526C2275934A0053F176 /* JSCodeLoginVC.m */,
+				205D526B2275934A0053F176 /* JSForgetPwdVC.h */,
+				205D52702275934A0053F176 /* JSForgetPwdVC.m */,
+				205D526E2275934A0053F176 /* JSPaswdLoginVC.h */,
 				205D52742275934A0053F176 /* JSPaswdLoginVC.m */,
+				205D52712275934A0053F176 /* JSRegisterVC.h */,
+				205D526D2275934A0053F176 /* JSRegisterVC.m */,
+				205D526F2275934A0053F176 /* JSResetPswVC.h */,
+				205D52732275934A0053F176 /* JSResetPswVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -493,6 +502,8 @@
 			children = (
 				A0A9F0E7222FF1C000580C6A /* Utils.h */,
 				A0A9F0FD222FF1C000580C6A /* Utils.m */,
+				A0E927012285284400D07C58 /* AEFilePath.h */,
+				A0E927002285284300D07C58 /* AEFilePath.m */,
 				203DF06822802AFC00015587 /* AddressSelect */,
 				A0A9F0E8222FF1C000580C6A /* Cache */,
 				A0A9F0ED222FF1C000580C6A /* StarView */,
@@ -716,11 +727,11 @@
 		A0A9F177222FF1F700580C6A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				205D53442275973B0053F176 /* Community */,
+				A0A9F184222FFBA600580C6A /* FindGoods */,
+				205D526A2275934A0053F176 /* Login */,
 				203DF05C228029AC00015587 /* Message */,
 				203DF01D2280299E00015587 /* Mine */,
-				205D53442275973B0053F176 /* Community */,
-				205D526A2275934A0053F176 /* Login */,
-				A0A9F184222FFBA600580C6A /* FindGoods */,
 				A0A9F187222FFBFA00580C6A /* Service */,
 			);
 			path = Module;
@@ -918,6 +929,7 @@
 				A07FE601222DE8C60017F2AC /* main.m in Sources */,
 				A0A9F18C222FFC5300580C6A /* JSFindGoodsVC.m in Sources */,
 				A0A9F16D222FF1C100580C6A /* XLGChangeServerModel.m in Sources */,
+				A0E927022285284400D07C58 /* AEFilePath.m in Sources */,
 				A0A9F152222FF1C100580C6A /* CacheUtil.m in Sources */,
 				2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */,
 				A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */,

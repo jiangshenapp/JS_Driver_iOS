@@ -8,6 +8,7 @@
 
 #import "JSMyInfoVC.h"
 #import "JSAuthenticationVC.h"
+#import "AEFilePath.h"
 
 @interface JSMyInfoVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -31,6 +32,8 @@
         || [[UserInfo share].companyConsignorVerified integerValue] == 1) {
         self.authStateLab.text = @"审核中";
     }
+    
+    self.cacheLab.text = [AEFilePath folderSizeAtPath:kCachePath];
 }
 
 #pragma mark - methods
@@ -113,12 +116,41 @@
 
 /* 清除缓存 */
 - (IBAction)clearCacheAction:(id)sender {
-    
+    NSString *message = [NSString stringWithFormat:@"确定清除%@缓存吗？",[AEFilePath folderSizeAtPath:kCachePath]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle: UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSArray *files= [[NSFileManager defaultManager] subpathsAtPath:kCachePath];
+            for (NSString *p in files) {
+                NSError *error;
+                NSString *path = [kCachePath stringByAppendingPathComponent:p];
+                if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [Utils showToast:@"缓存清除完毕"];
+                [self.tableView reloadData];
+            });
+        });
+    }]];
+    //弹出提示框；
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 /* 安全退出 */
 - (IBAction)logoutAction:(id)sender {
-    [Utils logout:YES];
+    NSDictionary *dic = [NSDictionary dictionary];
+    
+    [[NetworkManager sharedManager] postJSON:URL_Logout parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            [Utils showToast:@"安全退出成功"];
+            [Utils logout:YES];
+        }
+    }];
 }
 
 /*
