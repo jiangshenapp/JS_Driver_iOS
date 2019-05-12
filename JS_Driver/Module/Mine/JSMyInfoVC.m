@@ -23,25 +23,29 @@
 
     self.nickNameLab.text = [UserInfo share].nickName;
     
+    self.cacheLab.text = [AEFilePath folderSizeAtPath:kCachePath];
+    
     //失败》已审核〉审核中》未提交
     if ([[UserInfo share].driverVerified integerValue] == 3
         || [[UserInfo share].parkVerified integerValue] == 3) {
         self.authStateLab.text = @"认证失败";
+        return;
     }
-    else if ([[UserInfo share].driverVerified integerValue] == 2
+    if ([[UserInfo share].driverVerified integerValue] == 2
         || [[UserInfo share].parkVerified integerValue] == 2) {
         self.authStateLab.text = @"已认证";
+        return;
     }
-    else if ([[UserInfo share].driverVerified integerValue] == 1
+    if ([[UserInfo share].driverVerified integerValue] == 1
         || [[UserInfo share].parkVerified integerValue] == 1) {
         self.authStateLab.text = @"认证中";
+        return;
     }
-    else if ([[UserInfo share].driverVerified integerValue] == 0
+    if ([[UserInfo share].driverVerified integerValue] == 0
         && [[UserInfo share].parkVerified integerValue] == 0) {
         self.authStateLab.text = @"未提交";
+        return;
     }
-    
-    self.cacheLab.text = [AEFilePath folderSizeAtPath:kCachePath];
 }
 
 #pragma mark - methods

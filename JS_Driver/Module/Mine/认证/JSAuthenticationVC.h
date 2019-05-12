@@ -16,27 +16,32 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger type;
 /** 认证状态 */
 @property (weak, nonatomic) IBOutlet UILabel *authStateLab;
-@property (weak, nonatomic) IBOutlet UIView *personTabHeadView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *authStateLabH;
 
-/* 个人 */
+/* 司机 */
 @property (weak, nonatomic) IBOutlet UIButton *idCardFrontBtn;
-@property (weak, nonatomic) IBOutlet UIButton *idCardBehindBtn;
 @property (weak, nonatomic) IBOutlet UIButton *idCardHandBtn;
+@property (weak, nonatomic) IBOutlet UIButton *driverLicenceBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *idCardTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
+@property (weak, nonatomic) IBOutlet UITextField *driverLicenceTypeTF;
 
 @property (weak, nonatomic) IBOutlet UITableView *driverTabView;
-@property (weak, nonatomic) IBOutlet UITableView *companyTabview;
+@property (weak, nonatomic) IBOutlet UITableView *parkTabView;
 
-/* 公司 */
-@property (weak, nonatomic) IBOutlet UITextField *companyNameTF;
-@property (weak, nonatomic) IBOutlet UITextField *companyNoTF;
-@property (weak, nonatomic) IBOutlet UILabel *companyAddressLab;
-@property (weak, nonatomic) IBOutlet UITextField *companyDetailAddressTF;
-@property (weak, nonatomic) IBOutlet UIButton *companyPhotoBtn;
+/* 园区成员 */
+@property (weak, nonatomic) IBOutlet UITextField *parkNameTF;
+@property (weak, nonatomic) IBOutlet UITextField *organizationTypeTF;
+@property (weak, nonatomic) IBOutlet UIButton *businessLicenseHaveBtn;
+@property (weak, nonatomic) IBOutlet UIButton *businessLicenseNoHaveBtn;
+@property (weak, nonatomic) IBOutlet UITextField *IDNumberTF;
+@property (weak, nonatomic) IBOutlet UILabel *parkAddressLab;
+@property (weak, nonatomic) IBOutlet UITextField *parkDetailAddressTF;
+@property (weak, nonatomic) IBOutlet UIButton *businessLicenseBtn;
 
+/* 选择协议 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 
 @end

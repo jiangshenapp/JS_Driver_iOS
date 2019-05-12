@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -868,7 +868,7 @@
                                         <rect key="frame" x="20" y="40" width="355" height="60"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personalcenter_shipper_icon_head_landing" translatesAutoresizingMaskIntoConstraints="NO" id="ca4-mo-I5r">
-                                                <rect key="frame" x="0.0" y="0.0" width="16" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="61" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
@@ -934,7 +934,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="188 2834 2834" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQP-wc-Nog">
-                                                <rect key="frame" x="26" y="36" width="101" height="20"/>
+                                                <rect key="frame" x="71" y="36" width="101" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="ZSK-nK-gxU"/>
                                                 </constraints>
@@ -1452,15 +1452,15 @@
                                 <rect key="frame" x="0.0" y="104" width="375" height="462"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="rjG-EL-uUc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="670"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLB-Cm-fUS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请上传货主本人真实身份证正面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOG-f1-xMR">
-                                                    <rect key="frame" x="12" y="10" width="200" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请上传司机本人真实身份证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOG-f1-xMR">
+                                                    <rect key="frame" x="12" y="10" width="172" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
@@ -1487,7 +1487,7 @@
                                             <rect key="frame" x="0.0" y="160" width="375" height="160"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请上传货主本人真实身份证反面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-TT-hEX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请上传司机本人手持身份证照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-TT-hEX">
                                                     <rect key="frame" x="12" y="10" width="355" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -1499,7 +1499,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="Authentication_img_id"/>
                                                     <connections>
-                                                        <action selector="uploadIdCardBehindAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="Ula-yU-XRs"/>
+                                                        <action selector="uploadIdCardHandAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="zJR-Nx-mJ8"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vu-ul-SdO">
@@ -1515,7 +1515,7 @@
                                             <rect key="frame" x="0.0" y="320" width="375" height="160"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请上传货主本人手持身份证照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThL-SO-XMF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请上传司机本人驾驶证正本照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThL-SO-XMF">
                                                     <rect key="frame" x="12" y="10" width="355" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -1527,7 +1527,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="authentication_img_body"/>
                                                     <connections>
-                                                        <action selector="uploadIdCardHandAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="mdY-89-e8o"/>
+                                                        <action selector="uploadDriveLincenceAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="0de-tV-EAZ"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdz-Gd-sKV">
@@ -1571,7 +1571,7 @@
                                             <rect key="frame" x="0.0" y="580" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="区域" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GYu-9u-w7W">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="所在区域" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GYu-9u-w7W">
                                                     <rect key="frame" x="12" y="0.0" width="347" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -1585,6 +1585,29 @@
                                                     <state key="normal" image="app_list_arrow_black"/>
                                                     <connections>
                                                         <action selector="selectAddressAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="asK-zQ-POb"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bn5-ub-dLg">
+                                            <rect key="frame" x="0.0" y="625" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="驾驶证类型" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GJE-Rg-CQG">
+                                                    <rect key="frame" x="12" y="0.0" width="347" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4o0-Hy-CWq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                                    <state key="normal" image="app_list_arrow_black"/>
+                                                    <connections>
+                                                        <action selector="selectDriveLincenceTypeAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="0QF-ZN-2eN"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1612,7 +1635,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="填写" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-SZ-DPB">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入代理点名称/个人姓名" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gcb-SZ-DPB">
                                                     <rect key="frame" x="140" y="0.0" width="220" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -1633,13 +1656,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="服务中心/车代点/网点" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2H-bP-FuE">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="服务中心/车代点/网点" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-HC-oLc">
                                                     <rect key="frame" x="140" y="0.0" width="206" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU9-P4-uHC">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1730,6 +1753,9 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_list_arrow_black"/>
+                                                    <connections>
+                                                        <action selector="selectParkAddressAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="d0z-2L-EHT"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1771,6 +1797,9 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="Authentication_img_id"/>
                                                     <state key="highlighted" image="Authentication_img_id"/>
+                                                    <connections>
+                                                        <action selector="uploadBusinessLincensePhotoAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="kWW-tE-NOv"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UN-nh-zmf">
                                                     <rect key="frame" x="254" y="46" width="80" height="98"/>
@@ -1786,7 +1815,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKZ-ii-igf">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKZ-ii-igf">
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qli-PV-nsB">
@@ -1895,17 +1924,26 @@
                     </view>
                     <navigationItem key="navigationItem" id="aCT-iZ-B2W"/>
                     <connections>
+                        <outlet property="IDNumberTF" destination="y7c-Iv-PRB" id="52p-1g-1eY"/>
                         <outlet property="addressTF" destination="GYu-9u-w7W" id="M5y-QM-8uY"/>
                         <outlet property="authStateLab" destination="KoS-cC-JnR" id="aIe-29-sNN"/>
                         <outlet property="authStateLabH" destination="543-yW-jmE" id="FCO-pJ-IJu"/>
-                        <outlet property="companyTabview" destination="D91-iO-1TC" id="VnB-3E-WdM"/>
+                        <outlet property="bottomViewH" destination="RxW-rA-edD" id="aXZ-7D-I3t"/>
+                        <outlet property="businessLicenseBtn" destination="ggL-AY-5Ru" id="QYR-N3-sjo"/>
+                        <outlet property="businessLicenseHaveBtn" destination="JXW-CQ-z78" id="kNY-kA-GfO"/>
+                        <outlet property="businessLicenseNoHaveBtn" destination="A1l-u1-CfE" id="B80-Oo-1Ky"/>
+                        <outlet property="driverLicenceBtn" destination="CkU-cg-qde" id="rt5-xv-9Sb"/>
+                        <outlet property="driverLicenceTypeTF" destination="GJE-Rg-CQG" id="myh-om-Le1"/>
                         <outlet property="driverTabView" destination="y7c-b2-SdQ" id="pXs-xY-ccb"/>
-                        <outlet property="idCardBehindBtn" destination="oUh-Db-FX2" id="eub-Rv-ISG"/>
                         <outlet property="idCardFrontBtn" destination="EYe-n4-rBE" id="Ttf-yV-bOv"/>
-                        <outlet property="idCardHandBtn" destination="CkU-cg-qde" id="1Dj-N3-BEu"/>
+                        <outlet property="idCardHandBtn" destination="oUh-Db-FX2" id="wtJ-Tf-8K1"/>
                         <outlet property="idCardTF" destination="xTt-sL-m5Z" id="2jZ-Fk-q4f"/>
                         <outlet property="nameTF" destination="2ne-eJ-7zO" id="iJU-sR-2zQ"/>
-                        <outlet property="personTabHeadView" destination="rjG-EL-uUc" id="61L-uh-eo4"/>
+                        <outlet property="organizationTypeTF" destination="Cjr-HC-oLc" id="GNs-eP-3GU"/>
+                        <outlet property="parkAddressLab" destination="tgP-NF-eZy" id="Rga-Xs-ADp"/>
+                        <outlet property="parkDetailAddressTF" destination="Scg-DQ-Hpq" id="xea-zc-VTf"/>
+                        <outlet property="parkNameTF" destination="Gcb-SZ-DPB" id="D2T-et-ffF"/>
+                        <outlet property="parkTabView" destination="D91-iO-1TC" id="C6E-rA-geJ"/>
                         <outlet property="selectBtn" destination="O4a-l0-5Hf" id="BCC-IQ-Jhe"/>
                     </connections>
                 </viewController>
