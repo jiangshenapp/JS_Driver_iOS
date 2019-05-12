@@ -51,6 +51,7 @@
 		205D5343227597300053F176 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205D5342227597300053F176 /* Community.storyboard */; };
 		2068A89422811DC600287CD0 /* JSRechargeDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068A89322811DC600287CD0 /* JSRechargeDepositVC.m */; };
 		2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */; };
+		A0773E8B228834E400C74D69 /* AuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A0773E8A228834E400C74D69 /* AuthInfo.m */; };
 		A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F2222DE8C30017F2AC /* AppDelegate.m */; };
 		A07FE5F6222DE8C30017F2AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F5222DE8C30017F2AC /* ViewController.m */; };
 		A07FE5FB222DE8C60017F2AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07FE5FA222DE8C60017F2AC /* Assets.xcassets */; };
@@ -182,6 +183,8 @@
 		2068A89322811DC600287CD0 /* JSRechargeDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRechargeDepositVC.m; sourceTree = "<group>"; };
 		2068A8962281348F00287CD0 /* JSAuthencationHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAuthencationHomeVC.h; sourceTree = "<group>"; };
 		2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAuthencationHomeVC.m; sourceTree = "<group>"; };
+		A0773E89228834E400C74D69 /* AuthInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthInfo.h; sourceTree = "<group>"; };
+		A0773E8A228834E400C74D69 /* AuthInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthInfo.m; sourceTree = "<group>"; };
 		A07FE5EE222DE8C30017F2AC /* JS_Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JS_Driver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07FE5F1222DE8C30017F2AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A07FE5F2222DE8C30017F2AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -747,6 +750,8 @@
 				203DF06522802A0C00015587 /* BaseItem.m */,
 				A0A9F17B222FF3DF00580C6A /* UserInfo.h */,
 				A0A9F17C222FF3DF00580C6A /* UserInfo.m */,
+				A0773E89228834E400C74D69 /* AuthInfo.h */,
+				A0773E8A228834E400C74D69 /* AuthInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -949,6 +954,7 @@
 				A0A9F15C222FF1C100580C6A /* RegularPhoneTF.m in Sources */,
 				204545532285552000E65742 /* JSMyDriverVC.m in Sources */,
 				203DF07622802AFC00015587 /* UIView+Extension.m in Sources */,
+				A0773E8B228834E400C74D69 /* AuthInfo.m in Sources */,
 				203DF0592280299E00015587 /* JSBaseOrderDetailsVC.m in Sources */,
 				A0A9F16A222FF1C100580C6A /* XLGInternalDemoVC.m in Sources */,
 				203DF0482280299E00015587 /* JSWithdrawalMoneyVC.m in Sources */,

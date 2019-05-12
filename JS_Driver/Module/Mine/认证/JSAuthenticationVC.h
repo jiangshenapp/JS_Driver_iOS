@@ -26,9 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *idCardTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet UITextField *driverLicenceTypeTF;
+@property (weak, nonatomic) IBOutlet UIButton *addressBtn;
+@property (weak, nonatomic) IBOutlet UIButton *driverLicenceTypeBtn;
 
 @property (weak, nonatomic) IBOutlet UITableView *driverTabView;
 @property (weak, nonatomic) IBOutlet UITableView *parkTabView;
+@property (weak, nonatomic) IBOutlet UIView *driverTabHeadView;
+@property (weak, nonatomic) IBOutlet UIView *parkTabHeadView;
 
 /* 园区成员 */
 @property (weak, nonatomic) IBOutlet UITextField *parkNameTF;
@@ -39,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *parkAddressLab;
 @property (weak, nonatomic) IBOutlet UITextField *parkDetailAddressTF;
 @property (weak, nonatomic) IBOutlet UIButton *businessLicenseBtn;
+@property (weak, nonatomic) IBOutlet UIButton *organizationTypeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *parkAddressBtn;
 
 /* 选择协议 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;

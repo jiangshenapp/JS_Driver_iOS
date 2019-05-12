@@ -1668,6 +1668,9 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_list_arrow_black"/>
+                                                    <connections>
+                                                        <action selector="selectOrganizationTypeAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="ESG-8C-BfE"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1694,6 +1697,9 @@
                                                     <state key="selected" title="有" image="authentication_lite_icon_selected">
                                                         <color key="titleColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="clickBusinessLicenseHave:" destination="qan-oY-Ki6" eventType="touchUpInside" id="Q6n-fD-xLm"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1l-u1-CfE">
                                                     <rect key="frame" x="278" y="0.0" width="80" height="50"/>
@@ -1703,9 +1709,12 @@
                                                     <state key="normal" title="无" image="authentication_lite_icon_default">
                                                         <color key="titleColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <state key="selected" title="有" image="authentication_lite_icon_selected">
+                                                    <state key="selected" title="无" image="authentication_lite_icon_selected">
                                                         <color key="titleColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="clickBusinessLincenseNoHave:" destination="qan-oY-Ki6" eventType="touchUpInside" id="88Z-Xq-J4c"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1925,6 +1934,7 @@
                     <navigationItem key="navigationItem" id="aCT-iZ-B2W"/>
                     <connections>
                         <outlet property="IDNumberTF" destination="y7c-Iv-PRB" id="52p-1g-1eY"/>
+                        <outlet property="addressBtn" destination="MJq-29-g9G" id="ygA-jg-0ss"/>
                         <outlet property="addressTF" destination="GYu-9u-w7W" id="M5y-QM-8uY"/>
                         <outlet property="authStateLab" destination="KoS-cC-JnR" id="aIe-29-sNN"/>
                         <outlet property="authStateLabH" destination="543-yW-jmE" id="FCO-pJ-IJu"/>
@@ -1933,16 +1943,21 @@
                         <outlet property="businessLicenseHaveBtn" destination="JXW-CQ-z78" id="kNY-kA-GfO"/>
                         <outlet property="businessLicenseNoHaveBtn" destination="A1l-u1-CfE" id="B80-Oo-1Ky"/>
                         <outlet property="driverLicenceBtn" destination="CkU-cg-qde" id="rt5-xv-9Sb"/>
+                        <outlet property="driverLicenceTypeBtn" destination="4o0-Hy-CWq" id="Tsg-3w-UPf"/>
                         <outlet property="driverLicenceTypeTF" destination="GJE-Rg-CQG" id="myh-om-Le1"/>
+                        <outlet property="driverTabHeadView" destination="rjG-EL-uUc" id="m5E-fD-lp3"/>
                         <outlet property="driverTabView" destination="y7c-b2-SdQ" id="pXs-xY-ccb"/>
                         <outlet property="idCardFrontBtn" destination="EYe-n4-rBE" id="Ttf-yV-bOv"/>
                         <outlet property="idCardHandBtn" destination="oUh-Db-FX2" id="wtJ-Tf-8K1"/>
                         <outlet property="idCardTF" destination="xTt-sL-m5Z" id="2jZ-Fk-q4f"/>
                         <outlet property="nameTF" destination="2ne-eJ-7zO" id="iJU-sR-2zQ"/>
+                        <outlet property="organizationTypeBtn" destination="xU9-P4-uHC" id="3EC-CA-0Xc"/>
                         <outlet property="organizationTypeTF" destination="Cjr-HC-oLc" id="GNs-eP-3GU"/>
+                        <outlet property="parkAddressBtn" destination="Pj0-Lv-ZSv" id="Y4z-3f-MnP"/>
                         <outlet property="parkAddressLab" destination="tgP-NF-eZy" id="Rga-Xs-ADp"/>
                         <outlet property="parkDetailAddressTF" destination="Scg-DQ-Hpq" id="xea-zc-VTf"/>
                         <outlet property="parkNameTF" destination="Gcb-SZ-DPB" id="D2T-et-ffF"/>
+                        <outlet property="parkTabHeadView" destination="5US-g7-nbj" id="gps-n1-U2Y"/>
                         <outlet property="parkTabView" destination="D91-iO-1TC" id="C6E-rA-geJ"/>
                         <outlet property="selectBtn" destination="O4a-l0-5Hf" id="BCC-IQ-Jhe"/>
                     </connections>
