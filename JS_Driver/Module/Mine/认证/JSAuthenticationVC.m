@@ -8,14 +8,16 @@
 
 #import "JSAuthenticationVC.h"
 #import "HmSelectAdView.h"
+#import "AuthInfo.h"
 
 @interface JSAuthenticationVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, assign) NSInteger photoType; //1、身份证正面 2、身份证反面 3、手持身份证 4、公司营业执照
+@property (nonatomic, assign) NSInteger authState; //0未认证，1审核中，2已认证，3认证失败
+@property (nonatomic, assign) NSInteger photoType; //1、身份证正面 2、手持身份证 3、驾驶证 4、公司营业执照
 @property (nonatomic, copy) NSString *idCardFrontPhoto;
-@property (nonatomic, copy) NSString *idCardBehindPhoto;
 @property (nonatomic, copy) NSString *idCardHandPhoto;
-@property (nonatomic, copy) NSString *companyPhoto;
+@property (nonatomic, copy) NSString *driverLincencePhoto;
+@property (nonatomic, copy) NSString *businessLicensePhoto;
 
 @property (nonatomic, copy) NSString *currentProvince;
 @property (nonatomic, copy) NSString *currentCity;
@@ -27,22 +29,83 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (_type==0) {
+
+    if (self.type == 0) {
         self.title = @"司机身份认证";
-        self.companyTabview.hidden = YES;
+        self.parkTabView.hidden = YES;
+        _authState = [[UserInfo share].driverVerified integerValue];
     }
-    else if (_type==1) {
+    else {
         self.title = @"园区成员认证";
         self.driverTabView.hidden = YES;
+        _authState = [[UserInfo share].parkVerified integerValue];
+    }
+    if (_authState == 0) { //未认证
+        self.authStateLabH.constant = 0;
+    } else {
+        [self initAuthData];
+        self.authStateLab.text = kAuthStateStrDic[@(_authState)];
+        self.authStateLab.textColor = kAuthStateColorDic[@(_authState)];
+        if (_authState != 3) { //认证失败
+            [self initAuthView];
+        }
     }
     self.photoType = 0;
-    self.idCardFrontPhoto = @"";
-    self.idCardBehindPhoto = @"";
-    self.idCardHandPhoto = @"";
-    _companyTabview.tableFooterView = [[UIView alloc]init];
-    _driverTabView.tableFooterView = [[UIView alloc]init];
+    _parkTabView.tableFooterView = [[UIView alloc] init];
+    _driverTabView.tableFooterView = [[UIView alloc] init];
 }
 
+#pragma mark - 认证信息初始化
+- (void)initAuthData {
+    if (self.type == 0) { //司机认证
+        NSDictionary *paramDic = [NSDictionary dictionary];
+        [[NetworkManager sharedManager] postJSON:URL_GetDriverVerifiedInfo parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
+            if (status == Request_Success) {
+                AuthInfo *authInfo = [AuthInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
+                [self.idCardFrontBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.idImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_idpositive"]];
+                [self.idCardHandBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.idHandImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_id"]];
+                [self.driverLicenceBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.driverImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"authentication_img_body"]];
+                self.nameTF.text = authInfo.personName;
+                self.idCardTF.text = authInfo.idCode;
+                self.addressTF.text = authInfo.address;
+                self.driverLicenceTypeTF.text = authInfo.driverLevel;
+            }
+        }];
+    } else { //园区认证
+        NSDictionary *paramDic = [NSDictionary dictionary];
+        [[NetworkManager sharedManager] postJSON:URL_GetParkVerifiedInfo parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
+            if (status == Request_Success) {
+                AuthInfo *authInfo = [AuthInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
+                self.parkNameTF.text = authInfo.companyName;
+                self.organizationTypeTF.text = authInfo.companyType;
+                if ([NSString isEmpty:authInfo.businessLicenceImage]) {
+                    self.businessLicenseHaveBtn.selected = NO;
+                    self.businessLicenseNoHaveBtn.selected = YES;
+                } else {
+                    self.businessLicenseHaveBtn.selected = YES;
+                    self.businessLicenseNoHaveBtn.selected = NO;
+                }
+                self.IDNumberTF.text = authInfo.registrationNumber;
+                self.parkAddressLab.text = authInfo.address;
+                self.parkDetailAddressTF.text = authInfo.detailAddress;
+                [self.businessLicenseBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.businessLicenceImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_id"]];
+            }
+        }];
+    }
+}
+
+- (void)initAuthView {
+    self.bottomViewH.constant = 0;
+    if (self.type == 0) { //司机认证
+        self.driverTabHeadView.userInteractionEnabled = NO;
+        [self.addressBtn setImage:nil forState:UIControlStateNormal];
+        [self.driverLicenceTypeBtn setImage:nil forState:UIControlStateNormal];
+    } else { //园区认证
+        self.parkTabHeadView.userInteractionEnabled = NO;
+        [self.organizationTypeBtn setImage:nil forState:UIControlStateNormal];
+        [self.parkAddressBtn setImage:nil forState:UIControlStateNormal];
+    }
+}
 
 /* 上传身份证正面 */
 - (IBAction)uploadIdCardFrontAction:(id)sender {
@@ -50,14 +113,14 @@
     [self selectPhoto];
 }
 
-/* 上传身份证反面 */
-- (IBAction)uploadIdCardBehindAction:(id)sender {
+/* 上传手持身份证 */
+- (IBAction)uploadIdCardHandAction:(id)sender {
     self.photoType = 2;
     [self selectPhoto];
 }
 
-/* 上传手持身份证 */
-- (IBAction)uploadIdCardHandAction:(id)sender {
+/* 上传驾驶证 */
+- (IBAction)uploadDriveLincenceAction:(id)sender {
     self.photoType = 3;
     [self selectPhoto];
 }
@@ -67,6 +130,7 @@
     [self.view endEditing:YES]; //隐藏键盘
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"本地相册",@"拍照",  nil];
+    sheet.tag = 100;
     [sheet showInView:self.view];
 }
 
@@ -74,34 +138,45 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-        case 0:
-        {
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            picker.allowsEditing = YES;
-            picker.delegate = self;
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentViewController:picker animated:NO completion:^{}];
-        }
-            break;
-        case 1:
-        {
-            if ([Utils isCameraPermissionOn]) {
-                UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-                imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                imagePickerController.allowsEditing = YES;
-                imagePickerController.delegate = self;
-                
-                if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
-                    self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
-                }
-                [self presentViewController:imagePickerController animated:NO completion:nil];
+    NSInteger tag = actionSheet.tag;
+    if (tag == 100) { //选择照片
+        switch (buttonIndex) {
+            case 0:
+            {
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.allowsEditing = YES;
+                picker.delegate = self;
+                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                [self presentViewController:picker animated:NO completion:^{}];
             }
+                break;
+            case 1:
+            {
+                if ([Utils isCameraPermissionOn]) {
+                    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    imagePickerController.allowsEditing = YES;
+                    imagePickerController.delegate = self;
+                    
+                    if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
+                        self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+                    }
+                    [self presentViewController:imagePickerController animated:NO completion:nil];
+                }
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-            
-        default:
-            break;
+    }
+    if (![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"关闭"]) {
+        if (tag == 101) { //选择驾驶证类型
+            self.driverLicenceTypeTF.text = [actionSheet buttonTitleAtIndex:buttonIndex];
+        }
+        if (tag == 102) { //选择机构类型
+            self.organizationTypeTF.text = [actionSheet buttonTitleAtIndex:buttonIndex];
+        }
     }
 }
 
@@ -114,13 +189,13 @@
         [self.idCardFrontBtn setImage:iconImage forState:UIControlStateNormal];
     }
     if (self.photoType == 2) {
-        [self.idCardBehindBtn setImage:iconImage forState:UIControlStateNormal];
-    }
-    if (self.photoType == 3) {
         [self.idCardHandBtn setImage:iconImage forState:UIControlStateNormal];
     }
+    if (self.photoType == 3) {
+        [self.driverLicenceBtn setImage:iconImage forState:UIControlStateNormal];
+    }
     if (self.photoType == 4) {
-        [self.companyPhotoBtn setImage:iconImage forState:UIControlStateNormal];
+        [self.businessLicenseBtn setImage:iconImage forState:UIControlStateNormal];
     }
     
     [picker dismissViewControllerAnimated:NO completion:^{
@@ -136,13 +211,13 @@
                     self.idCardFrontPhoto = photo;
                 }
                 if (self.photoType == 2) {
-                    self.idCardBehindPhoto = photo;
-                }
-                if (self.photoType == 3) {
                     self.idCardHandPhoto = photo;
                 }
+                if (self.photoType == 3) {
+                    self.driverLincencePhoto = photo;
+                }
                 if (self.photoType == 4) {
-                    self.companyPhoto = photo;
+                    self.businessLicensePhoto = photo;
                 }
             }
         }];
@@ -162,21 +237,47 @@
     [selectV show];
 }
 
-/* 公司选择所在地 */
-- (IBAction)selectCompanyAddressAction:(id)sender {
+/* 选择驾驶证类型 */
+- (IBAction)selectDriveLincenceTypeAction:(id)sender {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"关闭" destructiveButtonTitle:nil otherButtonTitles:@"A1",@"A2",@"A3",@"B1",@"B2",@"C1",@"C2",@"C3",@"C4",@"D",@"E",@"F",@"M",@"N",@"P", nil];
+    sheet.tag = 101;
+    [sheet showInView:self.view];
+}
+
+/* 选择机构类型 */
+- (IBAction)selectOrganizationTypeAction:(id)sender {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"关闭" destructiveButtonTitle:nil otherButtonTitles:@"服务中心",@"车代点",@"网点", nil];
+    sheet.tag = 102;
+    [sheet showInView:self.view];
+}
+
+/* 点击营业执照有 */
+- (IBAction)clickBusinessLicenseHave:(id)sender {
+    self.businessLicenseHaveBtn.selected = YES;
+    self.businessLicenseNoHaveBtn.selected = NO;
+}
+
+/* 点击营业执照无 */
+- (IBAction)clickBusinessLincenseNoHave:(id)sender {
+    self.businessLicenseHaveBtn.selected = NO;
+    self.businessLicenseNoHaveBtn.selected = YES;
+}
+
+/* 园区选择所在地 */
+- (IBAction)selectParkAddressAction:(id)sender {
     // 这里传进去的self.currentProvince 等等的都是本页面的存储值
     HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
     selectV.confirmSelect = ^(NSArray *address) {
         self.currentProvince = address[0];
         self.currentCity = address[1];
         self.currentArea = address[2];
-        self.companyAddressLab.text = [NSString stringWithFormat:@"%@%@%@", self.currentProvince, self.currentCity, self.currentArea];
+        self.parkAddressLab.text = [NSString stringWithFormat:@"%@%@%@", self.currentProvince, self.currentCity, self.currentArea];
     };
     [selectV show];
 }
 
 /* 上传公司营业执照 */
-- (IBAction)uploadCompanyPhotoAction:(id)sender {
+- (IBAction)uploadBusinessLincensePhotoAction:(id)sender {
     self.photoType = 4;
     [self selectPhoto];
 }
@@ -196,98 +297,118 @@
     
     [self.view endEditing:YES];
     
-    if (_type == YES) { //个人
-        if ([NSString isEmpty:self.idCardFrontPhoto]) {
-            [Utils showToast:@"请上传货主本人真实身份证正面"];
-            return;
-        }
-        if ([NSString isEmpty:self.idCardBehindPhoto]) {
-            [Utils showToast:@"请上传货主本人真实身份证反面"];
-            return;
-        }
-        if ([NSString isEmpty:self.idCardHandPhoto]) {
-            [Utils showToast:@"请上传货主本人手持身份证照片"];
-            return;
-        }
-        if ([NSString isEmpty:self.nameTF.text]) {
-            [Utils showToast:@"请输入姓名"];
-            return;
-        }
-        if ([NSString isEmpty:self.idCardTF.text]) {
-            [Utils showToast:@"请输入身份证号"];
-            return;
-        }
-        if ([NSString isEmpty:self.addressTF.text]) {
-            [Utils showToast:@"请选择所在区域"];
-            return;
-        }
-        if (self.selectBtn.isSelected == NO) {
-            [Utils showToast:@"请勾选用户协议"];
-            return;
-        }
-        
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                             _idCardFrontPhoto, @"idImage",
-                             _idCardBehindPhoto, @"idBackImage",
-                             _idCardHandPhoto, @"idHandImage",
-                             self.nameTF.text, @"personName",
-                             self.idCardTF.text, @"idCode",
-                             self.addressTF.text, @"address",
-                             nil];
-        NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"personVerifiedInfo", nil];
-        [[NetworkManager sharedManager] postJSON:URL_PersonConsignorVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
-            if (status == Request_Success) {
-                [Utils showToast:@"提交成功，前耐心等待审核"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChangeNotification object:nil];
-                self.tabBarController.selectedIndex = 4;
-                // 跳转到首页
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        }];
-    } else {
-        if ([NSString isEmpty:self.companyNameTF.text]) {
-            [Utils showToast:@"请输入公司名称"];
-            return;
-        }
-        if ([NSString isEmpty:self.companyNoTF.text]) {
-            [Utils showToast:@"请输入企业信用代码/注册号"];
-            return;
-        }
-        if ([NSString isEmpty:self.companyAddressLab.text]) {
-            [Utils showToast:@"请选择所在地"];
-            return;
-        }
-        if ([NSString isEmpty:self.companyDetailAddressTF.text]) {
-            [Utils showToast:@"请输入详细地址"];
-            return;
-        }
-        if ([NSString isEmpty:self.companyPhoto]) {
-            [Utils showToast:@"请上传公司营业执照"];
-            return;
-        }
-        if (self.selectBtn.isSelected == NO) {
-            [Utils showToast:@"请勾选用户协议"];
-            return;
-        }
-        
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                             self.companyNameTF.text, @"companyName",
-                             self.companyNoTF.text, @"registrationNumber",
-                             self.companyAddressLab.text, @"address",
-                             self.companyDetailAddressTF.text, @"detailAddress",
-                             _companyPhoto, @"businessLicenceImage",
-                             nil];
-        NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"consignorCompanyVerifiedInfo", nil];
-        [[NetworkManager sharedManager] postJSON:URL_CompanyConsignorVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
-            if (status == Request_Success) {
-                [Utils showToast:@"提交成功，前耐心等待审核"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChangeNotification object:nil];
-                self.tabBarController.selectedIndex = 4;
-                // 跳转到首页
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        }];
+    if (self.type == 0) { //司机认证
+        [self driverCommitAction];
+    } else { // 园区员工认证
+        [self parkCommitAction];
     }
+}
+
+#pragma mark - 司机提交认证
+- (void)driverCommitAction {
+    if ([NSString isEmpty:self.idCardFrontPhoto]) {
+        [Utils showToast:@"请上传司机本人真实身份证"];
+        return;
+    }
+    if ([NSString isEmpty:self.idCardHandPhoto]) {
+        [Utils showToast:@"请上传司机本人手持身份证照片"];
+        return;
+    }
+    if ([NSString isEmpty:self.driverLincencePhoto]) {
+        [Utils showToast:@"请上传司机本人驾驶证正本照片"];
+        return;
+    }
+    if ([NSString isEmpty:self.nameTF.text]) {
+        [Utils showToast:@"请输入姓名"];
+        return;
+    }
+    if ([NSString isEmpty:self.idCardTF.text]) {
+        [Utils showToast:@"请输入身份证号"];
+        return;
+    }
+    if ([NSString isEmpty:self.addressTF.text]) {
+        [Utils showToast:@"请选择所在区域"];
+        return;
+    }
+    if ([NSString isEmpty:self.driverLicenceTypeTF.text]) {
+        [Utils showToast:@"请选择驾驶证类型"];
+        return;
+    }
+    if (self.selectBtn.isSelected == NO) {
+        [Utils showToast:@"请勾选用户协议"];
+        return;
+    }
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         _idCardFrontPhoto, @"idImage",
+                         _idCardHandPhoto, @"idHandImage",
+                         _driverLincencePhoto, @"driverImage",
+                         self.nameTF.text, @"personName",
+                         self.idCardTF.text, @"idCode",
+                         self.addressTF.text, @"address",
+                         self.driverLicenceTypeTF.text, @"driverLevel",
+                         nil];
+    NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"driverVerifiedInfo", nil];
+    [[NetworkManager sharedManager] postJSON:URL_DriverVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            [Utils showToast:@"提交成功，请耐心等待审核"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChangeNotification object:nil];
+            self.tabBarController.selectedIndex = 4;
+            // 跳转到首页
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
+}
+
+#pragma mark - 园区提交认证
+- (void)parkCommitAction {
+    if ([NSString isEmpty:self.parkNameTF.text]) {
+        [Utils showToast:@"请输入代理点名称/个人姓名"];
+        return;
+    }
+    if ([NSString isEmpty:self.organizationTypeTF.text]) {
+        [Utils showToast:@"请选择服务中心/车代点/网点"];
+        return;
+    }
+    if ([NSString isEmpty:self.IDNumberTF.text]) {
+        [Utils showToast:@"请输入证件类型/证件号码"];
+        return;
+    }
+    if ([NSString isEmpty:self.parkAddressLab.text]) {
+        [Utils showToast:@"请选择所在地"];
+        return;
+    }
+    if ([NSString isEmpty:self.parkDetailAddressTF.text]) {
+        [Utils showToast:@"请输入详细地址"];
+        return;
+    }
+    if (self.businessLicenseHaveBtn.isSelected == YES && [NSString isEmpty:self.businessLicensePhoto]) {
+        [Utils showToast:@"请上传公司营业执照"];
+        return;
+    }
+    if (self.selectBtn.isSelected == NO) {
+        [Utils showToast:@"请勾选用户协议"];
+        return;
+    }
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         self.parkNameTF.text, @"companyName",
+                         self.organizationTypeTF.text, @"companyType",
+                         self.IDNumberTF.text, @"registrationNumber",
+                         self.parkAddressLab.text, @"address",
+                         self.parkDetailAddressTF.text, @"detailAddress",
+                         _businessLicensePhoto, @"businessLicenceImage",
+                         nil];
+    NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"parkVerifiedInfo", nil];
+    [[NetworkManager sharedManager] postJSON:URL_ParkVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            [Utils showToast:@"提交成功，前耐心等待审核"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChangeNotification object:nil];
+            self.tabBarController.selectedIndex = 4;
+            // 跳转到首页
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
 }
 
 /*

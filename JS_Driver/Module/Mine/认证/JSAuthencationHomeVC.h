@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSAuthencationHomeVC : BaseVC
 
+@property (weak, nonatomic) IBOutlet UILabel *driverVerifiedLab;
+@property (weak, nonatomic) IBOutlet UILabel *parkVerifiedLab;
+
 @end
 
 NS_ASSUME_NONNULL_END

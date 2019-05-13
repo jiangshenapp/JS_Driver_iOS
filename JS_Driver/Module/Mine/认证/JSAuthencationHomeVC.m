@@ -18,6 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSInteger driverVerified = [[UserInfo share].driverVerified integerValue];
+    NSInteger parkVerified = [[UserInfo share].parkVerified integerValue];
+    self.driverVerifiedLab.text = kAuthStateStrDic[@(driverVerified)];
+    self.driverVerifiedLab.textColor = kAuthStateColorDic[@(driverVerified)];
+    self.parkVerifiedLab.text = kAuthStateStrDic[@(parkVerified)];
+    self.parkVerifiedLab.textColor = kAuthStateColorDic[@(parkVerified)];
 }
 
 /*

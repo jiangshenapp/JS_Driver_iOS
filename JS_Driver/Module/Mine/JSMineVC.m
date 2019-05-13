@@ -47,20 +47,31 @@
             //将用户信息解析成model
             UserInfo *userInfo = [UserInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
             
+            [self.headImgView sd_setImageWithURL:[NSURL URLWithString:userInfo.avatar] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
             self.phoneLab.text = userInfo.mobile;
             self.nameLab.text = userInfo.nickName;
-            
-            if ([userInfo.personConsignorVerified integerValue] == 0
-                && [userInfo.companyConsignorVerified integerValue] == 0) {
-                self.stateLab.text = @" 申请认证 ";
-            }
-            
-            if ([userInfo.personConsignorVerified integerValue] == 1
-                || [userInfo.companyConsignorVerified integerValue] == 1) {
-                self.stateLab.text = @" 审核中 ";
-            }
            
-            NSLog(@"用户手机号：%@，用户昵称：%@", userInfo.mobile, userInfo.nickName);
+            //失败》已审核〉审核中》未提交
+            if ([[UserInfo share].driverVerified integerValue] == 3
+                || [[UserInfo share].parkVerified integerValue] == 3) {
+                self.stateLab.text = @"认证失败";
+                return;
+            }
+            if ([[UserInfo share].driverVerified integerValue] == 2
+                || [[UserInfo share].parkVerified integerValue] == 2) {
+                self.stateLab.text = @"已认证";
+                return;
+            }
+            if ([[UserInfo share].driverVerified integerValue] == 1
+                || [[UserInfo share].parkVerified integerValue] == 1) {
+                self.stateLab.text = @"认证中";
+                return;
+            }
+            if ([[UserInfo share].driverVerified integerValue] == 0
+                && [[UserInfo share].parkVerified integerValue] == 0) {
+                self.stateLab.text = @"未提交";
+                return;
+            }
         }
     }];
 }
