@@ -127,6 +127,9 @@
 #define kVerifiedOnColor RGBValue(0x0091FF)
 #define kVerifiedFailColor RGBValue(0xE02020)
 
+#define JSFontMin(size) [UIFont systemFontOfSize:MAX(size, autoScaleW(size))]
+
+
 #ifdef DEBUG
 #define KOnline NO
 

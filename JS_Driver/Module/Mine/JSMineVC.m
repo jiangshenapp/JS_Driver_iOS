@@ -9,8 +9,14 @@
 #import "JSMineVC.h"
 #import "JSAllOrderVC.h"
 
-@interface JSMineVC ()
+#define LineCount 3
 
+@interface JSMineVC ()
+{
+    NSArray *iconArr;
+    NSArray *menuTileArr;
+    CGFloat menuBtnH;
+}
 @end
 
 @implementation JSMineVC
@@ -24,6 +30,49 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:kLoginSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:kUserInfoChangeNotification object:nil];
+    
+    iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars"];
+    menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线",@"我的客服",@"我的发票",@"推广大人",@"推广大人"];
+    [self createUI];
+}
+
+- (void)createUI {
+    menuBtnH = (WIDTH-2)/LineCount;
+    NSInteger line = menuTileArr.count%LineCount==0?(menuTileArr.count/LineCount):(menuTileArr.count/LineCount+1);
+    _bottomViewH.constant = menuBtnH*line;
+    NSInteger index = 0;
+    for (NSInteger j = 0; j<line; j++) {
+        for (NSInteger i = 0; i < LineCount; i++) {
+            NSString *title  = @"";
+            NSString *imgName = @"";
+            if (index<menuTileArr.count) {
+                title = menuTileArr[index];
+                imgName = iconArr[index];
+            }
+            UIButton *sender = [self createMenuButton:title andIconName:imgName];
+            sender.frame = CGRectMake(i*(menuBtnH+1), j*(menuBtnH+1), menuBtnH, menuBtnH);
+            [_bottomVIew addSubview:sender];
+            [sender addTarget:self action:@selector(showAction:) forControlEvents:UIControlEventTouchUpInside];
+            index++;
+        }
+    }
+}
+
+- (void)showAction:(UIButton *)sender {
+    NSString *vcName = @"";
+    if ([sender.currentTitle isEqualToString:@"我的司机"]) {
+        vcName = @"JSMyDriverVC";
+    }
+    else if ([sender.currentTitle isEqualToString:@"我的车辆"]) {
+        vcName = @"JSMyCarVC";
+    }
+    
+    if (vcName.length>0) {
+        UIViewController *vc = [Utils getViewController:@"Mine" WithVCName:vcName];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 #pragma mark - get data
@@ -100,6 +149,22 @@
     
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+- (UIButton *)createMenuButton:(NSString *)title andIconName:(NSString *)iconName {
+    UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, menuBtnH, menuBtnH)];
+    sender.backgroundColor = [UIColor whiteColor];
+    if (iconName.length>0) {
+        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake((sender.width-20)/2.0, sender.height/2.0-20, 20, 20)];
+        img.image = [UIImage imageNamed:iconName];
+        [sender addSubview:img];
+    }
+    sender.titleLabel.font = JSFontMin(12);
+    sender.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
+    [sender setTitleColor:kBlackColor forState:UIControlStateNormal];
+    [sender setTitle:title forState:UIControlStateNormal];
+    sender.titleEdgeInsets = UIEdgeInsetsMake(0, 0, autoScaleW(15), 0);
+    return sender;
 }
 
 
