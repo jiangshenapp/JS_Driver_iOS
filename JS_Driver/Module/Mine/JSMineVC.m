@@ -47,6 +47,7 @@
             //将用户信息解析成model
             UserInfo *userInfo = [UserInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
             
+            [self.headImgView sd_setImageWithURL:[NSURL URLWithString:userInfo.avatar] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
             self.phoneLab.text = userInfo.mobile;
             self.nameLab.text = userInfo.nickName;
            

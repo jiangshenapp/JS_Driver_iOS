@@ -36,6 +36,8 @@ NSString *PIC_URL(void);
 #define URL_SendSmsCode @"/app/subscriber/sendSmsCode" //发送短信验证码
 #define URL_SetPwd @"/app/subscriber/setPwd" //设置密码
 #define URL_BindMobile @"/app/subscriber/bindMobile" //绑定手机号
+#define URL_ChangeAvatar @"/app/subscriber/changeAvatar" //修改头像
+#define URL_ChangeNickname @"/app/subscriber/changeNickname" //修改昵称
 
 #pragma mark - APP会员认证接口
 

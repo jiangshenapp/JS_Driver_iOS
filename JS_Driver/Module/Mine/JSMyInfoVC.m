@@ -21,6 +21,7 @@
     
     self.title = @"用户中心";
 
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:[UserInfo share].avatar] placeholderImage:[UIImage imageNamed:@"personalcenter_shipper_icon_head_land"]];
     self.nickNameLab.text = [UserInfo share].nickName;
     
     self.cacheLab.text = [AEFilePath folderSizeAtPath:kCachePath];
@@ -107,7 +108,15 @@
         [[NetworkManager sharedManager] postJSON:URL_FileUpload parameters:dic imageDataArr:imageDataArr imageName:@"file" completion:^(id responseData, RequestState status, NSError *error) {
             
             if (status == Request_Success) {
-                
+                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:responseData,@"avatar", nil];
+                [[NetworkManager sharedManager] postJSON:URL_ChangeAvatar parameters:dic imageDataArr:nil imageName:nil completion:^(id responseData, RequestState status, NSError *error) {
+                    
+                    if (status == Request_Success) {
+                        //修改头像成功
+                        [Utils showToast:@"头像修改成功"];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChangeNotification object:nil];
+                    }
+                }];
             }
         }];
     }];
@@ -115,7 +124,27 @@
 
 /* 修改昵称 */
 - (IBAction)changeNickNameAction:(id)sender {
-    
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"修改昵称" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelBtn = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"取消");
+    }];
+    UIAlertAction *sureBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *txt = [alertVc.textFields objectAtIndex:0];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:txt.text,@"nickname", nil];
+        [[NetworkManager sharedManager] postJSON:URL_ChangeNickname parameters:dic imageDataArr:nil imageName:nil completion:^(id responseData, RequestState status, NSError *error) {
+            if (status == Request_Success) {
+                self.nickNameLab.text = txt.text;
+                [Utils showToast:@"昵称修改成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChangeNotification object:nil];
+            }
+        }];
+    }];
+    [alertVc addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = self.nickNameLab.text;
+    }];
+    [alertVc addAction:cancelBtn];
+    [alertVc addAction:sureBtn];
+    [self presentViewController:alertVc animated:YES completion:nil];
 }
 
 /* 认证 */

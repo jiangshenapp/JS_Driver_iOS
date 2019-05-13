@@ -397,7 +397,7 @@
                          self.IDNumberTF.text, @"registrationNumber",
                          self.parkAddressLab.text, @"address",
                          self.parkDetailAddressTF.text, @"detailAddress",
-                         [NSString stringWithFormat:@"%@%@",PIC_URL(),_businessLicensePhoto], @"businessLicenceImage",
+                         _businessLicensePhoto, @"businessLicenceImage",
                          nil];
     NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"parkVerifiedInfo", nil];
     [[NetworkManager sharedManager] postJSON:URL_ParkVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {

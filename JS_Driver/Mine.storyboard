@@ -100,13 +100,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_abutus_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Jm7-5y-NXj">
-                                <rect key="frame" x="119" y="98" width="137" height="128"/>
+                                <rect key="frame" x="179" y="98" width="17" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Jm7-5y-NXj" secondAttribute="height" multiplier="137:128" id="GXF-Gl-inN"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOg-kI-Stb">
-                                <rect key="frame" x="28" y="260" width="319" height="58"/>
+                                <rect key="frame" x="28" y="148" width="319" height="58"/>
                                 <attributedString key="attributedText">
                                     <fragment content="AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、无限可能的数据可视化最佳实践。">
                                         <attributes>
@@ -868,17 +868,24 @@
                                         <rect key="frame" x="20" y="40" width="355" height="60"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personalcenter_shipper_icon_head_landing" translatesAutoresizingMaskIntoConstraints="NO" id="ca4-mo-I5r">
-                                                <rect key="frame" x="0.0" y="0.0" width="61" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="Q24-Ek-YKN"/>
+                                                    <constraint firstAttribute="height" constant="60" id="var-PR-8co"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="30"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李玉林" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oO-Tm-4yz">
-                                                <rect key="frame" x="71" y="8" width="62" height="20"/>
+                                                <rect key="frame" x="70" y="8" width="62" height="20"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="CW6-6r-HOM"/>
@@ -887,7 +894,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WuQ-YU-zZm">
-                                                <rect key="frame" x="137" y="8" width="51" height="20"/>
+                                                <rect key="frame" x="136" y="8" width="51" height="20"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="申请认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wza-DX-GGT">
                                                         <rect key="frame" x="5" y="0.0" width="41" height="20"/>
@@ -934,7 +941,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="188 2834 2834" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQP-wc-Nog">
-                                                <rect key="frame" x="71" y="36" width="101" height="20"/>
+                                                <rect key="frame" x="70" y="36" width="101" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="ZSK-nK-gxU"/>
                                                 </constraints>
