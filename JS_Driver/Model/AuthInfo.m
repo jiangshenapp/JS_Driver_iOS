@@ -10,4 +10,39 @@
 
 @implementation AuthInfo
 
+- (NSString *)idImage {
+    if (![_idImage containsString:@"http"]) {
+        _idImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_idImage];
+    }
+    return _idImage;
+}
+
+- (NSString *)idBackImage {
+    if (![_idBackImage containsString:@"http"]) {
+        _idBackImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_idBackImage];
+    }
+    return _idBackImage;
+}
+
+- (NSString *)idHandImage {
+    if (![_idHandImage containsString:@"http"]) {
+        _idHandImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_idHandImage];
+    }
+    return _idHandImage;
+}
+
+- (NSString *)driverImage {
+    if (![_driverImage containsString:@"http"]) {
+        _driverImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_driverImage];
+    }
+    return _driverImage;
+}
+
+- (NSString *)businessLicenceImage {
+    if (![_businessLicenceImage containsString:@"http"]) {
+        _businessLicenceImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_businessLicenceImage];
+    }
+    return _businessLicenceImage;
+}
+
 @end

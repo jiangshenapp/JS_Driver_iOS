@@ -228,7 +228,7 @@ static NetworkManager *_manager = nil;
 
 //token失效判断
 - (BOOL)isTokenInvalid:(int)statusCode {
-    if (statusCode==403) { //token失效或者账号在其它地方登录
+    if (statusCode==401) { //token失效或者账号在其它地方登录
         [self reLogin];
         return YES;
     } else {

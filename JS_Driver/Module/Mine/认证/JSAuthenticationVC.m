@@ -339,7 +339,7 @@
         return;
     }
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _idCardFrontPhoto, @"idImage",
                          _idCardHandPhoto, @"idHandImage",
                          _driverLincencePhoto, @"driverImage",
@@ -348,7 +348,6 @@
                          self.addressTF.text, @"address",
                          self.driverLicenceTypeTF.text, @"driverLevel",
                          nil];
-    NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"driverVerifiedInfo", nil];
     [[NetworkManager sharedManager] postJSON:URL_DriverVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"提交成功，请耐心等待审核"];
@@ -391,15 +390,14 @@
         return;
     }
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:
                          self.parkNameTF.text, @"companyName",
-                         self.organizationTypeTF.text, @"companyType",
+                         @"1", @"companyType",
                          self.IDNumberTF.text, @"registrationNumber",
                          self.parkAddressLab.text, @"address",
                          self.parkDetailAddressTF.text, @"detailAddress",
                          _businessLicensePhoto, @"businessLicenceImage",
                          nil];
-    NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:[dic jsonStringEncoded], @"parkVerifiedInfo", nil];
     [[NetworkManager sharedManager] postJSON:URL_ParkVerified parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"提交成功，前耐心等待审核"];
