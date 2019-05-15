@@ -47,8 +47,8 @@
     
     //初始化model
     _dataArray = [NSMutableArray array];
-    NSArray *titleArr = @[@"测试地址test-aci-api.chaozhiedu.com",
-                          @"正式地址aci-api.chaozhiedu.com",
+    NSArray *titleArr = @[@"测试地址47.96.122.74:9999",
+                          @"正式地址gateway.jskj.com",
                           ];
     for (int i = 0; i<titleArr.count; i++) {
         XLGChangeServerModel *model = [[XLGChangeServerModel alloc] init];
