@@ -10,8 +10,39 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSFindGoodsVC : BaseVC
+@interface JSFindGoodsVC : BaseVC<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *filterView;
 
 @end
+
+@interface FindGoodsTabCell : UITableViewCell
+/** 订单号 */
+@property (weak, nonatomic) IBOutlet UILabel *orderNOLab;
+/** 发布时间 */
+@property (weak, nonatomic) IBOutlet UILabel *timeLab;
+/** 起止点 */
+@property (weak, nonatomic) IBOutlet UIButton *startDotNameLab;
+/** 终点 */
+@property (weak, nonatomic) IBOutlet UIButton *endDotNameLab;
+/** 装货时间 */
+@property (weak, nonatomic) IBOutlet UILabel *getGoodsTimeLab;
+/** 货车信息 */
+@property (weak, nonatomic) IBOutlet UILabel *orderCarInfoLab;
+/** 价格 */
+@property (weak, nonatomic) IBOutlet UILabel *priceLab;
+@property (weak, nonatomic) IBOutlet UIButton *iphoneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *chatBtn;
+
+@end
+
+@interface FilterButton : UIButton
+/** 是否选中 */
+@property (nonatomic,assign) BOOL isSelect;
+/** icon */
+@property (nonatomic,retain)  UIImageView *imgView;
+/** 文字 */
+@property (nonatomic,retain) UILabel *titleLab;
+@end
+
 
 NS_ASSUME_NONNULL_END

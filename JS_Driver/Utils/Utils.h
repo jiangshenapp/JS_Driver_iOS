@@ -86,4 +86,9 @@
  */
 + (void)checkMicrophoneAuthorization:(void (^)(bool isAuthorized))block;
 
+
+/*!
+ *  @brief 读取本地JSON文件
+ */
++ (NSDictionary *)readLocalFileWithName:(NSString *)name;
 @end
