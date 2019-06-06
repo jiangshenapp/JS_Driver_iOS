@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2018EB6B22A8F3B400D9E7C6 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */; };
 		203DF01A228028C500015587 /* JSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF019228028C500015587 /* JSCommunityVC.m */; };
 		203DF01C2280298900015587 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 203DF01B2280298900015587 /* Mine.storyboard */; };
 		203DF0482280299E00015587 /* JSWithdrawalMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF0202280299E00015587 /* JSWithdrawalMoneyVC.m */; };
@@ -141,6 +142,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2018EB6922A8F3B400D9E7C6 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
+		2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
 		203DF018228028C500015587 /* JSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCommunityVC.h; sourceTree = "<group>"; };
 		203DF019228028C500015587 /* JSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCommunityVC.m; sourceTree = "<group>"; };
 		203DF01B2280298900015587 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
@@ -884,6 +887,8 @@
 		A0A9F142222FF1C100580C6A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2018EB6922A8F3B400D9E7C6 /* ZHPickView.h */,
+				2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */,
 				A0A9F148222FF1C100580C6A /* CZNotDataView.h */,
 				A0A9F145222FF1C100580C6A /* CZNotDataView.m */,
 				A0A9F146222FF1C100580C6A /* CZUpdateView.h */,
@@ -1128,6 +1133,7 @@
 				A0A9F15B222FF1C100580C6A /* XLGLottie.m in Sources */,
 				203DF07922802FE200015587 /* JSMyDepositVC.m in Sources */,
 				A0A9F160222FF1C100580C6A /* BaseNC.m in Sources */,
+				2018EB6B22A8F3B400D9E7C6 /* ZHPickView.m in Sources */,
 				A0A9F151222FF1C100580C6A /* KeyChainUtil.m in Sources */,
 				A0A9F150222FF1C100580C6A /* Reachability.m in Sources */,
 				A0A9F155222FF1C100580C6A /* JHHJCenterBGView.m in Sources */,

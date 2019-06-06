@@ -10,7 +10,8 @@
 #import "JSAddCarVC.h"
 
 @interface JSMyCarVC ()
-
+/** <#object#> */
+@property (nonatomic,retain) NSMutableArray <MyCarInfoModel *>*listData;
 @end
 
 @implementation JSMyCarVC
@@ -29,20 +30,52 @@
     image.image = [UIImage imageNamed:@"consignee_icon_name"];
     self.searchTF.leftView = image;
     self.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    [self getData];
+}
+
+-(void)getData {
+    self.listData = [NSMutableArray array];
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *dic = [NSDictionary dictionary];
+    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_CarList] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
+                NSArray *arr = [MyCarInfoModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
+                [weakSelf.listData addObjectsFromArray:arr];
+            }
+        }
+        [weakSelf.baseTabView reloadData];
+    }];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.listData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyCarTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCarTabCell"];
+    MyCarInfoModel *model = self.listData[indexPath.row];
+    cell.carNumLab.text = model.cphm;
+    NSDictionary *dic = @{@"0":@"待审核",@"1":@"审核已通过",@"2":@"审核未通过",@"3":@"审核中"};
+    NSDictionary *dicColor = @{@"0":RGBValue(0xECA73F),@"1":RGBValue(0x4A90E2 ),@"2":RGBValue(0xD0021B),@"3":RGBValue(0xECA73F)};
+    cell.checkStateLab.text = dic[[NSString stringWithFormat:@"%@",model.state]];
+    cell.checkStateLab.textColor = dicColor[[NSString stringWithFormat:@"%@",model.state]];
+    [cell.carImgView sd_setImageWithURL:[NSURL URLWithString:model.image2] placeholderImage:DefaultImage];
+    cell.typeLab.text = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",model.carModelName,model.carLengthName,model.capacityTonnage,model.capacityTonnage];
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //取消选择状态
+    MyCarInfoModel *model = self.listData[indexPath.row];
+    JSAddCarVC *vc = (JSAddCarVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
+    vc.carDetaileID = model.ID;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)addCarAction {
-    JSAddCarVC *vc = [Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
+    JSAddCarVC *vc = (JSAddCarVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -61,6 +94,25 @@
 @end
 
 @implementation MyCarTabCell
+
+
+@end
+
+
+@implementation MyCarInfoModel
+
+-(NSString *)image2{
+    if (![_image2 containsString:@"http"]) {
+        _image2 = [NSString stringWithFormat:@"%@%@",PIC_URL(),_image2];
+    }
+    return _image2;
+}
+-(NSString *)image1{
+    if (![_image1 containsString:@"http"]) {
+        _image1 = [NSString stringWithFormat:@"%@%@",PIC_URL(),_image1];
+    }
+    return _image1;
+}
 
 
 @end

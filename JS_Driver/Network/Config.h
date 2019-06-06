@@ -24,6 +24,9 @@ NSString *PIC_URL(void);
 
 #define URL_FileUpload @"http://47.96.122.74:9999/admin/file/upload" //上传文件
 
+#pragma mark - 根据类型获取字典
+#define URL_GetDictByType @"/app/dict/getDictByType"//根据类型获取字典
+
 #pragma mark - APP会员注册登录接口
 
 #define URL_Login @"/app/subscriber/login" //密码登录
@@ -49,6 +52,11 @@ NSString *PIC_URL(void);
 #define URL_GetPersonConsignorVerifiedInfo @"/app/subscriber/verify/getPersonConsignorVerifiedInfo" //获取个人货主认证信息
 #define URL_ParkVerified @"/app/subscriber/verify/parkVerified" //园区认证
 #define URL_PersonConsignorVerified @"/app/subscriber/verify/personConsignorVerified" //个人货主认证
+
+#pragma mark - 我的车辆
+#define URL_AddCar @"/app/car/add"//添加车辆"
+#define URL_GetCarDetail @"/app/car/get" //车辆详情
+#define URL_CarList @"/app/car/list" //我的车辆列表
 
 #pragma mark - ---------------H5地址---------------
 
