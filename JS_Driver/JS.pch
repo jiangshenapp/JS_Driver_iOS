@@ -37,6 +37,11 @@
 
 /******************************keys****************************/
 
+#define kAPPScheme  @"com.js.shipper"
+
+// 微信key
+#define kWechatKey @"wxc681f388f78e07c9"
+
 // 友盟key
 #define kUMKey     @"5c710878b465f5fa50000071"
 
@@ -48,6 +53,7 @@
 #define kServerKey @"ServerKey"
 #define kWifiKey   @"WifiKey"
 #define kSelectCourseIDKey   @"SelectCourseIDKey"
+#define PageSize   @"10"
 
 #define kAuthStateStrDic @{@(0):@"未提交",@(1):@"认证中",@(2):@"已认证",@(3):@"认证失败"}
 #define kAuthStateColorDic @{@(0):kVerifiedUnCommitColor,@(1):kVerifiedOnColor,@(2):AppThemeColor,@(3):kVerifiedFailColor}
@@ -57,6 +63,12 @@
 #define kLoginSuccNotification  @"kLoginSuccNotification"
 #define kLogoutSuccNotification  @"kLogoutSuccNotification"
 #define kUserInfoChangeNotification  @"kUserInfoChangeNotification"
+
+#define kPaySuccNotification  @"kPaySuccNotification"
+#define kPayFailNotification  @"kPayFailNotification"
+#define kPayCancelNotification  @"kPayCancelNotification"
+
+#define kChangeMoneyNotification  @"kChangeMoneyNotification"
 
 /********************屏幕宽高、系统版本、手机型号******************/
 

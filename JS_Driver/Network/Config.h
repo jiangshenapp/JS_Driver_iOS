@@ -22,10 +22,20 @@ NSString *PIC_URL(void);
 
 #pragma mark - 上传文件
 
-#define URL_FileUpload @"http://47.96.122.74:9999/admin/file/upload" //上传文件
+#define URL_FileUpload @"http://gateway.jiangshen56.com/admin/file/upload" //上传文件
+
+#pragma mark - APP账户接口
+
+#define URL_GetPayRoute @"http://gateway.jiangshen56.com/pigx-pay-biz/pay/getRoute"//获取支付方式
+#define URL_Recharge @"/app/account/recharge"//账户充值
+#define URL_BalanceWithdraw @"/app/account/balanceWithdraw"//提现申请
+#define URL_GetBySubscriber @"/app/account/getBySubscriber"//账户详情
+#define URL_GetTradeRecord @"/app/account/getTradeRecord"//账单明细
 
 #pragma mark - 根据类型获取字典
+
 #define URL_GetDictByType @"/app/dict/getDictByType"//根据类型获取字典
+#define URL_GetDictList @"/app/dict/getDictList" //获取字典列表
 
 #pragma mark - APP会员注册登录接口
 

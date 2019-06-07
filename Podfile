@@ -20,6 +20,8 @@ def pods
   pod 'UMengAnalytics-NO-IDFA'
   pod 'FXToast'
   pod 'JSONModel'
+  pod 'AlipaySDK-iOS'
+  pod 'libWeChatSDK'
 end
  target 'JS_Driver' do
 

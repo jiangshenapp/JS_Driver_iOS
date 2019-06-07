@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2018EB6B22A8F3B400D9E7C6 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */; };
+		201BE50322AA8EE300B4B4BC /* AccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BE50222AA8EE300B4B4BC /* AccountInfo.m */; };
 		203DF01A228028C500015587 /* JSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF019228028C500015587 /* JSCommunityVC.m */; };
 		203DF01C2280298900015587 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 203DF01B2280298900015587 /* Mine.storyboard */; };
 		203DF0482280299E00015587 /* JSWithdrawalMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF0202280299E00015587 /* JSWithdrawalMoneyVC.m */; };
@@ -144,6 +145,8 @@
 /* Begin PBXFileReference section */
 		2018EB6922A8F3B400D9E7C6 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
 		2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
+		201BE50122AA8EE300B4B4BC /* AccountInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountInfo.h; sourceTree = "<group>"; };
+		201BE50222AA8EE300B4B4BC /* AccountInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountInfo.m; sourceTree = "<group>"; };
 		203DF018228028C500015587 /* JSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCommunityVC.h; sourceTree = "<group>"; };
 		203DF019228028C500015587 /* JSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCommunityVC.m; sourceTree = "<group>"; };
 		203DF01B2280298900015587 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
@@ -908,6 +911,8 @@
 				A0A9F17C222FF3DF00580C6A /* UserInfo.m */,
 				A0773E89228834E400C74D69 /* AuthInfo.h */,
 				A0773E8A228834E400C74D69 /* AuthInfo.m */,
+				201BE50122AA8EE300B4B4BC /* AccountInfo.h */,
+				201BE50222AA8EE300B4B4BC /* AccountInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1145,6 +1150,7 @@
 				A0A9F171222FF1C100580C6A /* NetworkUtil.m in Sources */,
 				A0A9F15A222FF1C100580C6A /* XLGAlertView.m in Sources */,
 				203DF07522802AFC00015587 /* HmSelectAdView.m in Sources */,
+				201BE50322AA8EE300B4B4BC /* AccountInfo.m in Sources */,
 				205D52792275934B0053F176 /* JSPaswdLoginVC.m in Sources */,
 				205D52752275934B0053F176 /* JSCodeLoginVC.m in Sources */,
 				A0A9F15C222FF1C100580C6A /* RegularPhoneTF.m in Sources */,
@@ -1362,7 +1368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xlgcx.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.js.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1383,7 +1389,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xlgcx.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.js.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

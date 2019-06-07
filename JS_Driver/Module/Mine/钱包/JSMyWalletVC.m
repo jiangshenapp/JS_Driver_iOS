@@ -9,8 +9,11 @@
 #import "JSMyWalletVC.h"
 
 @implementation JSMyWalletVC
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"我的钱包";
 }
+
 @end

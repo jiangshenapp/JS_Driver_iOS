@@ -8,6 +8,7 @@
 
 #import "JSMineVC.h"
 #import "JSAllOrderVC.h"
+#import "AccountInfo.h"
 
 #define LineCount 3
 
@@ -71,8 +72,6 @@
         UIViewController *vc = [Utils getViewController:@"Mine" WithVCName:vcName];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
-    
 }
 
 #pragma mark - get data
@@ -121,6 +120,13 @@
                 self.stateLab.text = @"未提交";
                 return;
             }
+        }
+    }];
+    
+    [[NetworkManager sharedManager] getJSON:URL_GetBySubscriber parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status==Request_Success) {
+            AccountInfo *accountInfo = [AccountInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
+            self.balanceLab.text = accountInfo.balance;
         }
     }];
 }
