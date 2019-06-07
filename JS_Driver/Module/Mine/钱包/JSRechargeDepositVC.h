@@ -7,14 +7,21 @@
 //
 
 #import "BaseVC.h"
+#import "AccountInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSRechargeDepositVC : BaseVC
+
+/** 账户信息 */
+@property (nonatomic,retain) AccountInfo *accountInfo;
+
 /** 当前保证金 */
 @property (weak, nonatomic) IBOutlet UILabel *currentMoneyLab;
 /** 需缴纳保证金 */
 @property (weak, nonatomic) IBOutlet UILabel *needMoneyLab;
+/** 选择协议 */
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 
 /** 违约说明 */
 - (IBAction)ExplainAction:(UIButton *)sender;

@@ -11,10 +11,15 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>AlipaySDK-iOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 		<key>FXToast.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>15</integer>
 		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
@@ -26,12 +31,12 @@
 		<key>JPush-iOS-SDK.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>16</integer>
 		</dict>
 		<key>JSONModel.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>17</integer>
 		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
@@ -92,7 +97,7 @@
 		<key>UMengAnalytics-NO-IDFA.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>19</integer>
 		</dict>
 		<key>XLGCategory.xcscheme</key>
 		<dict>
@@ -107,6 +112,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>12</integer>
+		</dict>
+		<key>libWeChatSDK.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>lottie-ios.xcscheme</key>
 		<dict>

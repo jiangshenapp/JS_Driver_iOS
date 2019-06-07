@@ -10,26 +10,54 @@
 
 @interface JSBillDetailsVC ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,retain) NSMutableArray *listData;
+
 @end
 
 @implementation JSBillDetailsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"账单明细";
-    if (_type>0) {
+    
+    if (_type > 0) {
         UIButton *sender = [self.view viewWithTag:100+_type];
         [self titleBtnAction:sender];
     }
-    // Do any additional setup after loading the view.
+    
+    [self getData];
+}
+
+#pragma mark - get data
+
+- (void)getData {
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [[NetworkManager sharedManager] getJSON:URL_GetTradeRecord parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status==Request_Success) {
+            weakSelf.listData = [TradeRecordModel mj_objectArrayWithKeyValuesArray:responseData];
+            [weakSelf.baseTabView reloadData];
+        }
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.listData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    JSBillListTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JSBillListTabCell1"];
+    
+    static NSString *cellIndentifier = @"JSBillListTabCell1";
+    JSBillListTabCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    if (cell == nil) {
+        cell = [[JSBillListTabCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    TradeRecordModel *model = self.listData[indexPath.row];
+    [cell setContentWithModel:model];
+    
     return cell;
 }
 
@@ -51,7 +79,22 @@
     sender.selected = YES;
     _type = sender.tag-100;
 }
+
 @end
+
 @implementation JSBillListTabCell
+
+- (void)setContentWithModel:(TradeRecordModel *)model {
+    
+    self.orderNoLab.text = [NSString stringWithFormat:@"订单编号：%@",model.tradeNo];
+    self.orderTitleLab.text = model.remark;
+    self.orderTimeLab.text = model.createTime;
+    self.orderMoneyLab.text = model.tradeMoney;
+    if ([model.tradeMoney floatValue] < 0) {
+        self.orderMoneyLab.textColor = RGBValue(0xD0021B);
+    } else {
+        self.orderMoneyLab.textColor = RGBValue(0x69BC0D);
+    }
+}
 
 @end

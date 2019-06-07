@@ -8,6 +8,8 @@
 
 #import "JSMyDepositVC.h"
 #import "JSBillDetailsVC.h"
+#import "JSWithdrawalMoneyVC.h"
+#import "JSRechargeDepositVC.h"
 
 @interface JSMyDepositVC ()
 
@@ -17,9 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"我的保证金";
 
-    // Do any additional setup after loading the view.
+    self.depositLab.text = self.accountInfo.driverDeposit;
+}
+
+- (IBAction)explainAction:(id)sender {
+    [Utils showToast:@"违约说明"];
 }
 
 /*
@@ -28,12 +35,20 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"despositID"]) {
+    
+    if ([segue.identifier isEqualToString:@"depositDetailID"]) {
         JSBillDetailsVC *vc = segue.destinationViewController;
         vc.type = 2;
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"depositWithdrawalID"]) {
+        JSWithdrawalMoneyVC *vc = segue.destinationViewController;
+        vc.maxMoney = self.accountInfo.driverDeposit;
+        vc.withdrawType = @"1";
+    }
+    if ([segue.identifier isEqualToString:@"depositRechargeID"]) {
+        JSRechargeDepositVC *vc = segue.destinationViewController;
+        vc.accountInfo = self.accountInfo;
+    }
 }
 
 @end

@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSRechargeVC : BaseVC
 
+@property (weak, nonatomic) IBOutlet UITextField *priceTF;
+@property (weak, nonatomic) IBOutlet UIButton *alipayBtn;
+@property (weak, nonatomic) IBOutlet UIButton *wechatBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END

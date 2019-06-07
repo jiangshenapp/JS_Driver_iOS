@@ -93,6 +93,9 @@
 		A0263576228C23BF00C924E2 /* ic_refresh_image_016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0263553228C23BF00C924E2 /* ic_refresh_image_016@2x.png */; };
 		A0263577228C23BF00C924E2 /* ic_refresh_image_008@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0263554228C23BF00C924E2 /* ic_refresh_image_008@2x.png */; };
 		A0263578228C23BF00C924E2 /* ic_refresh_image_004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0263555228C23BF00C924E2 /* ic_refresh_image_004@2x.png */; };
+		A03B902A22AA96C400E75D7D /* ListOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902422AA96C400E75D7D /* ListOrderModel.m */; };
+		A03B902B22AA96C400E75D7D /* PayRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902722AA96C400E75D7D /* PayRouteModel.m */; };
+		A03B902C22AA96C400E75D7D /* TradeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902822AA96C400E75D7D /* TradeRecordModel.m */; };
 		A0773E8B228834E400C74D69 /* AuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A0773E8A228834E400C74D69 /* AuthInfo.m */; };
 		A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F2222DE8C30017F2AC /* AppDelegate.m */; };
 		A07FE5F6222DE8C30017F2AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F5222DE8C30017F2AC /* ViewController.m */; };
@@ -273,6 +276,12 @@
 		A0263553228C23BF00C924E2 /* ic_refresh_image_016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_refresh_image_016@2x.png"; sourceTree = "<group>"; };
 		A0263554228C23BF00C924E2 /* ic_refresh_image_008@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_refresh_image_008@2x.png"; sourceTree = "<group>"; };
 		A0263555228C23BF00C924E2 /* ic_refresh_image_004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_refresh_image_004@2x.png"; sourceTree = "<group>"; };
+		A03B902422AA96C400E75D7D /* ListOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOrderModel.m; sourceTree = "<group>"; };
+		A03B902522AA96C400E75D7D /* ListOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOrderModel.h; sourceTree = "<group>"; };
+		A03B902622AA96C400E75D7D /* PayRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayRouteModel.h; sourceTree = "<group>"; };
+		A03B902722AA96C400E75D7D /* PayRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayRouteModel.m; sourceTree = "<group>"; };
+		A03B902822AA96C400E75D7D /* TradeRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeRecordModel.m; sourceTree = "<group>"; };
+		A03B902922AA96C400E75D7D /* TradeRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeRecordModel.h; sourceTree = "<group>"; };
 		A0773E89228834E400C74D69 /* AuthInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthInfo.h; sourceTree = "<group>"; };
 		A0773E8A228834E400C74D69 /* AuthInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthInfo.m; sourceTree = "<group>"; };
 		A07FE5EE222DE8C30017F2AC /* JS_Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JS_Driver.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -913,6 +922,12 @@
 				A0773E8A228834E400C74D69 /* AuthInfo.m */,
 				201BE50122AA8EE300B4B4BC /* AccountInfo.h */,
 				201BE50222AA8EE300B4B4BC /* AccountInfo.m */,
+				A03B902522AA96C400E75D7D /* ListOrderModel.h */,
+				A03B902422AA96C400E75D7D /* ListOrderModel.m */,
+				A03B902622AA96C400E75D7D /* PayRouteModel.h */,
+				A03B902722AA96C400E75D7D /* PayRouteModel.m */,
+				A03B902922AA96C400E75D7D /* TradeRecordModel.h */,
+				A03B902822AA96C400E75D7D /* TradeRecordModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1173,12 +1188,14 @@
 				A07FE601222DE8C60017F2AC /* main.m in Sources */,
 				A0A9F18C222FFC5300580C6A /* JSFindGoodsVC.m in Sources */,
 				A0A9F16D222FF1C100580C6A /* XLGChangeServerModel.m in Sources */,
+				A03B902A22AA96C400E75D7D /* ListOrderModel.m in Sources */,
 				A0E927022285284400D07C58 /* AEFilePath.m in Sources */,
 				A0A9F152222FF1C100580C6A /* CacheUtil.m in Sources */,
 				2044521022952E6000FBF0C9 /* CityCustomView.m in Sources */,
 				2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */,
 				2044521122952E6000FBF0C9 /* SortView.m in Sources */,
 				A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */,
+				A03B902B22AA96C400E75D7D /* PayRouteModel.m in Sources */,
 				A0A9F16E222FF1C100580C6A /* XLGChangeServerVC.m in Sources */,
 				203DF04F2280299E00015587 /* JSPayVC.m in Sources */,
 				205D52772275934B0053F176 /* JSForgetPwdVC.m in Sources */,
@@ -1192,6 +1209,7 @@
 				203DF0542280299E00015587 /* JSOrderDetailMapVC.m in Sources */,
 				203DF0492280299E00015587 /* JSMyWalletVC.m in Sources */,
 				A0A9F15E222FF1C100580C6A /* WKDelegateController.m in Sources */,
+				A03B902C22AA96C400E75D7D /* TradeRecordModel.m in Sources */,
 				203DF0532280299E00015587 /* JSCommentOrderVC.m in Sources */,
 				203DF04B2280299E00015587 /* JSBillDetailsVC.m in Sources */,
 				203DF0572280299E00015587 /* JSFinishOrderVC.m in Sources */,

@@ -8,8 +8,12 @@
 
 #import "AppDelegate.h"
 #import "BaseTabBarVC.h"
+#import <IQKeyboardManager.h>
+#import "NetworkUtil.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -18,13 +22,134 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //监测网络
+    [[NetworkUtil sharedInstance] listening];
+    
+    //键盘事件
+    [self processKeyBoard];
+    
+    NSString *WechatDescription = @"微信注册";
+    [WXApi registerApp:kWechatKey withDescription:WechatDescription];
+    
+    //解决tabbar上移
+    [[UITabBar appearance] setTranslucent:NO];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[BaseTabBarVC alloc] init];
+    BaseTabBarVC *tabBarVC = [[BaseTabBarVC alloc] init];
+    tabBarVC.delegate = self;
+    self.window.rootViewController = tabBarVC;
     [self.window makeKeyAndVisible];
     
     return YES;
 }
 
+- (void)processKeyBoard {
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = NO;
+}
+
+#pragma mark - 支付宝、微信支付回调
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self applicationOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self applicationOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary*)options {
+    return [self applicationOpenURL:url];
+}
+
+- (BOOL)applicationOpenURL:(NSURL *)url {
+    
+    //支付宝回调
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+            NSInteger status = [resultDic[@"resultStatus"] integerValue];
+            
+            switch (status) {
+                case 9000:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccNotification object:nil];
+                    break;
+                    
+                case 8000:
+                    [Utils showToast:@"订单正在处理中"];
+                    break;
+                    
+                case 4000:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kPayFailNotification object:nil];
+                    break;
+                    
+                case 6001:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kPayCancelNotification object:nil];
+                    break;
+                    
+                case 6002:
+                    [Utils showToast:@"网络连接出错"];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }];
+        return YES;
+    }
+    
+    //微信支付回调
+    if([[url absoluteString] rangeOfString:[NSString stringWithFormat:@"%@://pay",kWechatKey]].location == 0) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    
+    return YES;
+}
+
+#pragma mark - WXApiDelegate
+
+-(void)onResp:(BaseResp *)resp {
+    //微信支付信息
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp *payResp = (PayResp *)resp;
+        
+        NSLog(@"微信支付成功回调：%d",payResp.errCode);
+        
+        switch (payResp.errCode) {
+            case 0:
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccNotification object:nil];
+                break;
+            case -1:
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPayFailNotification object:nil];
+                break;
+            case -2:
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPayCancelNotification object:nil];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    //这里我判断的是当前点击的tabBarItem的标题
+    NSString *tabBarTitle = viewController.tabBarItem.title;
+    if ([tabBarTitle isEqualToString:@"我的"]) {
+        if ([Utils isLoginWithJump:YES]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    else {
+        return YES;
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

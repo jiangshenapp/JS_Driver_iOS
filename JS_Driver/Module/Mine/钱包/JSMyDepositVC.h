@@ -7,10 +7,16 @@
 //
 
 #import "BaseVC.h"
+#import "AccountInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyDepositVC : BaseVC
+
+/** 账户信息 */
+@property (nonatomic,retain) AccountInfo *accountInfo;
+
+@property (weak, nonatomic) IBOutlet UILabel *depositLab;
 
 @end
 

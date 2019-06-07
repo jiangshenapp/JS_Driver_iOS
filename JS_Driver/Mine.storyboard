@@ -1916,7 +1916,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <segue destination="0Mo-Fk-v93" kind="push" id="0k8-yY-oTy"/>
+                                                        <action selector="withdrawalAction:" destination="zHE-Sr-KDI" eventType="touchUpInside" id="wJ7-a5-Ml7"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfo-3r-cUd">
@@ -1978,7 +1978,7 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_list_arrow_black"/>
                                                     <connections>
-                                                        <segue destination="wQP-ox-KVO" kind="push" id="wHJ-oV-xW2"/>
+                                                        <action selector="depositAction:" destination="zHE-Sr-KDI" eventType="touchUpInside" id="o8t-ON-8i8"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="账单明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKF-If-awU">
@@ -2182,13 +2182,13 @@
                                             <rect key="frame" x="0.0" y="10" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="账户余额(元)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLm-Rz-7pT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="保证金(元)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLm-Rz-7pT">
                                                     <rect key="frame" x="18" y="5" width="232" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1232,123.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzq-Qg-1cJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzq-Qg-1cJ">
                                                     <rect key="frame" x="18" y="43" width="232" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
@@ -2209,7 +2209,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <segue destination="0Mo-Fk-v93" kind="push" id="yeT-Ee-ky9"/>
+                                                        <segue destination="0Mo-Fk-v93" kind="push" identifier="depositWithdrawalID" id="yeT-Ee-ky9"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fx2-Vv-Vjn">
@@ -2226,7 +2226,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <segue destination="Elp-dA-bw1" kind="push" id="Pai-9J-z2b"/>
+                                                        <segue destination="Elp-dA-bw1" kind="push" identifier="depositRechargeID" id="Pai-9J-z2b"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2254,6 +2254,9 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_list_arrow_black"/>
+                                                    <connections>
+                                                        <action selector="explainAction:" destination="wQP-ox-KVO" eventType="touchUpInside" id="fRy-Yv-q2t"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPe-7e-c3I">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -2261,7 +2264,7 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_list_arrow_black"/>
                                                     <connections>
-                                                        <segue destination="5H0-aw-F3w" kind="push" identifier="despositID" id="xzh-LD-NCD"/>
+                                                        <segue destination="5H0-aw-F3w" kind="push" identifier="depositDetailID" id="xzh-LD-NCD"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="违约说明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uw-z7-PWt">
@@ -2295,6 +2298,7 @@
                     <navigationItem key="navigationItem" id="vvk-LT-rwi"/>
                     <connections>
                         <outlet property="baseTabView" destination="Gtb-2B-7ZI" id="Xmp-DI-TIp"/>
+                        <outlet property="depositLab" destination="fzq-Qg-1cJ" id="v3x-ek-tQ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubJ-sc-lti" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2536,6 +2540,7 @@
                         <outlet property="baseTabView" destination="9b0-A9-ZNa" id="ggD-oo-fey"/>
                         <outlet property="currentMoneyLab" destination="OOA-0Y-ke2" id="xJW-yk-3oU"/>
                         <outlet property="needMoneyLab" destination="dVO-3c-kgf" id="l0H-rK-TBY"/>
+                        <outlet property="selectBtn" destination="0s4-Co-Mrm" id="Ar3-b5-pjw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVZ-Cb-Irn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2597,58 +2602,85 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lwN-Pp-smJ">
-                                            <rect key="frame" x="0.0" y="110" width="375" height="50"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4OK-Wv-PZG">
+                                            <rect key="frame" x="0.0" y="110" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="app_payment_icon_alipay" translatesAutoresizingMaskIntoConstraints="NO" id="LHB-nX-zRG">
-                                                    <rect key="frame" x="12" y="10" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dr9-JH-KPm">
-                                                    <rect key="frame" x="50" y="0.0" width="103" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6m-c6-coM">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAS-7Z-T5U">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                                    <state key="normal" image="app_checkbox_icon_default"/>
-                                                    <state key="selected" image="app_checkbox_icon_selected"/>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7q-DF-mFS">
-                                            <rect key="frame" x="0.0" y="170" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="app_payment_icon_weixin" translatesAutoresizingMaskIntoConstraints="NO" id="azl-lm-B6j">
-                                                    <rect key="frame" x="12" y="10" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微信" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGy-BZ-wid">
-                                                    <rect key="frame" x="50" y="0.0" width="103" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exF-nn-AWv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                                    <state key="normal" image="app_checkbox_icon_default"/>
-                                                    <state key="selected" image="app_checkbox_icon_selected"/>
-                                                </button>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="app_payment_icon_alipay" translatesAutoresizingMaskIntoConstraints="NO" id="0OS-lN-4NB">
+                                                            <rect key="frame" x="12" y="10" width="30" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-0A-zrL">
+                                                            <rect key="frame" x="50" y="0.0" width="103" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4w-cW-ldA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                                            <state key="normal" image="app_checkbox_icon_default"/>
+                                                            <state key="selected" image="app_checkbox_icon_selected"/>
+                                                            <connections>
+                                                                <action selector="selectAlipayAction:" destination="0Mo-Fk-v93" eventType="touchUpInside" id="Zt7-f7-axv"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMJ-N3-Evi">
+                                                    <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="账户：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fK9-CP-8Aa">
+                                                            <rect key="frame" x="29" y="0.0" width="68" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入支付宝账户" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jOk-SS-wnC">
+                                                            <rect key="frame" x="95" y="0.0" width="260" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-Fj-N4W">
+                                                    <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="姓名：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2U5-Sb-zzq">
+                                                            <rect key="frame" x="26" y="0.0" width="71" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入支付宝账户姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m79-wE-jxJ">
+                                                            <rect key="frame" x="95" y="0.0" width="260" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fYi-cp-dAC">
-                                            <rect key="frame" x="0.0" y="230" width="375" height="200"/>
+                                            <rect key="frame" x="0.0" y="270" width="375" height="200"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ha6-rX-rUb">
@@ -2672,6 +2704,9 @@
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                             <state key="normal" image="app_checkbox_icon_default"/>
                                                             <state key="selected" image="app_checkbox_icon_selected"/>
+                                                            <connections>
+                                                                <action selector="selectBankAction:" destination="0Mo-Fk-v93" eventType="touchUpInside" id="nEL-hC-JgN"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2743,7 +2778,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OA2-xM-Tzk">
-                                            <rect key="frame" x="28" y="450" width="319" height="44"/>
+                                            <rect key="frame" x="28" y="490" width="319" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2754,6 +2789,9 @@
                                                     <integer key="value" value="22"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="commitAction:" destination="0Mo-Fk-v93" eventType="touchUpInside" id="vuB-IE-Fxd"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2770,7 +2808,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="i0i-tq-AZh"/>
                     <connections>
+                        <outlet property="alipayAccountNameTF" destination="m79-wE-jxJ" id="aDA-8g-CXS"/>
+                        <outlet property="alipayAccountTF" destination="jOk-SS-wnC" id="pu3-qz-a4K"/>
+                        <outlet property="alipayBtn" destination="x4w-cW-ldA" id="TJO-zW-NQL"/>
+                        <outlet property="bankCardBtn" destination="7aU-Id-pYr" id="eB3-q1-gLG"/>
+                        <outlet property="bankCardNoTF" destination="l8s-Ib-eeq" id="Q84-Vz-BVP"/>
                         <outlet property="baseTabView" destination="DNl-3d-YGi" id="vVS-KX-R7h"/>
+                        <outlet property="maxMoneyLab" destination="13H-Xy-MgK" id="j9h-f7-cdv"/>
+                        <outlet property="moneyTF" destination="ETr-0p-ACd" id="NZp-Gh-opI"/>
+                        <outlet property="openBankBranchNameTF" destination="kLO-v0-TmV" id="2dt-ql-Jp3"/>
+                        <outlet property="openBankNameTF" destination="L1S-cy-VaI" id="mHQ-P2-7ks"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drE-Wx-h4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2846,6 +2893,9 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_checkbox_icon_default"/>
                                                     <state key="selected" image="app_checkbox_icon_selected"/>
+                                                    <connections>
+                                                        <action selector="alipaySelectAction:" destination="NOA-am-bw7" eventType="touchUpInside" id="c2O-pd-DK5"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2871,37 +2921,15 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" image="app_checkbox_icon_default"/>
                                                     <state key="selected" image="app_checkbox_icon_selected"/>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fv4-Cw-oxl">
-                                            <rect key="frame" x="0.0" y="190" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="app_payment_icon_balance" translatesAutoresizingMaskIntoConstraints="NO" id="J1Y-Mx-U9F">
-                                                    <rect key="frame" x="12" y="10" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="账户余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPZ-Oz-fHJ">
-                                                    <rect key="frame" x="50" y="0.0" width="103" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ief-Ct-Bdn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                                    <state key="normal" image="app_checkbox_icon_default"/>
-                                                    <state key="selected" image="app_checkbox_icon_selected"/>
+                                                    <connections>
+                                                        <action selector="wechetSelectAction:" destination="NOA-am-bw7" eventType="touchUpInside" id="Waq-lK-xGp"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJC-Pk-Kmj">
-                                            <rect key="frame" x="28" y="281" width="319" height="44"/>
+                                            <rect key="frame" x="28" y="221" width="319" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2912,6 +2940,9 @@
                                                     <integer key="value" value="22"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="payAction:" destination="NOA-am-bw7" eventType="touchUpInside" id="5UJ-Lh-OVt"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2928,7 +2959,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="go4-BE-s26"/>
                     <connections>
+                        <outlet property="alipayBtn" destination="Z7n-9C-vIo" id="ARH-ZG-xbH"/>
                         <outlet property="baseTabView" destination="VN6-QN-fcz" id="5AU-qf-Vuo"/>
+                        <outlet property="priceTF" destination="l5h-fx-Azf" id="zqy-tj-emg"/>
+                        <outlet property="wechatBtn" destination="kVj-dV-ZNo" id="kcs-Zq-kf9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffs-lU-Vt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4427,8 +4461,7 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OtW-4v-aci"/>
-        <segue reference="0k8-yY-oTy"/>
-        <segue reference="jnh-nf-las"/>
+        <segue reference="xzh-LD-NCD"/>
         <segue reference="SCJ-CD-x3M"/>
     </inferredMetricsTieBreakers>
 </document>
