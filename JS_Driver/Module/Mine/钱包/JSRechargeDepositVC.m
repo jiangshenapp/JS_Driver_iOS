@@ -34,8 +34,8 @@
     
     _payType = 0;
     
-    self.currentMoneyLab.text = self.accountInfo.driverDeposit;
-    self.needMoneyLab.text = self.accountInfo.tradeDeposit;
+    self.currentMoneyLab.text = [NSString stringWithFormat:@"%@元",self.accountInfo.driverDeposit];
+    self.needMoneyLab.text = [NSString stringWithFormat:@"%@元",self.accountInfo.tradeDeposit];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payFail) name:kPayFailNotification object:nil];
@@ -118,6 +118,10 @@
 - (IBAction)rechagreBtnAction:(UIButton *)sender {
     if (self.selectBtn.selected == NO) {
         [Utils showToast:@"请勾选保证金协议"];
+        return;
+    }
+    if ([self.needMoneyLab.text floatValue]<=0) {
+        [Utils showToast:@"缴纳保证金不能低于0元"];
         return;
     }
     if (self.payType == 0) { //支付宝
