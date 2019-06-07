@@ -95,6 +95,10 @@
         [Utils showToast:@"请输入充值金额"];
         return;
     }
+    if ([self.priceTF.text floatValue]<=0) {
+        [Utils showToast:@"充值金额不能低于0元"];
+        return;
+    }
     [self.view endEditing:YES];
     if (self.alipayBtn.isSelected == YES) {
         [self alipay];
