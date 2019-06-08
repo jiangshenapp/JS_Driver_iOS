@@ -18,7 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"我的车辆";
+    
     UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
     [sender setTitle:@"添加车辆" forState:UIControlStateNormal];
     [sender setTitleColor:kBlackColor forState:UIControlStateNormal];
@@ -30,7 +32,11 @@
     image.image = [UIImage imageNamed:@"consignee_icon_name"];
     self.searchTF.leftView = image;
     self.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    
     [self getData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kAddCarSuccNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kDeleteCarSuccNotification object:nil];
 }
 
 -(void)getData {
@@ -47,7 +53,6 @@
         [weakSelf.baseTabView reloadData];
     }];
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.listData.count;
@@ -90,29 +95,29 @@
 */
 
 - (IBAction)cancleSearchTF:(UIButton *)sender {
+    
 }
+
 @end
 
 @implementation MyCarTabCell
 
-
 @end
-
 
 @implementation MyCarInfoModel
 
--(NSString *)image2{
+- (NSString *)image2 {
     if (![_image2 containsString:@"http"]) {
         _image2 = [NSString stringWithFormat:@"%@%@",PIC_URL(),_image2];
     }
     return _image2;
 }
--(NSString *)image1{
+
+- (NSString *)image1 {
     if (![_image1 containsString:@"http"]) {
         _image1 = [NSString stringWithFormat:@"%@%@",PIC_URL(),_image1];
     }
     return _image1;
 }
-
 
 @end

@@ -175,8 +175,6 @@
     }];
 }
 
-
-
 - (IBAction)selectCarTypeAction:(id)sender {
     [self.view endEditing:YES];
     carModelNameArr = [NSMutableArray array];
@@ -218,22 +216,32 @@
         [self UntyingCar];
         return;
     }
+    if (_carNumLab.text.length==0) {
+        [Utils showToast:@"请输入车牌号码"];
+        return;
+    }
+    if (_carTypeLab.text.length==0) {
+        [Utils showToast:@"请选择车型"];
+        return;
+    }
+    if (_carLengthLab.text.length==0) {
+        [Utils showToast:@"请选择车长"];
+        return;
+    }
     if (_carWeightTF.text.length==0) {
+        [Utils showToast:@"请输入载货重量"];
         return;
     }
     if (_carSpaceTF.text.length==0) {
+        [Utils showToast:@"请输入载货空间"];
         return;
     }
     if (_image1.length==0) {
+        [Utils showToast:@"请拍照上传车辆行驶证"];
         return;
     }
     if (_image2.length==0) {
-        return;
-    }
-    if (_carNumLab.text.length==0) {
-        return;
-    }
-    if (_carNumLab.text.length==0) {
+        [Utils showToast:@"请拍照上传车头照"];
         return;
     }
     __weak typeof(self) weakSelf = self;
@@ -249,6 +257,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_AddCar] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"添加车辆成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kAddCarSuccNotification object:nil];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -259,4 +268,5 @@
 - (void)UntyingCar {
     
 }
+
 @end
