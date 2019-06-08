@@ -28,8 +28,8 @@
     [sender addTarget:self action:@selector(addCarAction) forControlEvents:UIControlEventTouchUpInside];
     self.navItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:sender];
     
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 0, 20, 20)];
-    image.image = [UIImage imageNamed:@"consignee_icon_name"];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 16, 16)];
+    image.image = [UIImage imageNamed:@"app_search_icon_small"];
     self.searchTF.leftView = image;
     self.searchTF.leftViewMode = UITextFieldViewModeAlways;
     
