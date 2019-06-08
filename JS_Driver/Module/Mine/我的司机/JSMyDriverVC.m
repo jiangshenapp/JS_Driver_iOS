@@ -10,7 +10,8 @@
 #import "JSMyDriverVC.h"
 
 @interface JSMyDriverVC ()<UITableViewDelegate,UITableViewDataSource>
-
+/** <#object#> */
+@property (nonatomic,retain) NSMutableArray *listData;
 @end
 
 @implementation JSMyDriverVC
@@ -29,10 +30,27 @@
     image.image = [UIImage imageNamed:@"consignee_icon_name"];
     self.searchTF.leftView = image;
     self.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    [self getData];
 }
 
+-(void)getData {
+    self.listData = [NSMutableArray array];
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *dic = [NSDictionary dictionary];
+    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_Drivers] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
+                NSArray *arr = responseData[@"records"];
+                [weakSelf.listData addObjectsFromArray:arr];
+            }
+        }
+        [weakSelf.baseTabView reloadData];
+    }];
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.listData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -50,7 +68,14 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"解绑");
+        __weak typeof(self) weakSelf = self;
+        NSDictionary *dic = [NSDictionary dictionary];
+        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+            if (status == Request_Success) {
+                
+            }
+            [weakSelf.baseTabView reloadData];
+        }];
     }
 }
 

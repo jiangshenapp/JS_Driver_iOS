@@ -68,6 +68,12 @@ NSString *PIC_URL(void);
 #define URL_GetCarDetail @"/app/car/get" //车辆详情
 #define URL_CarList @"/app/car/list" //我的车辆列表
 
+#pragma mark - 我的司机
+#define URL_Drivers @"/app/park/drivers"//司机列表
+#define URL_AddDriver @"/app/park/binding"//添加司机
+#define URL_DelectDriver @"/app/park/unbinding"//司机列表
+
+
 #pragma mark - ---------------H5地址---------------
 
 NSString *h5Url(void);
