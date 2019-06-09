@@ -12,6 +12,7 @@
 {
     NSArray *dataSource;
     CGFloat viewH;
+    NSMutableArray *selectArr;
 }
 /** 列表 */
 @property (nonatomic,retain) UITableView *myTab;
@@ -30,13 +31,14 @@
 }
 
 - (void)setupView {
-    
+    selectArr = [NSMutableArray array];
     UIWindow *myWindow= [[[UIApplication sharedApplication] delegate] window];
     [myWindow addSubview:self];
     self.hidden = YES;
     self.clipsToBounds = YES;
     
     dataSource = @[@"默认排序",@"距离排序"];
+    selectArr = [NSMutableArray arrayWithArray:@[@"1",@"0"]];
     _myTab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height) style:UITableViewStylePlain];
     viewH = self.height;
     _myTab.delegate = self;
@@ -59,13 +61,27 @@
         cell.textLabel.font = [UIFont systemFontOfSize:14];
     }
     cell.textLabel.text = dataSource[indexPath.row];
-    if ([cell.textLabel.text containsString:@"默认排序"]) {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    if ([selectArr[indexPath.row] integerValue]==1) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    for (NSInteger index = 0; index<selectArr.count; index++) {
+        if (indexPath.row==index) {
+            [selectArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+        }
+        else {
+            [selectArr replaceObjectAtIndex:index withObject:@"0"];
+        }
+    }
+    [_myTab reloadData];
+    if (self.getSortString) {
+        self.getSortString(dataSource[indexPath.row]);
+    }
+    [self hiddenView];
 }
 
 - (void)showView {

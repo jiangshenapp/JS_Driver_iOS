@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyCustomButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseCustomView : UIView
+/** 视图高度 */
+@property (nonatomic,assign) CGFloat viewHeight;
 - (void)showView ;
 - (void)hiddenView ;
 @end

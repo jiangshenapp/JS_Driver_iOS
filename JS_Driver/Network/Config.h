@@ -67,6 +67,7 @@ NSString *PIC_URL(void);
 #define URL_AddCar @"/app/car/add"//添加车辆"
 #define URL_GetCarDetail @"/app/car/get" //车辆详情
 #define URL_CarList @"/app/car/list" //我的车辆列表
+#define URL_UnbindingCar @"/app/car/unbinding"//解绑
 
 #pragma mark - 我的司机
 #define URL_Drivers @"/app/park/drivers"//司机列表

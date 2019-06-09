@@ -40,6 +40,7 @@
     [super viewDidLoad];
     self.title = @"添加车辆";
     if (![NSString isEmpty:_carDetaileID]) {
+        self.title = @"车辆详情";
         _rightBtn1.hidden = YES;
         _rightBtn2.hidden = YES;
         _carModelBtn.hidden = YES;
@@ -49,6 +50,7 @@
         _carNumLab.userInteractionEnabled = NO;
         _carWeightTF.userInteractionEnabled = NO;
         _carSpaceTF.userInteractionEnabled = NO;
+        
         [self getData];
     }
     else {
@@ -77,8 +79,8 @@
     _carNumLab.text = _carModel.cphm;
     _carTypeLab.text = _carModel.carModelName;
     _carLengthLab.text = _carModel.carLengthName;
-    _carWeightTF.text = [NSString stringWithFormat:@"%@方",_carModel.capacityTonnage];
-    _carWeightTF.text = [NSString stringWithFormat:@"%@吨",_carModel.capacityVolume];
+    _carSpaceTF.text = [NSString stringWithFormat:@"%@方",_carModel.capacityVolume];
+    _carWeightTF.text = [NSString stringWithFormat:@"%@吨",_carModel.capacityTonnage];
     [self.carDriverBtn sd_setImageWithURL:[NSURL URLWithString:_carModel.image1] forState:UIControlStateNormal placeholderImage:DefaultImage];
     [self.carHeadIMgBtn sd_setImageWithURL:[NSURL URLWithString:_carModel.image2] forState:UIControlStateNormal placeholderImage:DefaultImage];
 }
@@ -142,6 +144,9 @@
 }
 
 - (IBAction)carHeadImgAction:(UIButton *)sender {
+    if (_carDetaileID.length>0) {
+        return;
+    }
     imageType = 2;
     __weak typeof(self) weakSelf = self;
     TZImagePickerController *vc = [[TZImagePickerController alloc]initWithMaxImagesCount:1 delegate:nil];;
@@ -158,6 +163,9 @@
 }
 
 - (void)postImage:(UIImage *)iconImage {
+    if (_carDetaileID.length>0) {
+        return;
+    }
     __weak typeof(self) weakSelf = self;
     NSData *imageData = UIImageJPEGRepresentation(iconImage, 0.01);
     NSMutableArray *imageDataArr = [NSMutableArray arrayWithObjects:imageData, nil];
@@ -211,6 +219,20 @@
     };
 }
 
+- (void)UntyingCar {
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:_carWeightTF.text forKey:@"capacityTonnage"];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",URL_UnbindingCar,_carDetaileID];
+    [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            [Utils showToast:@"解绑成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kAddCarSuccNotification object:nil];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+
 - (IBAction)submitDataAction:(id)sender {
     if (_carDetaileID.length>0) {
         [self UntyingCar];
@@ -261,12 +283,6 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     }];
-}
-
-#pragma mark - 解绑车辆
-/** 解绑车辆 */
-- (void)UntyingCar {
-    
 }
 
 @end

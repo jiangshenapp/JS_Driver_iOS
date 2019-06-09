@@ -72,7 +72,8 @@
         NSDictionary *dic = [NSDictionary dictionary];
         [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
             if (status == Request_Success) {
-                
+                [Utils showToast:@"解绑成功"];
+                [weakSelf getData];
             }
             [weakSelf.baseTabView reloadData];
         }];
@@ -114,6 +115,15 @@
 
 - (IBAction)addDriverAction:(id)sender {
     [self cancleAddAction:nil];
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *dic = [NSDictionary dictionary];
+    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_AddDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            [Utils showToast:@"添加成功"];
+            [weakSelf getData];
+        }
+        [weakSelf.baseTabView reloadData];
+    }];
 }
 - (IBAction)cancleSearchAction:(UIButton *)sender {
 }

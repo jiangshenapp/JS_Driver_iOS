@@ -12,7 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SortView : BaseCustomView
-
+/** <#object#> */
+@property (nonatomic,copy) void (^getSortString)(NSString *sorts);
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,12 +19,21 @@
     CityCustomView *cityView1;
     CityCustomView *cityView2;
     SortView *mySortView;
-    FilterCustomView *filteView;
 }
+/** 分页 */
+@property (nonatomic,assign) NSInteger page;
 /** 区域编码1 */
 @property (nonatomic,copy) NSString *areaCode1;
 /** 区域编码2 */
 @property (nonatomic,copy) NSString *areaCode2;
+/** 筛选视图 */
+@property (nonatomic,retain) FilterCustomView *myfilteView;;
+/** 筛选条件 */
+@property (nonatomic,retain) NSDictionary *allDicKey;
+/** 数据源 */
+@property (nonatomic,retain) NSMutableArray *dataSource;
+/** 排序，1发货时间 2距离; */
+@property (nonatomic,copy) NSString *sort;
 @end
 
 @implementation JSFindGoodsVC
@@ -32,8 +41,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"找货";
-     titleArr1 = @[@"发货地",@"收货地",@"默认排序",@"筛选"];
-     CGFloat btW = WIDTH/4.0;
+    [self setupView];
+    [self getDicList];
+}
+
+-(void)setupView {
+    _page = 1;
+    titleArr1 = @[@"发货地",@"收货地",@"默认排序",@"筛选"];
+    CGFloat btW = WIDTH/4.0;
     for (NSInteger index = 0; index<titleArr1.count; index++) {
         FilterButton *sender = [[FilterButton alloc]initWithFrame:CGRectMake(index*btW, 0, btW, self.filterView.height)];
         sender.tag = 20000+index;
@@ -44,10 +59,11 @@
     __weak typeof(self) weakSelf = self;
     cityView1 = [[CityCustomView alloc]init];
     cityView1.getCityData = ^(NSDictionary * _Nonnull dataDic) {
-         FilterButton *tempBtn = [weakSelf.view viewWithTag:20000];
+        FilterButton *tempBtn = [weakSelf.view viewWithTag:20000];
         tempBtn.isSelect = NO;
         [tempBtn setTitle:dataDic[@"address"] forState:UIControlStateNormal];
         weakSelf.areaCode1 = dataDic[@"code"];
+        [weakSelf.baseTabView.mj_header beginRefreshing];
     };
     cityView2 = [[CityCustomView alloc]init];
     cityView2.getCityData = ^(NSDictionary * _Nonnull dataDic) {
@@ -55,13 +71,85 @@
         [tempBtn setTitle:dataDic[@"address"] forState:UIControlStateNormal];
         weakSelf.areaCode2 = dataDic[@"code"];
         tempBtn.isSelect = NO;
+        [weakSelf.baseTabView.mj_header beginRefreshing];
     };
     mySortView = [[SortView alloc]init];
-    filteView = [[FilterCustomView alloc]init];
-    titleViewArr = @[cityView1,cityView2,mySortView,filteView];
+    mySortView.getSortString = ^(NSString * _Nonnull sorts) {
+        FilterButton *tempBtn = [weakSelf.view viewWithTag:20002];
+        tempBtn.selected = NO;
+        if ([sorts containsString:@"默认"]) {
+            weakSelf.sort = @"1";
+        }
+        else {
+            weakSelf.sort = @"2";
+        }
+        [weakSelf.baseTabView.mj_header beginRefreshing];
+    };
+    _myfilteView = [[FilterCustomView alloc]init];\
+    _myfilteView.getPostDic = ^(NSDictionary * _Nonnull dic, NSArray * _Nonnull titles) {
+        FilterButton *tempBtn = [weakSelf.view viewWithTag:20003];
+        tempBtn.selected = NO;
+        weakSelf.allDicKey = dic;
+        [weakSelf.baseTabView.mj_header beginRefreshing];
+    };
+    titleViewArr = @[cityView1,cityView2,mySortView,_myfilteView];
     UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(btW-10, (self.filterView.height-5)/2.0, 20, 5)];
     imgView.image = [UIImage imageNamed:@"home_tab_icon_go"];
     [self.filterView addSubview:imgView];
+    
+    self.baseTabView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf getNetData];
+    }];
+    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf getNetData];
+    }];
+}
+
+
+#pragma mark - 获取数据
+- (void)getNetData {
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:_areaCode2 forKey:@"arriveAddressCode"];
+    [dic setObject:_areaCode1 forKey:@"startAddressCode"];
+    [dic setObject:_sort forKey:@"sort"];
+    [dic addEntriesFromDictionary:self.allDicKey];
+    NSString *url = [NSString stringWithFormat:@"%@?current=%ld&size=%@",URL_Login,_page,PageSize];
+    [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (weakSelf.page==1) {
+            [weakSelf.dataSource removeAllObjects];
+        }
+        NSArray *arr;
+        if (status == Request_Success) {
+            arr = responseData;
+//            weakSelf.dataModels = [HomeDataModel mj_objectWithKeyValues:responseData];
+        }
+//        if (weakSelf.dataSource.count<[weakSelf.dataModels.total integerValue]) {
+//            [weakSelf.dataSource addObjectsFromArray:weakSelf.dataModels.records];
+//            weakSelf.page++;
+//        }
+        [weakSelf.baseTabView reloadData];
+        if ([weakSelf.baseTabView.mj_footer isRefreshing]) {
+            [weakSelf.baseTabView.mj_footer endRefreshing];
+        }
+        if ([weakSelf.baseTabView.mj_header isRefreshing]) {
+            [weakSelf.baseTabView.mj_header endRefreshing];
+        }
+        
+    }];
+}
+
+#pragma mark - 获取数据
+- (void)getDicList {
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [[NetworkManager sharedManager] postJSON:URL_GetDictList parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            weakSelf.myfilteView.dataDic = responseData;
+        }
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
