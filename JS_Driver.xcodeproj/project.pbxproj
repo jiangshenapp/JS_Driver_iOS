@@ -99,6 +99,7 @@
 		A03B902A22AA96C400E75D7D /* ListOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902422AA96C400E75D7D /* ListOrderModel.m */; };
 		A03B902B22AA96C400E75D7D /* PayRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902722AA96C400E75D7D /* PayRouteModel.m */; };
 		A03B902C22AA96C400E75D7D /* TradeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902822AA96C400E75D7D /* TradeRecordModel.m */; };
+		A03B902F22ACECDD00E75D7D /* DriverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A03B902E22ACECDD00E75D7D /* DriverModel.m */; };
 		A0773E8B228834E400C74D69 /* AuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A0773E8A228834E400C74D69 /* AuthInfo.m */; };
 		A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F2222DE8C30017F2AC /* AppDelegate.m */; };
 		A07FE5F6222DE8C30017F2AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE5F5222DE8C30017F2AC /* ViewController.m */; };
@@ -291,6 +292,8 @@
 		A03B902722AA96C400E75D7D /* PayRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayRouteModel.m; sourceTree = "<group>"; };
 		A03B902822AA96C400E75D7D /* TradeRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeRecordModel.m; sourceTree = "<group>"; };
 		A03B902922AA96C400E75D7D /* TradeRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeRecordModel.h; sourceTree = "<group>"; };
+		A03B902D22ACECDD00E75D7D /* DriverModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverModel.h; sourceTree = "<group>"; };
+		A03B902E22ACECDD00E75D7D /* DriverModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverModel.m; sourceTree = "<group>"; };
 		A0773E89228834E400C74D69 /* AuthInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthInfo.h; sourceTree = "<group>"; };
 		A0773E8A228834E400C74D69 /* AuthInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthInfo.m; sourceTree = "<group>"; };
 		A07FE5EE222DE8C30017F2AC /* JS_Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JS_Driver.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -951,6 +954,8 @@
 				A03B902722AA96C400E75D7D /* PayRouteModel.m */,
 				A03B902922AA96C400E75D7D /* TradeRecordModel.h */,
 				A03B902822AA96C400E75D7D /* TradeRecordModel.m */,
+				A03B902D22ACECDD00E75D7D /* DriverModel.h */,
+				A03B902E22ACECDD00E75D7D /* DriverModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1232,6 +1237,7 @@
 				A0A9F163222FF1C100580C6A /* BaseWebVC.m in Sources */,
 				203DF0542280299E00015587 /* JSOrderDetailMapVC.m in Sources */,
 				203DF0492280299E00015587 /* JSMyWalletVC.m in Sources */,
+				A03B902F22ACECDD00E75D7D /* DriverModel.m in Sources */,
 				A0A9F15E222FF1C100580C6A /* WKDelegateController.m in Sources */,
 				A03B902C22AA96C400E75D7D /* TradeRecordModel.m in Sources */,
 				20FFCC5D22ACAC44002F94EB /* JSMyRouteVC.m in Sources */,

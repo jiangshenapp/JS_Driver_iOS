@@ -64,15 +64,16 @@ NSString *PIC_URL(void);
 #define URL_PersonConsignorVerified @"/app/subscriber/verify/personConsignorVerified" //个人货主认证
 
 #pragma mark - 我的车辆
-#define URL_AddCar @"/app/car/add"//添加车辆"
+#define URL_AddCar @"/app/car/add" //添加车辆"
 #define URL_GetCarDetail @"/app/car/get" //车辆详情
 #define URL_CarList @"/app/car/list" //我的车辆列表
-#define URL_UnbindingCar @"/app/car/unbinding"//解绑
+#define URL_UnbindingCar @"/app/car/unbinding" //解绑
 
 #pragma mark - 我的司机
-#define URL_Drivers @"/app/park/drivers"//司机列表
-#define URL_AddDriver @"/app/park/binding"//添加司机
-#define URL_DelectDriver @"/app/park/unbinding"//司机列表
+#define URL_Drivers @"/app/park/drivers" //司机列表
+#define URL_BindDriver @"/app/park/binding" //绑定司机
+#define URL_UnBindDriver @"/app/park/unbinding" //解绑司机
+#define URL_FindDriverByMobile @"/app/driver/findByMobile" //查询司机
 
 #pragma mark - 我的路线
 #define URL_MyLines @"/app/line/myLines"//我的路线
