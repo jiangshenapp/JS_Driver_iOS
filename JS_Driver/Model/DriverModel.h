@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString              *driverId;
 /** 手机号 */
 @property (nonatomic, copy) NSString              *driverPhone;
+/** 头像 */
+@property (nonatomic, copy) NSString              *avatar;
 
 @end
 

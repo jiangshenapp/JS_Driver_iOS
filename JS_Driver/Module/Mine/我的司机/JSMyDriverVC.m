@@ -195,7 +195,7 @@
 
 - (void)setContentWithModel:(DriverModel *)model {
     
-    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
     self.nameLab.text = model.driverName;
     self.phoneLab.text = model.driverPhone;
     self.driverTypeLab.text = [NSString stringWithFormat:@"驾照类型：%@",model.driverLevel];
