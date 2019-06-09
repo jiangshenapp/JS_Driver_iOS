@@ -61,14 +61,11 @@
     __weak typeof(self) weakSelf = self;
     self.state = 1;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@(self.state) forKey:@"enable"];
-    [dic setObject:_routeID forKey:@"lineId"];
-    NSString *url = [NSString stringWithFormat:@"%@",URL_LineEnable];
+    NSString *url = [NSString stringWithFormat:@"%@?enable=%d&lineId=%@",URL_LineEnable,self.state,_routeID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             [Utils showToast:@"启用成功"];
             [weakSelf.navigationController popViewControllerAnimated:YES];
-
         }
     }];
 }

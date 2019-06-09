@@ -36,16 +36,18 @@
     image.image = [UIImage imageNamed:@"consignee_icon_name"];
     self.searchTF.leftView = image;
     self.searchTF.leftViewMode = UITextFieldViewModeAlways;
-    [self getData];
-    // Do any additional setup after loading the view.
-}
--(void)getData {
+    
     self.listData = [NSMutableArray array];
+    [self getData];
+}
+
+- (void)getData {
     __weak typeof(self) weakSelf = self;
     NSDictionary *dic = [NSDictionary dictionary];
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_MyLines] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
+                [weakSelf.listData removeAllObjects];
                 NSArray *arr = responseData[@"records"];
                 [weakSelf.listData addObjectsFromArray:arr];
             }
