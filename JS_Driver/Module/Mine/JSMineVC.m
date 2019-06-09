@@ -67,7 +67,9 @@
     else if ([sender.currentTitle isEqualToString:@"我的车辆"]) {
         vcName = @"JSMyCarVC";
     }
-    
+    else if ([sender.currentTitle isEqualToString:@"我的路线"]) {
+        vcName = @"JSMyRouteVC";
+    }
     if (vcName.length>0) {
         UIViewController *vc = [Utils getViewController:@"Mine" WithVCName:vcName];
         [self.navigationController pushViewController:vc animated:YES];
