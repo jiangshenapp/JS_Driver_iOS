@@ -72,13 +72,13 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         __weak typeof(self) weakSelf = self;
         NSDictionary *dic = [NSDictionary dictionary];
-        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
-            if (status == Request_Success) {
-                [Utils showToast:@"解绑成功"];
-                [weakSelf getData];
-            }
-            [weakSelf.baseTabView reloadData];
-        }];
+//        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+//            if (status == Request_Success) {
+//                [Utils showToast:@"解绑成功"];
+//                [weakSelf getData];
+//            }
+//            [weakSelf.baseTabView reloadData];
+//        }];
     }
 }
 
