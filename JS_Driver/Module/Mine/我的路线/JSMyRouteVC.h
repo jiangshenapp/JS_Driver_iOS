@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSMyRouteVC : BaseVC
+@interface JSMyRouteVC : BaseVC<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *searchTF;
 
 @end

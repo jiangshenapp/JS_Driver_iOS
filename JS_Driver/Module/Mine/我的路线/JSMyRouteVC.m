@@ -8,6 +8,7 @@
 
 #import "JSMyRouteVC.h"
 #import "JSAddRouteVC.h"
+#import "JSMyRouteDetailVC.h"
 
 @interface JSMyRouteVC ()
 /** <#object#> */
@@ -16,8 +17,14 @@
 
 @implementation JSMyRouteVC
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"我的路线";
     UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
     [sender setTitle:@"添加路线" forState:UIControlStateNormal];
     [sender setTitleColor:kBlackColor forState:UIControlStateNormal];
@@ -56,8 +63,24 @@
     NSDictionary *dic = self.listData[indexPath.row];
     [cell.startAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
     [cell.endAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
-
+    NSString *jingpin = [dic[@"classic"] integerValue]==1?@"精品":@"";
+    cell.infoLab.text = [NSString stringWithFormat:@"%@ %@ %@",jingpin,dic[@"carLengthName"],dic[@"carModelName"]];
+    if ([dic[@"classic"] integerValue]==1) {
+        // 创建Attributed
+        NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:cell.infoLab.text];
+        // 改变颜色
+        [noteStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0xD0021B) range:NSMakeRange(0,2)];
+        cell.infoLab.attributedText = noteStr;
+    }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dic = self.listData[indexPath.row];
+    JSMyRouteDetailVC *vc = (JSMyRouteDetailVC *)[Utils getViewController:@"Mine" WithVCName:@"JSMyRouteDetailVC"];
+    vc.routeID = [NSString stringWithFormat:@"%@",dic[@"id"]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -72,18 +95,34 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         __weak typeof(self) weakSelf = self;
         NSDictionary *dic = [NSDictionary dictionary];
-//        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
-//            if (status == Request_Success) {
-//                [Utils showToast:@"解绑成功"];
-//                [weakSelf getData];
-//            }
-//            [weakSelf.baseTabView reloadData];
-//        }];
+        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_MyLines] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+            if (status == Request_Success) {
+                [Utils showToast:@"解绑成功"];
+                [weakSelf getData];
+            }
+            [weakSelf.baseTabView reloadData];
+        }];
     }
 }
 
+//设置返回存放侧滑按钮数组
+-(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //这是iOS8以后的方法
+    UITableViewRowAction *deleBtn = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    }];
+    
+    
+    UITableViewRowAction *moreBtn = [UITableViewRowAction  rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    }];
+    //设置背景颜色，他们的大小会分局文字内容自适应，所以不用担心
+    deleBtn.backgroundColor = RGBValue(0xD0021B);
+    moreBtn.backgroundColor = RGBValue(0x4A90E2);
+    return @[deleBtn,moreBtn];
+    
+}
+
 - (void)addviewAction {
-    JSAddRouteVC *vc = [Utils getViewController:@"Mine" WithVCName:@"JSAddRouteVC"];
+    JSAddRouteVC *vc = (JSAddRouteVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddRouteVC"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

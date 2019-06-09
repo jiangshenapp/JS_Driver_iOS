@@ -79,8 +79,9 @@ NSString *PIC_URL(void);
 #define URL_MyLines @"/app/line/myLines"//我的路线
 #define URL_AddMyLines @"/app/line/add"//添加我的路线
 #define URL_EditMyLines @"/app/line/edit"//编辑我的路线
-#define URL_GetMyLines @"/app/line/get/{id}"//路线详情
-
+#define URL_GetMyLines @"/app/line/get"//路线详情
+#define URL_LineClassic @"/app/line/classic"//申请精品线路
+#define URL_LineEnable @"/app/line/enable" //启用停用 1启用0停用
 
 #pragma mark - ---------------H5地址---------------
 

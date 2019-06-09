@@ -63,6 +63,11 @@
     _myfilteView = [[FilterCustomView alloc]init];\
     _myfilteView.getPostDic = ^(NSDictionary * _Nonnull dic, NSArray * _Nonnull titles) {
         weakSelf.postDic = dic;
+        NSString *string  = @"";
+        for (NSString *str in titles) {
+            string = [string stringByAppendingString:[NSString stringWithFormat:@"/%@",str]];
+        }
+        [weakSelf.filterBtn setTitle:string forState:UIControlStateNormal];
     };
     _dataDic = [NSMutableDictionary dictionary];
 }
