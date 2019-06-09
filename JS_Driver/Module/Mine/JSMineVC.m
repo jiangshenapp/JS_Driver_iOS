@@ -32,8 +32,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:kLoginSuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:kUserInfoChangeNotification object:nil];
     
-    iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars",@"personalcenter_icon_cars"];
-    menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线",@"我的客服",@"我的发票",@"推广大人",@"推广大人"];
+    iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_driver",@"personalcenter_icon_route",@"personalcenter_icon_service",@"personalcenter_icon_invoice",@"personalcenter_icon_collection"];
+    menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线",@"我的客服",@"我的发票",@"推广达人"];
     [self createUI];
 }
 
@@ -66,6 +66,8 @@
     }
     else if ([sender.currentTitle isEqualToString:@"我的车辆"]) {
         vcName = @"JSMyCarVC";
+    } else {
+        [Utils showToast:@"该功能暂未开通，敬请期待"];
     }
     else if ([sender.currentTitle isEqualToString:@"我的路线"]) {
         vcName = @"JSMyRouteVC";
@@ -133,7 +135,6 @@
     }];
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -175,5 +176,24 @@
     return sender;
 }
 
+/** 我的圈子 */
+- (IBAction)quanziAction:(id)sender {
+    [Utils showToast:@"功能暂未开通，敬请期待"];
+}
+
+/** 我的社区 */
+- (IBAction)shequAction:(id)sender {
+    [Utils showToast:@"功能暂未开通，敬请期待"];
+}
+
+/** 我的帖子 */
+- (IBAction)tieziAction:(id)sender {
+    [Utils showToast:@"功能暂未开通，敬请期待"];
+}
+
+/** 我的草稿箱 */
+- (IBAction)caogaoxiangAction:(id)sender {
+    [Utils showToast:@"功能暂未开通，敬请期待"];
+}
 
 @end

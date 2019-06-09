@@ -21,6 +21,8 @@
     
     self.title = @"我的车辆";
     
+    self.view.backgroundColor = PageColor;
+    
     UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
     [sender setTitle:@"添加车辆" forState:UIControlStateNormal];
     [sender setTitleColor:kBlackColor forState:UIControlStateNormal];
