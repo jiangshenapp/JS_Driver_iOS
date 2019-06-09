@@ -74,6 +74,12 @@ NSString *PIC_URL(void);
 #define URL_AddDriver @"/app/park/binding"//添加司机
 #define URL_DelectDriver @"/app/park/unbinding"//司机列表
 
+#pragma mark - 我的路线
+#define URL_MyLines @"/app/line/myLines"//我的路线
+#define URL_AddMyLines @"/app/line/add"//添加我的路线
+#define URL_EditMyLines @"/app/line/edit"//编辑我的路线
+#define URL_GetMyLines @"/app/line/get/{id}"//路线详情
+
 
 #pragma mark - ---------------H5地址---------------
 
