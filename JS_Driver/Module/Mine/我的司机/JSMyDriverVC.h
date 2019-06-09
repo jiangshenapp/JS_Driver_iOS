@@ -7,10 +7,12 @@
 //
 
 #import "BaseVC.h"
+#import "DriverModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyDriverVC : BaseVC
+
 @property (weak, nonatomic) IBOutlet UIView *addView;
 @property (weak, nonatomic) IBOutlet UIView *bgShdowView;
 @property (weak, nonatomic) IBOutlet UIView *addContentView;
@@ -19,21 +21,24 @@ NS_ASSUME_NONNULL_BEGIN
 /** 添加姓名 */
 @property (weak, nonatomic) IBOutlet UITextField *addNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *searchTF;
-- (IBAction)cancleSearchAction:(UIButton *)sender;
-
 /** 驾驶证类型 */
 @property (weak, nonatomic) IBOutlet UITextField *addDriverTF;
+@property (weak, nonatomic) IBOutlet UIButton *addDriverBtn;
+
+- (IBAction)cancleSearchAction:(UIButton *)sender;
 - (IBAction)cancleAddAction:(id)sender;
 - (IBAction)addDriverAction:(id)sender;
-
 
 @end
 
 @interface MyDriverTabCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *headImgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLab;
 @property (weak, nonatomic) IBOutlet UILabel *driverTypeLab;
+
+- (void)setContentWithModel:(DriverModel *)model;
 
 @end
 
