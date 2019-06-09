@@ -69,6 +69,9 @@
     } else {
         [Utils showToast:@"该功能暂未开通，敬请期待"];
     }
+    else if ([sender.currentTitle isEqualToString:@"我的路线"]) {
+        vcName = @"JSMyRouteVC";
+    }
     if (vcName.length>0) {
         UIViewController *vc = [Utils getViewController:@"Mine" WithVCName:vcName];
         [self.navigationController pushViewController:vc animated:YES];

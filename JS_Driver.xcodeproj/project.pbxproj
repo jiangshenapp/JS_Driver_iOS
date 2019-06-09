@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200A9EAC22ACB63E002D5646 /* JSAddRouteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 200A9EAB22ACB63E002D5646 /* JSAddRouteVC.m */; };
 		2018EB6B22A8F3B400D9E7C6 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */; };
 		201BE50322AA8EE300B4B4BC /* AccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BE50222AA8EE300B4B4BC /* AccountInfo.m */; };
 		203DF01A228028C500015587 /* JSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 203DF019228028C500015587 /* JSCommunityVC.m */; };
@@ -59,6 +60,7 @@
 		20FFCC5522ACA271002F94EB /* FilterCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFCC5022ACA271002F94EB /* FilterCustomView.m */; };
 		20FFCC5622ACA271002F94EB /* BaseCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFCC5122ACA271002F94EB /* BaseCustomView.m */; };
 		20FFCC5922ACA2EC002F94EB /* MyCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFCC5822ACA2EC002F94EB /* MyCustomButton.m */; };
+		20FFCC5D22ACAC44002F94EB /* JSMyRouteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFCC5C22ACAC44002F94EB /* JSMyRouteVC.m */; };
 		A0263556228C23BF00C924E2 /* ic_refresh_image_025@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0263533228C23BF00C924E2 /* ic_refresh_image_025@2x.png */; };
 		A0263557228C23BF00C924E2 /* ic_refresh_image_029@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0263534228C23BF00C924E2 /* ic_refresh_image_029@2x.png */; };
 		A0263558228C23BF00C924E2 /* ic_refresh_image_001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0263535228C23BF00C924E2 /* ic_refresh_image_001@2x.png */; };
@@ -148,6 +150,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		200A9EAA22ACB63E002D5646 /* JSAddRouteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAddRouteVC.h; sourceTree = "<group>"; };
+		200A9EAB22ACB63E002D5646 /* JSAddRouteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAddRouteVC.m; sourceTree = "<group>"; };
 		2018EB6922A8F3B400D9E7C6 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
 		2018EB6A22A8F3B400D9E7C6 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
 		201BE50122AA8EE300B4B4BC /* AccountInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountInfo.h; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 		20FFCC5122ACA271002F94EB /* BaseCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCustomView.m; sourceTree = "<group>"; };
 		20FFCC5722ACA2EB002F94EB /* MyCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomButton.h; sourceTree = "<group>"; };
 		20FFCC5822ACA2EC002F94EB /* MyCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomButton.m; sourceTree = "<group>"; };
+		20FFCC5B22ACAC44002F94EB /* JSMyRouteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMyRouteVC.h; sourceTree = "<group>"; };
+		20FFCC5C22ACAC44002F94EB /* JSMyRouteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMyRouteVC.m; sourceTree = "<group>"; };
 		A0263533228C23BF00C924E2 /* ic_refresh_image_025@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_refresh_image_025@2x.png"; sourceTree = "<group>"; };
 		A0263534228C23BF00C924E2 /* ic_refresh_image_029@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_refresh_image_029@2x.png"; sourceTree = "<group>"; };
 		A0263535228C23BF00C924E2 /* ic_refresh_image_001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_refresh_image_001@2x.png"; sourceTree = "<group>"; };
@@ -405,6 +411,7 @@
 				20583A72228563A800090E2F /* 我的车辆 */,
 				203DF0322280299E00015587 /* 我的订单 */,
 				204545502285550100E65742 /* 我的司机 */,
+				20FFCC5A22ACAC04002F94EB /* 我的路线 */,
 				203DF02B2280299E00015587 /* JSAboutVC.h */,
 				203DF0312280299E00015587 /* JSAboutVC.m */,
 				203DF01E2280299E00015587 /* JSFeedBackVC.h */,
@@ -563,6 +570,17 @@
 				20FFCC5122ACA271002F94EB /* BaseCustomView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		20FFCC5A22ACAC04002F94EB /* 我的路线 */ = {
+			isa = PBXGroup;
+			children = (
+				20FFCC5B22ACAC44002F94EB /* JSMyRouteVC.h */,
+				20FFCC5C22ACAC44002F94EB /* JSMyRouteVC.m */,
+				200A9EAA22ACB63E002D5646 /* JSAddRouteVC.h */,
+				200A9EAB22ACB63E002D5646 /* JSAddRouteVC.m */,
+			);
+			path = "我的路线";
 			sourceTree = "<group>";
 		};
 		6978B2C9C09A07301325AF8B /* Pods */ = {
@@ -1222,6 +1240,7 @@
 				A03B902F22ACECDD00E75D7D /* DriverModel.m in Sources */,
 				A0A9F15E222FF1C100580C6A /* WKDelegateController.m in Sources */,
 				A03B902C22AA96C400E75D7D /* TradeRecordModel.m in Sources */,
+				20FFCC5D22ACAC44002F94EB /* JSMyRouteVC.m in Sources */,
 				203DF0532280299E00015587 /* JSCommentOrderVC.m in Sources */,
 				203DF04B2280299E00015587 /* JSBillDetailsVC.m in Sources */,
 				203DF0572280299E00015587 /* JSFinishOrderVC.m in Sources */,
@@ -1234,6 +1253,7 @@
 				A0A9F195222FFC9F00580C6A /* JSServiceVC.m in Sources */,
 				205D52782275934B0053F176 /* JSResetPswVC.m in Sources */,
 				203DF05A2280299E00015587 /* JSDeliveryOrderVC.m in Sources */,
+				200A9EAC22ACB63E002D5646 /* JSAddRouteVC.m in Sources */,
 				20583A7922856A0D00090E2F /* JSAddCarVC.m in Sources */,
 				A0A9F180222FF57200580C6A /* BaseTabBarVC.m in Sources */,
 				A0A9F172222FF1C100580C6A /* NetworkManager.m in Sources */,
