@@ -66,11 +66,12 @@
     }
     else if ([sender.currentTitle isEqualToString:@"我的车辆"]) {
         vcName = @"JSMyCarVC";
-    } else {
-        [Utils showToast:@"该功能暂未开通，敬请期待"];
     }
     else if ([sender.currentTitle isEqualToString:@"我的路线"]) {
         vcName = @"JSMyRouteVC";
+    }
+    else {
+        [Utils showToast:@"该功能暂未开通，敬请期待"];
     }
     if (vcName.length>0) {
         UIViewController *vc = [Utils getViewController:@"Mine" WithVCName:vcName];

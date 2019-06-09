@@ -36,7 +36,7 @@
     self.listData = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     NSDictionary *dic = [NSDictionary dictionary];
-    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_Drivers] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_MyLines] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
                 NSArray *arr = responseData[@"records"];
@@ -48,12 +48,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
     return self.listData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyRouteTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyRouteTabCell"];
+    NSDictionary *dic = self.listData[indexPath.row];
+    [cell.startAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
+    [cell.endAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
+
     return cell;
 }
 
@@ -69,13 +72,13 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         __weak typeof(self) weakSelf = self;
         NSDictionary *dic = [NSDictionary dictionary];
-        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
-            if (status == Request_Success) {
-                [Utils showToast:@"解绑成功"];
-                [weakSelf getData];
-            }
-            [weakSelf.baseTabView reloadData];
-        }];
+//        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_DelectDriver] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+//            if (status == Request_Success) {
+//                [Utils showToast:@"解绑成功"];
+//                [weakSelf getData];
+//            }
+//            [weakSelf.baseTabView reloadData];
+//        }];
     }
 }
 
