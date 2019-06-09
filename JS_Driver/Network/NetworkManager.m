@@ -68,6 +68,9 @@ static NetworkManager *_manager = nil;
                 }
             }
         }
+        else if ([code isEqualToString:@"-1"]) { //用户未登录
+            [self reLogin];
+        }
         else {
             completion(nil,Request_Fail,nil);
             [Utils showToast:object[@"msg"]];
@@ -122,6 +125,9 @@ static NetworkManager *_manager = nil;
             } else {
                 completion(dataObject,Request_Success,nil);
             }
+        }
+        else if ([code isEqualToString:@"-1"]) { //用户未登录
+            [self reLogin];
         }
         else {
             completion(nil,Request_Fail,nil);
@@ -192,6 +198,9 @@ static NetworkManager *_manager = nil;
         if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             completion(dataObject,Request_Success,nil);
+        }
+        else if ([code isEqualToString:@"-1"]) { //用户未登录
+            [self reLogin];
         }
         else {
             completion(nil,Request_Fail,nil);
