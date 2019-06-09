@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Find GoodsVC-->
+        <!--CommunityVC-->
         <scene sceneID="SvH-vh-5LE">
             <objects>
-                <viewController storyboardIdentifier="JSFindGoodsVC" id="UcW-5j-hpU" customClass="JSFindGoodsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JSCommunityVC" id="UcW-5j-hpU" customClass="JSCommunityVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TcB-xT-TSL"/>
                         <viewControllerLayoutGuide type="bottom" id="HCA-UR-2l1"/>

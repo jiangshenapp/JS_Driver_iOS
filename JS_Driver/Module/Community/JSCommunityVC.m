@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"社区";
+    
     // Do any additional setup after loading the view.
 }
 
