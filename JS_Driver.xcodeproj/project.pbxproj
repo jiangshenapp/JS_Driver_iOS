@@ -406,6 +406,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		201DF3C722AE43A200904EAF /* baiduMap */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = baiduMap;
+			sourceTree = "<group>";
+		};
 		203DF01D2280299E00015587 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +715,7 @@
 		A0A9F0D2222FF1C000580C6A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				201DF3C722AE43A200904EAF /* baiduMap */,
 				A0A9F0E3222FF1C000580C6A /* Reachability */,
 			);
 			path = Vendor;

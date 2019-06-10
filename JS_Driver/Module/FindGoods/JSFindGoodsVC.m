@@ -10,9 +10,9 @@
 #import "CityCustomView.h"
 #import "SortView.h"
 #import "FilterCustomView.h"
+//#import <MapKit/MapKit.h>
 
-
-@interface JSFindGoodsVC ()
+@interface JSFindGoodsVC ()<CLLocationManagerDelegate>
 {
     NSArray *titleArr1;
     NSArray *titleViewArr;
@@ -30,10 +30,14 @@
 @property (nonatomic,retain) FilterCustomView *myfilteView;;
 /** 筛选条件 */
 @property (nonatomic,retain) NSDictionary *allDicKey;
-/** 数据源 */
-@property (nonatomic,retain) NSMutableArray *dataSource;
 /** 排序，1发货时间 2距离; */
 @property (nonatomic,copy) NSString *sort;
+/** 列表数据源 */
+@property (nonatomic,retain) NSMutableArray *dataSource;
+
+@property (retain, nonatomic) CLLocationManager* locationManager;
+/** 当前经纬度 */
+@property (nonatomic,assign) CLLocationCoordinate2D currentLoc;
 @end
 
 @implementation JSFindGoodsVC
@@ -43,10 +47,18 @@
     self.title = @"找货";
     [self setupView];
     [self getDicList];
+    [self getNetData];
+    [self startLocation];
 }
 
 -(void)setupView {
     _page = 1;
+    _areaCode1 = @"";
+    _areaCode2 = @"";
+    _sort = @"2";
+    _dataSource = [NSMutableArray array];
+   NSDictionary *locDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"loc"];
+    _currentLoc = CLLocationCoordinate2DMake([locDic[@"lat"] floatValue], [locDic[@"lng"] floatValue]);
     titleArr1 = @[@"发货地",@"收货地",@"默认排序",@"筛选"];
     CGFloat btW = WIDTH/4.0;
     for (NSInteger index = 0; index<titleArr1.count; index++) {
@@ -101,7 +113,7 @@
         weakSelf.page = 1;
         [weakSelf getNetData];
     }];
-    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.baseTabView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
         [weakSelf getNetData];
     }];
 }
@@ -115,20 +127,19 @@
     [dic setObject:_areaCode1 forKey:@"startAddressCode"];
     [dic setObject:_sort forKey:@"sort"];
     [dic addEntriesFromDictionary:self.allDicKey];
-    NSString *url = [NSString stringWithFormat:@"%@?current=%ld&size=%@",URL_Login,_page,PageSize];
+    NSString *url = [NSString stringWithFormat:@"%@?current=%ld&size=%@",URL_Find,_page,PageSize];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (weakSelf.page==1) {
             [weakSelf.dataSource removeAllObjects];
         }
         NSArray *arr;
         if (status == Request_Success) {
-            arr = responseData;
-//            weakSelf.dataModels = [HomeDataModel mj_objectWithKeyValues:responseData];
+            arr = responseData[@"records"];
         }
-//        if (weakSelf.dataSource.count<[weakSelf.dataModels.total integerValue]) {
-//            [weakSelf.dataSource addObjectsFromArray:weakSelf.dataModels.records];
-//            weakSelf.page++;
-//        }
+        if (weakSelf.dataSource.count<[responseData[@"total"] integerValue]) {
+            [weakSelf.dataSource addObjectsFromArray:arr];
+            weakSelf.page++;
+        }
         [weakSelf.baseTabView reloadData];
         if ([weakSelf.baseTabView.mj_footer isRefreshing]) {
             [weakSelf.baseTabView.mj_footer endRefreshing];
@@ -153,11 +164,35 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FindGoodsTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FindGoodsTabCell"];
+    NSDictionary *dic = self.dataSource[indexPath.row];
+    NSString *useCarType = dic[@"useCarType"];
+    cell.orderNOLab.text = [NSString stringWithFormat:@"订单编号：%@ %@",dic[@"id"],useCarType];
+    if (useCarType.length>0) {
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.orderNOLab.text];
+        [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x7ED321) range:NSMakeRange(cell.orderNOLab.text.length-useCarType.length, useCarType.length)];
+        cell.orderNOLab.attributedText = attributeStr;
+    }
+   
+    cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:dic[@"createTime"]];
+    [cell.startDotNameLab setTitle:dic[@"sendAddressCodeName"] forState:UIControlStateNormal];
+    [cell.endDotNameLab setTitle:dic[@"sendAddressCodeName"] forState:UIControlStateNormal];
+    cell.priceLab.text = [NSString stringWithFormat:@"¥%.2f",[dic[@"fee"] floatValue]];
+    NSString *infoStr = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",dic[@"carModelName"],dic[@"carLengthName"],dic[@"goodsVolume"],dic[@"goodsWeight"]];
+    cell.orderCarInfoLab.text = infoStr;
+    
+    NSDictionary *locDic = [Utils dictionaryWithJsonString:dic[@"sendPosition"]];
+   NSString *distanceStr = [NSString stringWithFormat:@"距离您：%@",[Utils distanceBetweenOrderBy:_currentLoc.latitude :[locDic[@"latitude"] floatValue] :_currentLoc.longitude :[locDic[@"longitude"] floatValue]]];
+    cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间：%@ %@",dic[@"loadingTime"],distanceStr];
+    
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.getGoodsTimeLab.text];
+    [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x4A90E2) range:NSMakeRange(cell.getGoodsTimeLab.text.length-distanceStr.length, distanceStr.length)];
+    cell.getGoodsTimeLab.attributedText = attributeStr;
+
     return cell;
 }
 
@@ -181,6 +216,30 @@
         }
     }
     sender.userInteractionEnabled = YES;
+}
+
+#pragma mark 定位
+-(void)startLocation{
+    if ([CLLocationManager locationServicesEnabled]) {//判断定位操作是否被允许
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;//遵循代理
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = 10.0f;
+        [_locationManager requestWhenInUseAuthorization];//使用程序其间允许访问位置数据（iOS8以上版本定位需要）
+        [self.locationManager startUpdatingLocation];//开始定位
+    }else{//不能定位用户的位置的情况再次进行判断，并给与用户提示
+        
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    [self.locationManager stopUpdatingLocation];
+    //当前所在城市的坐标值
+    CLLocation *currLocation = [locations lastObject];
+    _currentLoc = currLocation.coordinate;
+    NSDictionary *locDic = @{@"lat":@(_currentLoc.latitude),@"lng":@(_currentLoc.longitude)};
+    [[NSUserDefaults standardUserDefaults]setObject:locDic forKey:@"loc"];;
+    NSLog(@"经度=%f 纬度=%f 高度=%f", currLocation.coordinate.latitude, currLocation.coordinate.longitude, currLocation.altitude);
 }
 
 

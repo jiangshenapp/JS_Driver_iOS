@@ -82,6 +82,10 @@ NSString *PIC_URL(void);
 #define URL_GetMyLines @"/app/line/get"//路线详情
 #define URL_LineClassic @"/app/line/classic"//申请精品线路
 #define URL_LineEnable @"/app/line/enable" //启用停用 1启用0停用
+#define URL_LineDelete @"/app/line/remove"//删除线路
+#define URL_LineEdit @"/app/line/edit"// 编辑线路
+
+#define URL_Find @"/app/driver/order/find"//找货 所有待分配订单"
 
 #pragma mark - ---------------H5地址---------------
 

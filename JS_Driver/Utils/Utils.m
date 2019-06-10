@@ -409,4 +409,83 @@ static Utils *_utils = nil;
     return dic;
 }
 
++(NSString *)getTimeStrToCurrentDateWith:(NSString *)dateStr1 {
+    NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    fmt.timeZone = zone;
+    NSDate *timeDate = [fmt dateFromString:dateStr1 ];
+    
+    NSDate *date = [NSDate date];
+    // 设置系统时区为本地时区
+    NSTimeZone *zone1 = [NSTimeZone systemTimeZone];
+    // 计算本地时区与 GMT 时区的时间差
+    NSInteger interval = [zone1 secondsFromGMT];
+    // 在 GMT 时间基础上追加时间差值，得到本地时间
+    timeDate = [timeDate dateByAddingTimeInterval:interval];
+//    NSTimeInterval tempTime1 = [timeDate timeIntervalSince1970];
+    
+    date = [date dateByAddingTimeInterval:interval];
+    
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendarUnit unit = NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;//只比较天数差异
+    //比较的结果是NSDateComponents类对象
+    NSDateComponents *delta = [calendar components:unit fromDate:timeDate toDate:date options:0];
+    if (delta.day>=1&&delta.day<7) {
+        return [NSString stringWithFormat:@"%ld天前",delta.day];
+    }
+    else {
+        if (delta.day<1) {
+            if (delta.hour>0) {
+                return [NSString stringWithFormat:@"%ld小时前",delta.hour];
+            }
+            else{
+                if (delta.minute>0) {
+                    return [NSString stringWithFormat:@"%ld分钟前",delta.minute];
+                }
+                else {
+                    return [NSString stringWithFormat:@"刚刚"];
+                }
+            }
+        }
+        
+    }
+     return dateStr1;
+    
+    
+//
+//    //得到与当前时间差
+//    NSTimeInterval timeInterval = [date timeIntervalSince1970]-[timeDate timeIntervalSince1970];
+//    long temp = 0;
+//    NSString *result;
+//    if (timeInterval < 60) {
+//        result = [NSString stringWithFormat:@"刚刚"];
+//    }else if((temp = timeInterval/60) < 60){
+//        result = [NSString stringWithFormat:@"%ld分钟前",temp];
+//    }else if((temp = timeInterval/3600) > 1 && (temp = timeInterval/3600) <24){
+//        result = [NSString stringWithFormat:@"%ld小时前",temp];
+//    }else{
+//        result = dateStr1;
+//    }
+//    NSLog(@"%@   转化后的date%@  当前时间%@",dateStr1,timeDate,date)
+   
+}
+
++(NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2{
+    CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:lat1 longitude:lng1];
+    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:lat2 longitude:lng2];
+    double  distance  = [curLocation distanceFromLocation:otherLocation];
+    NSString *str = @"";
+    if (distance >1000) {
+        str = [NSString stringWithFormat:@"%.2f公里",distance/1000];
+    }
+    else {
+        str = [NSString stringWithFormat:@"%.2f米",distance];
+    }
+    return  str;
+}
+
+
+
 @end

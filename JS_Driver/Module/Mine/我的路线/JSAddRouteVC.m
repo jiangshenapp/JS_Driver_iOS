@@ -38,6 +38,9 @@
     self.view.backgroundColor = PageColor;
     self.title = @"添加路线";
     [self setupView];
+    if (_routeID.length>0) {
+        [self getRouteInfo];
+    }
     [self getCarModelInfo];
     [self getCarLengthInfo];
     // Do any additional setup after loading the view.
@@ -60,17 +63,51 @@
             weakSelf.areaCode2 = dataDic[@"code"];
         }
     };
-    _myfilteView = [[FilterCustomView alloc]init];\
+    _myfilteView = [[FilterCustomView alloc]init];
     _myfilteView.getPostDic = ^(NSDictionary * _Nonnull dic, NSArray * _Nonnull titles) {
         weakSelf.postDic = dic;
         NSString *string  = @"";
         for (NSString *str in titles) {
-            string = [string stringByAppendingString:[NSString stringWithFormat:@"/%@",str]];
+            string = [string stringByAppendingString:[NSString stringWithFormat:@"%@ ",str]];
         }
+        if (string.length>0) {
+            string = [string substringToIndex:string.length-1];
+        }
+        string = [string stringByReplacingOccurrencesOfString:@"," withString:@"/"];
         [weakSelf.filterBtn setTitle:string forState:UIControlStateNormal];
     };
     _dataDic = [NSMutableDictionary dictionary];
 }
+
+#pragma mark - 路线详情
+/** 路线详情 */
+- (void)getRouteInfo {
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",URL_GetMyLines,_routeID];
+    [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status==Request_Success) {
+            [weakSelf.addStartBtn setTitle:responseData[@"startAddressCodeName"] forState:UIControlStateNormal];
+            [weakSelf.addEndBtn setTitle:responseData[@"receiveAddressCodeName"] forState:UIControlStateNormal];
+            NSString *string = [NSString stringWithFormat:@"%@ %@",responseData[@"carModelName"],responseData[@"carLengthName"]];
+            string = [string stringByReplacingOccurrencesOfString:@"," withString:@"/"];
+            [weakSelf.filterBtn setTitle:string forState:UIControlStateNormal];
+            weakSelf.contentTv.text = responseData[@"remark"];
+            NSString *carModel = [NSString stringWithFormat:@"%@",responseData[@"carModel"]];
+            NSString *carLength = [NSString stringWithFormat:@"%@",responseData[@"carLength"]];
+            weakSelf.areaCode1 = responseData[@"startAddressCode"];
+            weakSelf.areaCode2 = responseData[@"arriveAddressCode"];
+            weakSelf.postDic = @{@"carLength":carLength,@"carModel":carModel};
+            if ([responseData[@"arriveAddressCode"] integerValue]==0) {
+                [weakSelf.addEndBtn setTitle:@"全国" forState:UIControlStateNormal];
+            }
+            if ([responseData[@"startAddressCode"] integerValue]==0) {
+                [weakSelf.addStartBtn setTitle:@"全国" forState:UIControlStateNormal];
+            }
+        }
+    }];
+}
+
 
 #pragma mark - 车长
 /** 车长 */
@@ -146,14 +183,19 @@
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic addEntriesFromDictionary:_postDic];
-    [dic addEntriesFromDictionary:_postDic];
     [dic setObject:_areaCode1 forKey:@"startAddressCode"];
     [dic setObject:_areaCode2 forKey:@"arriveAddressCode"];
     [dic setObject:remark forKey:@"remark"];
     NSString *url = [NSString stringWithFormat:@"%@",URL_AddMyLines];
+    NSString *msg = @"添加成功";
+    if (_routeID.length>0) {
+        [dic setObject:_routeID forKey:@"id"];
+        url = [NSString stringWithFormat:@"%@",URL_LineEdit];
+        msg = @"修改成功";
+    }
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
-            [Utils showToast:@"添加成功"];
+            [Utils showToast:msg];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     }];

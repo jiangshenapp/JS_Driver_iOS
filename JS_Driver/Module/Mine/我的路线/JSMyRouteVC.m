@@ -64,9 +64,16 @@
     MyRouteTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyRouteTabCell"];
     NSDictionary *dic = self.listData[indexPath.row];
     [cell.startAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
-    [cell.endAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
+    [cell.endAddressBtn setTitle:dic[@"arriveAddressCodeName"] forState:UIControlStateNormal];
+    if ([dic[@"arriveAddressCode"] integerValue]==0) {
+        [cell.endAddressBtn setTitle:@"全国" forState:UIControlStateNormal];
+    }
+    if ([dic[@"startAddressCode"] integerValue]==0) {
+        [cell.startAddressBtn setTitle:@"全国" forState:UIControlStateNormal];
+    }
     NSString *jingpin = [dic[@"classic"] integerValue]==1?@"精品":@"";
     cell.infoLab.text = [NSString stringWithFormat:@"%@ %@ %@",jingpin,dic[@"carLengthName"],dic[@"carModelName"]];
+    cell.infoLab.text = [cell.infoLab.text stringByReplacingOccurrencesOfString:@"," withString:@"/"];
     if ([dic[@"classic"] integerValue]==1) {
         // 创建Attributed
         NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:cell.infoLab.text];
@@ -93,28 +100,28 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        __weak typeof(self) weakSelf = self;
-        NSDictionary *dic = [NSDictionary dictionary];
-        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_MyLines] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
-            if (status == Request_Success) {
-                [Utils showToast:@"解绑成功"];
-                [weakSelf getData];
-            }
-            [weakSelf.baseTabView reloadData];
-        }];
-    }
-}
 
 //设置返回存放侧滑按钮数组
 -(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     //这是iOS8以后的方法
+    NSDictionary *dataDic = self.listData[indexPath.row];
+    __weak typeof(self) weakSelf = self;
     UITableViewRowAction *deleBtn = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSDictionary *dic = [NSDictionary dictionary];
+        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_LineDelete,dataDic[@"id"]] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+            if (status == Request_Success) {
+                [Utils showToast:@"删除成功"];
+                [weakSelf getData];
+            }
+            [weakSelf.baseTabView reloadData];
+        }];
     }];
     
     
     UITableViewRowAction *moreBtn = [UITableViewRowAction  rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        JSAddRouteVC *vc = (JSAddRouteVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddRouteVC"];
+        vc.routeID = [NSString stringWithFormat:@"%@",dataDic[@"id"]];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     //设置背景颜色，他们的大小会分局文字内容自适应，所以不用担心
     deleBtn.backgroundColor = RGBValue(0xD0021B);
