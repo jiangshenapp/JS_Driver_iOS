@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSAddRouteVC : BaseVC
+/** 路线ID */
+@property (nonatomic,copy) NSString *routeID;
 @property (weak, nonatomic) IBOutlet UITextView *contentTv;
 - (IBAction)addStartAddressAction:(UIButton *)sender;
 - (IBAction)addEndAddressAction:(UIButton *)sender;

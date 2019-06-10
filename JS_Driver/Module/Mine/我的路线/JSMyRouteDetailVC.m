@@ -18,18 +18,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"路线详情";
+    self.startBtn.borderWidth = 1;
+    self.startBtn.borderColor = RGBValue(0xb4b4b4);
+    self.endBtn.borderWidth = 1;
+    self.endBtn.borderColor = RGBValue(0xb4b4b4);
+    self.carLengthBtn.borderWidth = 1;
+    self.carLengthBtn.borderColor = RGBValue(0xb4b4b4);
+    self.carModelBtn.borderWidth = 1;
+    self.carModelBtn.borderColor = RGBValue(0xb4b4b4);
+    [self getRouteInfo];
     // Do any additional setup after loading the view.
 }
 
-#pragma mark - 车长
-/** 车长 */
-- (void)getRoutrInfo {
+#pragma mark - 路线详情
+/** 路线详情 */
+- (void)getRouteInfo {
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     NSString *url = [NSString stringWithFormat:@"%@/%@",URL_GetMyLines,_routeID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             weakSelf.state = [responseData[@"state"] boolValue];
+            [weakSelf.startBtn setTitle:responseData[@"startAddressCodeName"] forState:UIControlStateNormal];
+            [weakSelf.endBtn setTitle:responseData[@"receiveAddressCodeName"] forState:UIControlStateNormal];
+            [weakSelf.carModelBtn setTitle:[responseData[@"carModelName"] stringByReplacingOccurrencesOfString:@"," withString:@"/"] forState:UIControlStateNormal];
+            [weakSelf.carLengthBtn setTitle:[responseData[@"carLengthName"] stringByReplacingOccurrencesOfString:@"," withString:@"/"] forState:UIControlStateNormal];
+            weakSelf.remarkLab.text = responseData[@"remark"];
+            if ([responseData[@"arriveAddressCode"] integerValue]==0) {
+                [weakSelf.endBtn setTitle:@"全国" forState:UIControlStateNormal];
+            }
+            if ([responseData[@"startAddressCode"] integerValue]==0) {
+                [weakSelf.startBtn setTitle:@"全国" forState:UIControlStateNormal];
+            }
         }
     }];
 }
@@ -74,9 +94,7 @@
     self.state = 0;
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:_routeID forKey:@"lineId"];
-    [dic setObject:@(self.state) forKey:@"enable"];
-    NSString *url = [NSString stringWithFormat:@"%@",URL_GetMyLines];
+    NSString *url = [NSString stringWithFormat:@"%@?enable=%d&lineId=%@",URL_LineEnable,self.state,_routeID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             [Utils showToast:@"停用成功"];
