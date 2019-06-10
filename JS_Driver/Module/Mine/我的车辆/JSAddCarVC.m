@@ -278,7 +278,7 @@
     [dic setObject:@"0" forKey:@"state"];
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_AddCar] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
-            [Utils showToast:@"添加车辆成功"];
+            [Utils showToast:@"提交审核成功，请等待审核结果"];
             [[NSNotificationCenter defaultCenter] postNotificationName:kAddCarSuccNotification object:nil];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }

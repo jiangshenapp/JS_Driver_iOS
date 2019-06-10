@@ -49,10 +49,10 @@
                 self.driverModel = [DriverModel mj_objectWithKeyValues:(NSDictionary *)responseData];
                 self.addNameTF.text = self.driverModel.driverName;
                 self.addDriverTF.text = self.driverModel.driverLevel;
-                
-                self.addDriverBtn.userInteractionEnabled = YES;
             } else {
-                self.addDriverBtn.userInteractionEnabled = NO;
+                self.driverModel = nil;
+                self.addNameTF.text = @"";
+                self.addDriverTF.text = @"";
             }
         }];
     }
@@ -162,13 +162,27 @@
 #pragma mark - 添加司机
 
 - (IBAction)addDriverAction:(id)sender {
-    [self cancleAddAction:nil];
+    
+    if ([Utils isBlankString:self.addPhoneTF.text]) {
+        [Utils showToast:@"请输入手机号"];
+        return;
+    }
+    if (![Utils validateMobile:self.addPhoneTF.text]) {
+        [Utils showToast:@"手机号格式不正确"];
+        return;
+    }
+    if ([Utils isBlankString:self.addNameTF.text]) {
+        [Utils showToast:@"姓名不能为空"];
+        return;
+    }
+    
     __weak typeof(self) weakSelf = self;
     NSDictionary *dic = [NSDictionary dictionary];
     NSString *urlStr = [NSString stringWithFormat:@"%@?driverId=%@",URL_BindDriver,self.driverModel.driverId];
     [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"添加成功"];
+            [weakSelf cancleAddAction:nil];
             [weakSelf getData];
         }
         [weakSelf.baseTabView reloadData];
