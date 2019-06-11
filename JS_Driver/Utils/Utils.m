@@ -393,17 +393,14 @@ static Utils *_utils = nil;
 }
 
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
-    if (jsonString == nil) {
+    if ([NSString isEmpty:jsonString]) {
         return nil;
     }
-    
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&err];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     if (err) {
-        NSLog(@"json解析失败：%@",err);
+//        NSLog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;
