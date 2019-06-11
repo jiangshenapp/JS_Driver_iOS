@@ -29,8 +29,9 @@
     
     [self getData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:kLoginSuccNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:kUserInfoChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kLoginSuccNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kUserInfoChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kChangeMoneyNotification object:nil];
     
     iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_driver",@"personalcenter_icon_route",@"personalcenter_icon_service",@"personalcenter_icon_invoice",@"personalcenter_icon_collection"];
     menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线",@"我的客服",@"我的发票",@"推广达人"];
@@ -85,6 +86,7 @@
     
     if ([Utils isLoginWithJump:YES]) {
         [self getUserInfo]; //获取用户信息
+        [self getAccountInfo]; //获取账户信息
     }
 }
 
@@ -127,11 +129,17 @@
             }
         }
     }];
-    
+}
+
+/* 获取账户信息 */
+- (void)getAccountInfo {
+    NSDictionary *dic = [NSDictionary dictionary];
     [[NetworkManager sharedManager] getJSON:URL_GetBySubscriber parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             AccountInfo *accountInfo = [AccountInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
-            self.balanceLab.text = accountInfo.balance;
+            if (accountInfo!=nil) {
+                self.balanceLab.text = accountInfo.balance;
+            }
         }
     }];
 }

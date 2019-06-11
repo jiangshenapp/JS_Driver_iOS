@@ -196,8 +196,7 @@
     pickView.block = ^(NSString *selectedStr) {
         weakSelf.carTypeLab.text = selectedStr;
         NSInteger index = [carModelNameArr indexOfObject:selectedStr];
-        weakSelf.useCarTypeStr = weakSelf.carModelArr[index][@"id"];
-        
+        weakSelf.useCarTypeStr = weakSelf.carModelArr[index][@"value"];
     };
 }
 
@@ -215,7 +214,6 @@
         weakSelf.carLengthLab.text = selectedStr;
         NSInteger index = [carLengthNameArr indexOfObject:selectedStr];
         weakSelf.useCarLengthStr = weakSelf.carLengthArr[index][@"value"];
-        
     };
 }
 

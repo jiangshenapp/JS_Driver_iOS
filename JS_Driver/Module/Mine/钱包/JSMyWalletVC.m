@@ -38,14 +38,20 @@
     [[NetworkManager sharedManager] getJSON:URL_GetBySubscriber parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             self.accountInfo = [AccountInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
-            self.balanceLab.text = self.accountInfo.balance;
-            self.depositLab.text = self.accountInfo.driverDeposit;
+            if (self.accountInfo!=nil) {
+                self.balanceLab.text = self.accountInfo.balance;
+                self.depositLab.text = self.accountInfo.driverDeposit;
+            }
         }
     }];
 }
 
 // 提现
 - (IBAction)withdrawalAction:(id)sender {
+    if ([self.balanceLab.text floatValue]<=0) {
+        [Utils showToast:@"提现金额需要大于0元"];
+        return;
+    }
     JSWithdrawalMoneyVC *vc = (JSWithdrawalMoneyVC *)[Utils getViewController:@"Mine" WithVCName:@"JSWithdrawalMoneyVC"];
     vc.maxMoney = self.balanceLab.text;
     vc.withdrawType = @"2";

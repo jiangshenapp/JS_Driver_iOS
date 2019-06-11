@@ -96,7 +96,7 @@
         return;
     }
     if ([self.priceTF.text floatValue]<=0) {
-        [Utils showToast:@"充值金额不能低于0元"];
+        [Utils showToast:@"充值金额需要大于0元"];
         return;
     }
     [self.view endEditing:YES];
@@ -111,8 +111,9 @@
 #pragma mark - 支付宝支付
 - (void)alipay {
     
+    //tradeType 交易类型, 1账户充值, 5运费支付，10运力端保证金，11货主端保证金
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    NSString *urlStr = [NSString stringWithFormat:@"%@?channelType=%@&money=%@&routeId=%@",URL_Recharge,_alipayRoute.channelType,self.priceTF.text,_alipayRoute.routeId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?tradeType=%@&channelType=%@&money=%@&routeId=%@",URL_Recharge,@"1",_alipayRoute.channelType,self.priceTF.text,_alipayRoute.routeId];
     [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             //应用注册scheme,在Info.plist定义URL types
@@ -159,8 +160,9 @@
     if (![WXApi isWXAppInstalled] && ![WXApi isWXAppSupportApi]) {
         [Utils showToast:@"您未安装微信客户端，请安装微信以完成支付"];
     } else {
+        //tradeType 交易类型, 1账户充值, 5运费支付，10运力端保证金，11货主端保证金
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        NSString *urlStr = [NSString stringWithFormat:@"%@?channelType=%@&money=%@&routeId=%@",URL_Recharge,_wechatRoute.channelType,self.priceTF.text,_wechatRoute.routeId];
+        NSString *urlStr = [NSString stringWithFormat:@"%@?tradeType=%@&channelType=%@&money=%@&routeId=%@",URL_Recharge,@"1",_wechatRoute.channelType,self.priceTF.text,_wechatRoute.routeId];
         [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
             if (status==Request_Success) {
                 

@@ -29,6 +29,19 @@
     [Utils showToast:@"违约说明"];
 }
 
+/** 提现 */
+- (IBAction)withdrawalAction:(id)sender {
+    if ([self.depositLab.text floatValue]<=0) {
+        [Utils showToast:@"保证金金额需要大于0元"];
+        return;
+    }
+    JSWithdrawalMoneyVC *vc = (JSWithdrawalMoneyVC *)[Utils getViewController:@"Mine" WithVCName:@"JSWithdrawalMoneyVC"];
+    vc.maxMoney = self.accountInfo.driverDeposit;
+    vc.withdrawType = @"1";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 /*
 #pragma mark - Navigation
  */
@@ -39,11 +52,6 @@
     if ([segue.identifier isEqualToString:@"depositDetailID"]) {
         JSBillDetailsVC *vc = segue.destinationViewController;
         vc.type = 2;
-    }
-    if ([segue.identifier isEqualToString:@"depositWithdrawalID"]) {
-        JSWithdrawalMoneyVC *vc = segue.destinationViewController;
-        vc.maxMoney = self.accountInfo.driverDeposit;
-        vc.withdrawType = @"1";
     }
     if ([segue.identifier isEqualToString:@"depositRechargeID"]) {
         JSRechargeDepositVC *vc = segue.destinationViewController;
