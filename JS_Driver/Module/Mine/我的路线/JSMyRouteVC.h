@@ -11,12 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyRouteVC : BaseVC<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITextField *searchTF;
 
 @end
 
 
 @interface MyRouteTabCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIButton *startAddressBtn;
 @property (weak, nonatomic) IBOutlet UIButton *endAddressBtn;
 @property (weak, nonatomic) IBOutlet UILabel *infoLab;

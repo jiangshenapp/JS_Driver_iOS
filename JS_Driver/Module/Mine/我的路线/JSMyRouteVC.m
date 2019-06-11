@@ -24,18 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"我的路线";
+    
     UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
     [sender setTitle:@"添加路线" forState:UIControlStateNormal];
     [sender setTitleColor:kBlackColor forState:UIControlStateNormal];
     sender.titleLabel.font = [UIFont systemFontOfSize:14];
     [sender addTarget:self action:@selector(addviewAction) forControlEvents:UIControlEventTouchUpInside];
     self.navItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:sender];
-    
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 0, 20, 20)];
-    image.image = [UIImage imageNamed:@"consignee_icon_name"];
-    self.searchTF.leftView = image;
-    self.searchTF.leftViewMode = UITextFieldViewModeAlways;
     
     self.listData = [NSMutableArray array];
     [self getData];
@@ -62,6 +59,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyRouteTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyRouteTabCell"];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSDictionary *dic = self.listData[indexPath.row];
     [cell.startAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
     [cell.endAddressBtn setTitle:dic[@"arriveAddressCodeName"] forState:UIControlStateNormal];
@@ -84,7 +82,7 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = self.listData[indexPath.row];
     JSMyRouteDetailVC *vc = (JSMyRouteDetailVC *)[Utils getViewController:@"Mine" WithVCName:@"JSMyRouteDetailVC"];
@@ -92,17 +90,17 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"解绑";
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
 
 //设置返回存放侧滑按钮数组
--(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //这是iOS8以后的方法
     NSDictionary *dataDic = self.listData[indexPath.row];
     __weak typeof(self) weakSelf = self;
@@ -117,7 +115,6 @@
         }];
     }];
     
-    
     UITableViewRowAction *moreBtn = [UITableViewRowAction  rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         JSAddRouteVC *vc = (JSAddRouteVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddRouteVC"];
         vc.routeID = [NSString stringWithFormat:@"%@",dataDic[@"id"]];
@@ -127,7 +124,6 @@
     deleBtn.backgroundColor = RGBValue(0xD0021B);
     moreBtn.backgroundColor = RGBValue(0x4A90E2);
     return @[deleBtn,moreBtn];
-    
 }
 
 - (void)addviewAction {
@@ -146,6 +142,7 @@
 */
 
 @end
+
 @implementation MyRouteTabCell
 
 @end
