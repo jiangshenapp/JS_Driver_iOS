@@ -393,17 +393,14 @@ static Utils *_utils = nil;
 }
 
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
-    if (jsonString == nil) {
+    if ([NSString isEmpty:jsonString]) {
         return nil;
     }
-    
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&err];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     if (err) {
-        NSLog(@"json解析失败：%@",err);
+//        NSLog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;
@@ -459,14 +456,21 @@ static Utils *_utils = nil;
     double  distance  = [curLocation distanceFromLocation:otherLocation];
     NSString *str = @"";
     if (distance >1000) {
-        str = [NSString stringWithFormat:@"%.2f公里",distance/1000];
+        str = [NSString stringWithFormat:@"%.2fkm",distance/1000];
     }
     else {
-        str = [NSString stringWithFormat:@"%.2f米",distance];
+        str = [NSString stringWithFormat:@"%.2fm",distance];
     }
     return  str;
 }
 
-
+//打电话
++ (UIWebView *)call:(NSString *)phoneAccount {
+    NSString *callPhone = phoneAccount;
+    UIWebView *callWebView = [[UIWebView alloc] init];
+    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",callPhone]];
+    [callWebView loadRequest:[NSURLRequest requestWithURL:telURL]];
+    return  callWebView;
+}
 
 @end

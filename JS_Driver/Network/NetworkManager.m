@@ -61,10 +61,10 @@ static NetworkManager *_manager = nil;
         if ([code isEqualToString:@"0"]) { //成功
             id _Nullable dataObject = object[@"data"];
             completion(dataObject,Request_Success,nil);
-            if ([dataObject isKindOfClass:[NSDictionary class]]) {//打印model
+            if ([dataObject isKindOfClass:[NSDictionary class]]&&[name containsString:URL_Find]) {//打印model
                 NSArray *arr = dataObject[@"records"];
                 if ([arr isKindOfClass:[NSArray class]]&&arr.count>0) {
-                    //                    [self printDataToModel:arr[0]];
+//                                        [self printDataToModel:arr[0]];
                 }
             }
         }

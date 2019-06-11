@@ -7,13 +7,18 @@
 //
 
 #import "JSAllOrderVC.h"
-#import "JSBaseOrderDetailsVC.h"
-#import "JSReleaseOrderVC.h"
+#import "JSOrderDetailsVC.h"
 
 @interface JSAllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSArray *classNameArr;
+    __block NSInteger _page;
 }
+/** 列表的数据源 */
+@property (nonatomic,retain) NSMutableArray *listData;
+/** 订单状态 0全部 1发布中，2待司机接单，3待司机确认，4待支付，5待司机接货, 6待收货，7待评价，8已完成，9已取消，10已关闭 */
+@property (nonatomic,copy) NSString *orderState;
+/** 分页 从1开始 */
+@property (nonatomic,assign) NSInteger page;
 @end
 
 @implementation JSAllOrderVC
@@ -21,27 +26,95 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的订单";
-    classNameArr = @[@"JSReleaseOrderVC",@"JSConfirmOrderVC",@"JSDeliveryOrderVC",@"JSCommentOrderVC",@"JSTransportOrderVC",@"JSFinishOrderVC",@"JSCancleOrderVC"];
     if (_typeFlage>0) {
         UIButton *sender = [self.view viewWithTag:100+_typeFlage];
         [self titleBtnAction:sender];
     }
+    _page = 1;
+    _listData = [NSMutableArray array];
+    [self initOrderState:_typeFlage];
+    [self getData];
+    __weak typeof(self) weakSelf = self;
+    self.baseTabView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf getData];
+    }];
+    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf getData];
+    }];
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - 初始化订单状态
+- (void)initOrderState:(NSInteger)typeFlage {
+    if (typeFlage == 0) { //全部
+        self.orderState = @"0";
+    }
+    if (typeFlage == 1) { //待接单
+        self.orderState = @"2";
+    }
+    if (typeFlage == 2) { //待确认
+        self.orderState = @"3";
+    }
+    if (typeFlage == 3) { //待接货
+        self.orderState = @"5";
+    }
+    if (typeFlage == 4) { //待送达
+        self.orderState = @"6";
+    }
+}
+
+- (void)getData {
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setObject:self.orderState forKey:@"state"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?current=%ld&size=%@",URL_OrdeList,_page,PageSize];
+    [[NetworkManager sharedManager] postJSON:urlStr parameters:para completion:^(id responseData, RequestState status, NSError *error) {
+        if (status==Request_Success) {
+            NSInteger count = [responseData[@"total"] integerValue];
+            if (weakSelf.page==1) {
+                [weakSelf.listData removeAllObjects];
+            }
+            NSArray *arr = [OrderInfoModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
+            if (weakSelf.listData.count<count) {
+                [weakSelf.listData addObjectsFromArray:arr];
+                weakSelf.page++;
+            }
+        }
+        [weakSelf.baseTabView reloadData];
+        if ([weakSelf.baseTabView.mj_header isRefreshing]) {
+            [weakSelf.baseTabView.mj_header endRefreshing];
+        }
+        if ([weakSelf.baseTabView.mj_footer isRefreshing]) {
+            [weakSelf.baseTabView.mj_footer endRefreshing];
+        }
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return classNameArr.count;
+    return self.listData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyOrderTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderTabCell"];
+    
+    static NSString *cellIndentifier = @"MyOrderTabCell";
+    MyOrderTabCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    if (cell == nil) {
+        cell = [[MyOrderTabCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    OrderInfoModel *model = self.listData[indexPath.row];
+    [cell setContentWithModel:model];
+    
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    JSBaseOrderDetailsVC *vc = (JSBaseOrderDetailsVC *)[Utils getViewController:@"Mine" WithVCName:@"JSBaseOrderDetailsVC"];;
-//    JSReleaseOrderVC *vc = [UIViewController alloc]initw;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.baseTabView deselectRowAtIndexPath:indexPath animated:YES];
+    JSOrderDetailsVC *vc = (JSOrderDetailsVC *)[Utils getViewController:@"Mine" WithVCName:@"JSOrderDetailsVC"];
+    OrderInfoModel *model = self.listData[indexPath.row];
+    vc.orderID = model.ID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -57,14 +130,39 @@
 */
 
 - (IBAction)titleBtnAction:(UIButton *)sender {
+    if (sender.selected) {
+        return;
+    }
     for (NSInteger tag = 100; tag<105; tag++) {
         UIButton *btn = [self.view viewWithTag:tag];
         btn.selected = [btn isEqual:sender]?YES:NO;;
     }
-    [self.baseTabView reloadData];
+    _typeFlage = sender.tag - 100;
+    [self initOrderState:_typeFlage];
+    [self.baseTabView.mj_header beginRefreshing];
+    [self.baseTabView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
 }
 @end
 
 @implementation MyOrderTabCell
+- (void)setContentWithModel:(OrderInfoModel *)model {
+    
+    self.orderNoLab.text = [NSString stringWithFormat:@"订单编号:%@",model.orderNo];
+    self.orderStatusLab.text = model.stateNameDriver;
+    self.startAddressLab.text = model.sendAddress;
+    self.endAddressLab.text = model.receiveAddress;
+    
+     NSDictionary *sendlocDic = [Utils dictionaryWithJsonString:model.sendPosition];
+    
+    NSDictionary *locDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"loc"];
+    NSString *distanceStr = [NSString stringWithFormat:@"距离您%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[sendlocDic[@"latitude"] floatValue] :[locDic[@"lng"] floatValue] :[sendlocDic[@"longitude"] floatValue]]];
+    _distanceLab.text = distanceStr;
 
+    self.goodsDetaileLab.text = [NSString stringWithFormat:@"%@/%@米/%@方/%@吨",model.goodsType,model.carLength,model.goodsVolume,model.goodsWeight];
+    if ([Utils isBlankString:model.fee]) {
+        self.orderPriceLab.text = @"";
+    } else {
+        self.orderPriceLab.text = [NSString stringWithFormat:@"￥%@",model.fee];
+    }
+}
 @end

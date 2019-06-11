@@ -87,6 +87,20 @@ NSString *PIC_URL(void);
 
 #define URL_Find @"/app/driver/order/find"//找货 所有待分配订单"
 
+
+#pragma mark - 订单
+#define URL_OrdeList @"/app/driver/order/list"//我的运单
+#define URL_GetOrderInfo @"/app/driver/order/get"//订单详情
+#define URL_RefuseOrder @"/app/driver/order/refuse"//拒绝接单
+#define URL_ReceiveOrder @"/app/driver/order/receive"//接单
+#define URL_ReceiveOrder @"/app/driver/order/receive"//接单
+#define URL_ConfirmOrder @"/app/driver/order/confirm"//确认"
+#define URL_CancelReceiveOrder @"/app/driver/order/cancelReceive"//取消接货"
+#define URL_CancelDistributionOrder @"/app/driver/order/cancelDistribution"//拒绝配送"
+#define URL_DistributionOrder @"/app/driver/order/distribution"//开始配送"
+#define URL_CompleteDistributionOrder  @"/app/driver/order/completeDistribution"//完成配送"
+#define URL_CommentOrder @"app/driver/order/comment"//回执评价"
+
 #pragma mark - ---------------H5地址---------------
 
 NSString *h5Url(void);

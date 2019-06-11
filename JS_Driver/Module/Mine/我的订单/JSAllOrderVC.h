@@ -7,6 +7,7 @@
 //
 
 #import "BaseVC.h"
+#import "OrderInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *endAddressLab;
 @property (weak, nonatomic) IBOutlet UILabel *goodsDetaileLab;
 @property (weak, nonatomic) IBOutlet UILabel *orderPriceLab;
-
+@property (weak, nonatomic) IBOutlet UILabel *distanceLab;
+- (void)setContentWithModel:(OrderInfoModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END
