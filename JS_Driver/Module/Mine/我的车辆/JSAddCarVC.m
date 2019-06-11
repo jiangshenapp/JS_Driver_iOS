@@ -128,6 +128,9 @@
 */
 
 - (IBAction)carDrivingLicenseAction:(UIButton *)sender {
+    if (_carDetaileID.length>0) {
+        return;
+    }
     imageType = 1;
     __weak typeof(self) weakSelf = self;
     TZImagePickerController *vc = [[TZImagePickerController alloc]initWithMaxImagesCount:1 delegate:nil];;
@@ -163,9 +166,6 @@
 }
 
 - (void)postImage:(UIImage *)iconImage {
-    if (_carDetaileID.length>0) {
-        return;
-    }
     __weak typeof(self) weakSelf = self;
     NSData *imageData = UIImageJPEGRepresentation(iconImage, 0.01);
     NSMutableArray *imageDataArr = [NSMutableArray arrayWithObjects:imageData, nil];
@@ -214,7 +214,7 @@
     pickView.block = ^(NSString *selectedStr) {
         weakSelf.carLengthLab.text = selectedStr;
         NSInteger index = [carLengthNameArr indexOfObject:selectedStr];
-        weakSelf.useCarLengthStr = weakSelf.carLengthArr[index][@"id"];
+        weakSelf.useCarLengthStr = weakSelf.carLengthArr[index][@"value"];
         
     };
 }
@@ -222,7 +222,6 @@
 - (void)UntyingCar {
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:_carWeightTF.text forKey:@"capacityTonnage"];
     NSString *url = [NSString stringWithFormat:@"%@/%@",URL_UnbindingCar,_carDetaileID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {

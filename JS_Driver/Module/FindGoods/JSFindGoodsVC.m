@@ -113,7 +113,7 @@
         weakSelf.page = 1;
         [weakSelf getNetData];
     }];
-    self.baseTabView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakSelf getNetData];
     }];
 }
@@ -170,7 +170,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FindGoodsTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FindGoodsTabCell"];
     NSDictionary *dic = self.dataSource[indexPath.row];
-    NSString *useCarType = dic[@"useCarType"];
+    NSString *useCarType = dic[@"useCarTypeName"];
     cell.orderNOLab.text = [NSString stringWithFormat:@"订单编号：%@ %@",dic[@"id"],useCarType];
     if (useCarType.length>0) {
         NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.orderNOLab.text];

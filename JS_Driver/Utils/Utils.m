@@ -449,27 +449,8 @@ static Utils *_utils = nil;
                 }
             }
         }
-        
     }
      return dateStr1;
-    
-    
-//
-//    //得到与当前时间差
-//    NSTimeInterval timeInterval = [date timeIntervalSince1970]-[timeDate timeIntervalSince1970];
-//    long temp = 0;
-//    NSString *result;
-//    if (timeInterval < 60) {
-//        result = [NSString stringWithFormat:@"刚刚"];
-//    }else if((temp = timeInterval/60) < 60){
-//        result = [NSString stringWithFormat:@"%ld分钟前",temp];
-//    }else if((temp = timeInterval/3600) > 1 && (temp = timeInterval/3600) <24){
-//        result = [NSString stringWithFormat:@"%ld小时前",temp];
-//    }else{
-//        result = dateStr1;
-//    }
-//    NSLog(@"%@   转化后的date%@  当前时间%@",dateStr1,timeDate,date)
-   
 }
 
 +(NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2{
