@@ -197,6 +197,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     OrderInfoModel *model = self.dataSource[indexPath.row];
     JSOrderDetailsVC *vc = (JSOrderDetailsVC *)[Utils getViewController:@"Mine" WithVCName:@"JSOrderDetailsVC"];;
     vc.orderID = model.ID;
@@ -267,7 +270,8 @@
 @end
 
 @implementation FilterButton
--(instancetype)initWithFrame:(CGRect)frame {
+
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
@@ -291,7 +295,8 @@
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {
     _titleLab.text = title;
 }
--(void)setIsSelect:(BOOL)isSelect {
+
+- (void)setIsSelect:(BOOL)isSelect {
     if (_isSelect!=isSelect) {
         _isSelect = isSelect;
     }
