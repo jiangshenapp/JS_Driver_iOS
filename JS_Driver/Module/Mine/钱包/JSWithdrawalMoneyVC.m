@@ -19,6 +19,8 @@
     
     self.title = @"提现";
     
+    self.moneyTF.text = self.maxMoney;
+    self.moneyTF.enabled = NO;
     self.maxMoneyLab.text = [NSString stringWithFormat:@"当前最大提现金额：%@元",self.maxMoney];
 }
 
@@ -83,7 +85,7 @@
     }
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    NSString *urlStr = [NSString stringWithFormat:@"%@?bankCard=%@&khh=%@&zh=%@&withdrawChannel=%@&withdrawType=%@&zfbzh=%@&zfbzhxm=%@",URL_BalanceWithdraw,self.bankCardNoTF.text,self.openBankNameTF.text,self.openBankBranchNameTF.text,withdrawChannel,self.withdrawType,self.alipayAccountTF.text,self.alipayAccountNameTF.text];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?bankCard=%@&khh=%@&zh=%@&withdrawChannel=%@&withdrawType=%@&zfbzh=%@&zfbmc=%@",URL_BalanceWithdraw,self.bankCardNoTF.text,self.openBankNameTF.text,self.openBankBranchNameTF.text,withdrawChannel,self.withdrawType,self.alipayAccountTF.text,self.alipayAccountNameTF.text];
     [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             [Utils showToast:@"申请提现成功"];
