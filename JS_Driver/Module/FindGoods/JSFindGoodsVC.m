@@ -10,7 +10,7 @@
 #import "CityCustomView.h"
 #import "SortView.h"
 #import "FilterCustomView.h"
-//#import <MapKit/MapKit.h>
+#import "JSOrderDetailsVC.h"
 
 @interface JSFindGoodsVC ()<CLLocationManagerDelegate>
 {
@@ -33,7 +33,7 @@
 /** 排序，1发货时间 2距离; */
 @property (nonatomic,copy) NSString *sort;
 /** 列表数据源 */
-@property (nonatomic,retain) NSMutableArray *dataSource;
+@property (nonatomic,retain) NSMutableArray <OrderInfoModel *>*dataSource;
 
 @property (retain, nonatomic) CLLocationManager* locationManager;
 /** 当前经纬度 */
@@ -134,7 +134,7 @@
         }
         NSArray *arr;
         if (status == Request_Success) {
-            arr = responseData[@"records"];
+            arr = [OrderInfoModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
         }
         if (weakSelf.dataSource.count<[responseData[@"total"] integerValue]) {
             [weakSelf.dataSource addObjectsFromArray:arr];
@@ -169,31 +169,38 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FindGoodsTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FindGoodsTabCell"];
-    NSDictionary *dic = self.dataSource[indexPath.row];
-    NSString *useCarType = dic[@"useCarTypeName"];
-    cell.orderNOLab.text = [NSString stringWithFormat:@"订单编号：%@ %@",dic[@"id"],useCarType];
+    OrderInfoModel *model = self.dataSource[indexPath.row];
+    NSString *useCarType = model.useCarTypeName;
+    cell.orderNOLab.text = [NSString stringWithFormat:@"订单编号：%@ %@",model.ID,useCarType];
     if (useCarType.length>0) {
         NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.orderNOLab.text];
         [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x7ED321) range:NSMakeRange(cell.orderNOLab.text.length-useCarType.length, useCarType.length)];
         cell.orderNOLab.attributedText = attributeStr;
     }
    
-    cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:dic[@"createTime"]];
-    [cell.startDotNameLab setTitle:dic[@"sendAddressCodeName"] forState:UIControlStateNormal];
-    [cell.endDotNameLab setTitle:dic[@"sendAddressCodeName"] forState:UIControlStateNormal];
-    cell.priceLab.text = [NSString stringWithFormat:@"¥%.2f",[dic[@"fee"] floatValue]];
-    NSString *infoStr = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",dic[@"carModelName"],dic[@"carLengthName"],dic[@"goodsVolume"],dic[@"goodsWeight"]];
+    cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:model.createTime ];
+    [cell.startDotNameLab setTitle:model.sendAddress forState:UIControlStateNormal];
+    [cell.endDotNameLab setTitle:model.receiveAddress forState:UIControlStateNormal];
+    cell.priceLab.text = [NSString stringWithFormat:@"¥%.2f",[model.fee floatValue]];
+    NSString *infoStr = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",model.carModelName,model.carLengthName,model.goodsVolume,model.goodsWeight];
     cell.orderCarInfoLab.text = infoStr;
     
-    NSDictionary *locDic = [Utils dictionaryWithJsonString:dic[@"sendPosition"]];
+    NSDictionary *locDic = [Utils dictionaryWithJsonString:model.sendPosition];
    NSString *distanceStr = [NSString stringWithFormat:@"距离您：%@",[Utils distanceBetweenOrderBy:_currentLoc.latitude :[locDic[@"latitude"] floatValue] :_currentLoc.longitude :[locDic[@"longitude"] floatValue]]];
-    cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间：%@ %@",dic[@"loadingTime"],distanceStr];
+    cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间：%@ %@",model.loadingTime,distanceStr];
     
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.getGoodsTimeLab.text];
     [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x4A90E2) range:NSMakeRange(cell.getGoodsTimeLab.text.length-distanceStr.length, distanceStr.length)];
     cell.getGoodsTimeLab.attributedText = attributeStr;
 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    OrderInfoModel *model = self.dataSource[indexPath.row];
+    JSOrderDetailsVC *vc = (JSOrderDetailsVC *)[Utils getViewController:@"Mine" WithVCName:@"JSOrderDetailsVC"];;
+    vc.orderID = model.ID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showViewAction:(FilterButton *)sender {

@@ -467,6 +467,13 @@ static Utils *_utils = nil;
     return  str;
 }
 
-
+//打电话
++ (UIWebView *)call:(NSString *)phoneAccount {
+    NSString *callPhone = phoneAccount;
+    UIWebView *callWebView = [[UIWebView alloc] init];
+    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",callPhone]];
+    [callWebView loadRequest:[NSURLRequest requestWithURL:telURL]];
+    return  callWebView;
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "BaseVC.h"
+#import "OrderInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
