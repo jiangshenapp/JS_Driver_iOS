@@ -459,10 +459,10 @@ static Utils *_utils = nil;
     double  distance  = [curLocation distanceFromLocation:otherLocation];
     NSString *str = @"";
     if (distance >1000) {
-        str = [NSString stringWithFormat:@"%.2f公里",distance/1000];
+        str = [NSString stringWithFormat:@"%.2fkm",distance/1000];
     }
     else {
-        str = [NSString stringWithFormat:@"%.2f米",distance];
+        str = [NSString stringWithFormat:@"%.2fm",distance];
     }
     return  str;
 }
