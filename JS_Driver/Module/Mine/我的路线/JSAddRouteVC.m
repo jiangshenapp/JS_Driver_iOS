@@ -33,6 +33,11 @@
 
 @implementation JSAddRouteVC
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_myfilteView hiddenView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = PageColor;

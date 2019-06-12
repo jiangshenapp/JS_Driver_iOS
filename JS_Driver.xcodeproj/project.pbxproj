@@ -538,14 +538,14 @@
 			isa = PBXGroup;
 			children = (
 				20FFCC4922ACA270002F94EB /* CityCustomView.m */,
-				20FFCC4A22ACA270002F94EB /* SortView.m */,
 				20FFCC4C22ACA271002F94EB /* BaseCustomView.h */,
+				20FFCC5122ACA271002F94EB /* BaseCustomView.m */,
 				20FFCC4D22ACA271002F94EB /* SortView.h */,
+				20FFCC4A22ACA270002F94EB /* SortView.m */,
 				20FFCC4E22ACA271002F94EB /* Address.json */,
 				20FFCC4F22ACA271002F94EB /* CityCustomView.h */,
 				20FFCC4B22ACA270002F94EB /* FilterCustomView.h */,
 				20FFCC5022ACA271002F94EB /* FilterCustomView.m */,
-				20FFCC5122ACA271002F94EB /* BaseCustomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
