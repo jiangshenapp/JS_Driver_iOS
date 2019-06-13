@@ -11,16 +11,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyRouteDetailVC : BaseVC
+
 /** 路线id */
 @property (nonatomic,copy) NSString *routeID;
-@property (weak, nonatomic) IBOutlet UIButton *startBtn;
-@property (weak, nonatomic) IBOutlet UIButton *endBtn;
-@property (weak, nonatomic) IBOutlet UIButton *carLengthBtn;
-@property (weak, nonatomic) IBOutlet UIButton *carModelBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *startLab;
+@property (weak, nonatomic) IBOutlet UILabel *endLab;
+@property (weak, nonatomic) IBOutlet UILabel *carLengthLab;
+@property (weak, nonatomic) IBOutlet UILabel *carModelLab;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLab;
+
+- (IBAction)openOrCloseAction:(id)sender;
 - (IBAction)applyJingpinAction:(UIButton *)sender;
-- (IBAction)startRouteAction:(UIButton *)sender;
-- (IBAction)stopRouteAction:(UIButton *)sender;
+
 @end
 
 NS_ASSUME_NONNULL_END
