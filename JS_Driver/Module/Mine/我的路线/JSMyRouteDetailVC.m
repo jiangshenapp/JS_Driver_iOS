@@ -7,11 +7,12 @@
 //
 
 #import "JSMyRouteDetailVC.h"
+#import "RouteModel.h"
 
 @interface JSMyRouteDetailVC ()
 
-/** 状态，0未启用，1启用 */
-@property (nonatomic,assign) BOOL state;
+/** 路线数据 */
+@property (nonatomic,retain) RouteModel *routeModel;
 
 @end
 
@@ -34,17 +35,27 @@
     NSString *url = [NSString stringWithFormat:@"%@/%@",URL_GetMyLines,_routeID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
-            weakSelf.state = [responseData[@"state"] boolValue];
-            weakSelf.startLab.text = responseData[@"startAddressCodeName"];
-            weakSelf.endLab.text = responseData[@"receiveAddressCodeName"];
-            weakSelf.carLengthLab.text = responseData[@"carLengthName"];
-            weakSelf.carModelLab.text = responseData[@"carModelName"];
-            weakSelf.remarkLab.text = responseData[@"remark"];
-            if ([responseData[@"arriveAddressCode"] integerValue]==0) {
+            
+            weakSelf.routeModel = [RouteModel mj_objectWithKeyValues:responseData];
+            
+            weakSelf.startLab.text = weakSelf.routeModel.startAddressCodeName;
+            weakSelf.endLab.text = weakSelf.routeModel.arriveAddressCodeName;
+            weakSelf.carLengthLab.text = weakSelf.routeModel.carLengthName;
+            weakSelf.carModelLab.text = weakSelf.routeModel.carModelName;
+            weakSelf.remarkLab.text = weakSelf.routeModel.remark;
+            if ([weakSelf.routeModel.arriveAddressCode integerValue]==0) {
                 weakSelf.endLab.text = @"全国";
             }
-            if ([responseData[@"startAddressCode"] integerValue]==0) {
+            if ([weakSelf.routeModel.startAddressCode integerValue]==0) {
                 weakSelf.startLab.text = @"全国";
+            }
+            
+            if (![weakSelf.routeModel.classic isEqualToString:@"0"]) {
+                self.applyJingpinBtn.hidden = YES;
+            }
+            if ([weakSelf.routeModel.state isEqualToString:@"1"]) { //启用
+                [self.openOrCloseBtn setTitle:@"停用" forState:UIControlStateNormal];
+                [self.openOrCloseBtn setBackgroundColor:RGBValue(0xD0021B)];
             }
         }
     }];
@@ -63,32 +74,35 @@
 }
 
 - (IBAction)openOrCloseAction:(id)sender {
-    
+    if ([self.openOrCloseBtn.titleLabel.text isEqualToString:@"启用"]) {
+        [self startRouteAction];
+    } else {
+        [self stopRouteAction];
+    }
 }
 
 - (void)startRouteAction {
-    __weak typeof(self) weakSelf = self;
-    self.state = 1;
+  
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    NSString *url = [NSString stringWithFormat:@"%@?enable=%d&lineId=%@",URL_LineEnable,self.state,_routeID];
+    NSString *url = [NSString stringWithFormat:@"%@?enable=%d&lineId=%@",URL_LineEnable,1,_routeID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             [Utils showToast:@"启用成功"];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [self.openOrCloseBtn setTitle:@"停用" forState:UIControlStateNormal];
+            [self.openOrCloseBtn setBackgroundColor:RGBValue(0xD0021B)];
         }
     }];
 }
 
 - (void)stopRouteAction {
-    self.state = 0;
-    __weak typeof(self) weakSelf = self;
+
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    NSString *url = [NSString stringWithFormat:@"%@?enable=%d&lineId=%@",URL_LineEnable,self.state,_routeID];
+    NSString *url = [NSString stringWithFormat:@"%@?enable=%d&lineId=%@",URL_LineEnable,0,_routeID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             [Utils showToast:@"停用成功"];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-
+            [self.openOrCloseBtn setTitle:@"启用" forState:UIControlStateNormal];
+            [self.openOrCloseBtn setBackgroundColor:RGBValue(0x4A90E2)];
         }
     }];
 }

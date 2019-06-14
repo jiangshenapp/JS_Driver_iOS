@@ -11,6 +11,7 @@
 #import "ZHPickView.h"
 #import "JSMyCarVC.h"
 #import <UIButton+WebCache.h>
+#import "CarModel.h"
 
 @interface JSAddCarVC ()
 {
@@ -31,7 +32,8 @@
 /** 图2 */
 @property (nonatomic,copy) NSString *image2;
 /** 车数据 */
-@property (nonatomic,retain) MyCarInfoModel *carModel;
+@property (nonatomic,retain) CarModel *carModel;
+
 @end
 
 @implementation JSAddCarVC
@@ -59,8 +61,6 @@
         [self getCarModelInfo];
         [self getCarLengthInfo];
     }
-    
-    // Do any additional setup after loading the view.
 }
 
 -(void)getData {
@@ -69,7 +69,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/%@",URL_GetCarDetail,_carDetaileID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
-            weakSelf.carModel = [MyCarInfoModel mj_objectWithKeyValues:responseData];
+            weakSelf.carModel = [CarModel mj_objectWithKeyValues:responseData];
             [weakSelf refrehsUI];
         }
     }];

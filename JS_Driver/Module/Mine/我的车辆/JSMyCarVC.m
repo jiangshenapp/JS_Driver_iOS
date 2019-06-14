@@ -8,10 +8,13 @@
 
 #import "JSMyCarVC.h"
 #import "JSAddCarVC.h"
+#import "CarModel.h"
 
 @interface JSMyCarVC ()
-/** <#object#> */
-@property (nonatomic,retain) NSMutableArray <MyCarInfoModel *>*listData;
+
+/** 车辆列表 */
+@property (nonatomic,retain) NSMutableArray <CarModel *> *listData;
+
 @end
 
 @implementation JSMyCarVC
@@ -48,7 +51,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_CarList] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
-                NSArray *arr = [MyCarInfoModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
+                NSArray *arr = [CarModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
                 [weakSelf.listData addObjectsFromArray:arr];
             }
         }
@@ -62,7 +65,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyCarTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCarTabCell"];
-    MyCarInfoModel *model = self.listData[indexPath.row];
+    CarModel *model = self.listData[indexPath.row];
     cell.carNumLab.text = model.cphm;
     NSDictionary *dic = @{@"0":@"待审核",@"1":@"审核已通过",@"2":@"审核未通过",@"3":@"审核中"};
     NSDictionary *dicColor = @{@"0":RGBValue(0xECA73F),@"1":RGBValue(0x4A90E2 ),@"2":RGBValue(0xD0021B),@"3":RGBValue(0xECA73F)};
@@ -75,7 +78,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //取消选择状态
-    MyCarInfoModel *model = self.listData[indexPath.row];
+    CarModel *model = self.listData[indexPath.row];
     JSAddCarVC *vc = (JSAddCarVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
     vc.carDetaileID = model.ID;
     [self.navigationController pushViewController:vc animated:YES];
@@ -84,6 +87,10 @@
 - (void)addCarAction {
     JSAddCarVC *vc = (JSAddCarVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)cancleSearchTF:(UIButton *)sender {
+    
 }
 
 /*
@@ -96,30 +103,8 @@
 }
 */
 
-- (IBAction)cancleSearchTF:(UIButton *)sender {
-    
-}
-
 @end
 
 @implementation MyCarTabCell
-
-@end
-
-@implementation MyCarInfoModel
-
-- (NSString *)image2 {
-    if (![_image2 containsString:@"http"]) {
-        _image2 = [NSString stringWithFormat:@"%@%@",PIC_URL(),_image2];
-    }
-    return _image2;
-}
-
-- (NSString *)image1 {
-    if (![_image1 containsString:@"http"]) {
-        _image1 = [NSString stringWithFormat:@"%@%@",PIC_URL(),_image1];
-    }
-    return _image1;
-}
 
 @end

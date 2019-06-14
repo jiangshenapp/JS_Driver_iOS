@@ -11,6 +11,7 @@
 #import "FilterCustomView.h"
 
 @interface JSAddRouteVC ()
+
 /** yes 起点   */
 @property (nonatomic,assign) BOOL isStart;
 /** 起止点 */
@@ -29,29 +30,34 @@
 @property (nonatomic,retain) NSArray *carModelArr;
 /** 筛选的字典 */
 @property (nonatomic,retain) NSDictionary *postDic;
+
 @end
 
 @implementation JSAddRouteVC
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    [_cityView1 hiddenView];
     [_myfilteView hiddenView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = PageColor;
+    
     self.title = @"添加路线";
+    
     [self setupView];
     if (_routeID.length>0) {
         [self getRouteInfo];
     }
     [self getCarModelInfo];
     [self getCarLengthInfo];
-    // Do any additional setup after loading the view.
 }
 
--(void)setupView {
+- (void)setupView {
     _areaCode1 = @"";
     _areaCode2 = @"";
     __weak typeof(self) weakSelf = self;
@@ -69,6 +75,8 @@
         }
     };
     _myfilteView = [[FilterCustomView alloc]init];
+    _myfilteView.top = kNavBarH;
+    _myfilteView.viewHeight = HEIGHT-kNavBarH;
     _myfilteView.getPostDic = ^(NSDictionary * _Nonnull dic, NSArray * _Nonnull titles) {
         weakSelf.postDic = dic;
         NSString *string  = @"";
@@ -112,7 +120,6 @@
         }
     }];
 }
-
 
 #pragma mark - 车长
 /** 车长 */
@@ -163,12 +170,20 @@
 
 - (IBAction)addRouteAction:(UIButton *)sender {
     NSString *remark = @"";
+    if (_areaCode1.length==0) {
+        [Utils showToast:@"请选择出发地"];
+        return;
+    }
     if (_areaCode2.length==0) {
         [Utils showToast:@"请选择目的地"];
         return;
     }
-    if (_areaCode1.length==0) {
-        [Utils showToast:@"请选择出发地"];
+    if (!_postDic) {
+        [Utils showToast:@"请选择车长车型"];
+        return;
+    }
+    if ([Utils isBlankString:_contentTv.text]) {
+        [Utils showToast:@"请输入简介"];
         return;
     }
     if (_contentTv.text.length>0) {
