@@ -4241,7 +4241,6 @@ Cg
                                                     <rect key="frame" x="140" y="0.0" width="206" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eby-Hp-fO1">
@@ -4271,7 +4270,6 @@ Cg
                                                     <rect key="frame" x="140" y="0.0" width="206" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spD-iR-c3v">
@@ -4392,7 +4390,7 @@ Cg
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-Na-aok">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-Na-aok">
                                 <rect key="frame" x="28" y="603" width="319" height="44"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -4416,7 +4414,6 @@ Cg
                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HSG-Vl-ko0" firstAttribute="leading" secondItem="WPM-U1-eU3" secondAttribute="leading" id="0TH-LQ-E7I"/>
-                            <constraint firstItem="mSI-Na-aok" firstAttribute="top" secondItem="HSG-Vl-ko0" secondAttribute="bottom" constant="10" id="71p-zW-8ea"/>
                             <constraint firstItem="HSG-Vl-ko0" firstAttribute="top" secondItem="Zsz-Ut-4VC" secondAttribute="bottom" id="7JJ-Oe-Agn"/>
                             <constraint firstItem="mSI-Na-aok" firstAttribute="leading" secondItem="WPM-U1-eU3" secondAttribute="leading" constant="28" id="DIQ-Ye-2LV"/>
                             <constraint firstItem="mSI-Na-aok" firstAttribute="top" secondItem="HSG-Vl-ko0" secondAttribute="bottom" constant="10" id="EVk-ou-jQz"/>
@@ -4432,8 +4429,11 @@ Cg
                     <connections>
                         <outlet property="authCarH" destination="9IV-S5-E3S" id="ik9-sX-V9t"/>
                         <outlet property="authStateLab" destination="Zsz-Ut-4VC" id="uZY-rV-QFb"/>
+                        <outlet property="baseTab" destination="HSG-Vl-ko0" id="q9U-Wi-B82"/>
                         <outlet property="carDriverBtn" destination="6O5-gO-wkQ" id="s4t-XN-tad"/>
+                        <outlet property="carDriverLab" destination="YrS-vd-WfE" id="tyH-kj-rCd"/>
                         <outlet property="carHeadIMgBtn" destination="qIZ-C2-sx8" id="h6z-Z3-weU"/>
+                        <outlet property="carHeadImgLab" destination="V6k-xj-oWf" id="Wkd-np-7zU"/>
                         <outlet property="carLengthLab" destination="dt2-0e-NnF" id="Cvd-yT-85o"/>
                         <outlet property="carLengthModelBtn" destination="spD-iR-c3v" id="z4q-82-w4E"/>
                         <outlet property="carModelBtn" destination="eby-Hp-fO1" id="eDZ-DC-d7m"/>
@@ -4444,6 +4444,7 @@ Cg
                         <outlet property="rightBtn1" destination="S6O-Fn-Gdx" id="AjV-Ew-Cwl"/>
                         <outlet property="rightBtn2" destination="nY1-pC-fLg" id="j7D-4t-cIO"/>
                         <outlet property="submitBtn" destination="mSI-Na-aok" id="MNv-YM-81t"/>
+                        <outlet property="submitH" destination="U6f-UJ-lcZ" id="CaL-nF-97o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3FD-fN-c0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>

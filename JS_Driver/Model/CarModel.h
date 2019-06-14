@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *carLengthId;
 /** 车辆状态，0待审核，1通过，2拒绝，3审核中 */
 @property (nonatomic,copy) NSString *state;
+/** 车辆状态中文 */
+@property (nonatomic,copy) NSString *stateName;
 /** 会员id */
 @property (nonatomic,copy) NSString *subscriberId;
 /** 车型中文 */
