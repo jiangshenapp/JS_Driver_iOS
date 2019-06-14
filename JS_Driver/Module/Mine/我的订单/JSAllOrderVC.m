@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的订单";
+    self.backPriority = -1;
     if (_typeFlage>0) {
         UIButton *sender = [self.view viewWithTag:100+_typeFlage];
         [self titleBtnAction:sender];

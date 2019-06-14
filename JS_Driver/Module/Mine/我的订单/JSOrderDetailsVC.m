@@ -7,6 +7,7 @@
 //
 
 #import "JSOrderDetailsVC.h"
+#import "JSAllOrderVC.h"
 
 @interface JSOrderDetailsVC ()
 /** 订单数据 */
@@ -198,7 +199,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_CommentOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"评价成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
 }
@@ -212,7 +213,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_CompleteDistributionOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"送达成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
 }
@@ -225,7 +226,7 @@
         [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_RefuseOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
             if (status == Request_Success) {
                 [Utils showToast:@"拒绝成功"];
-                [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+                [weakSelf pushOrderList];
             }
         }];
 }
@@ -238,7 +239,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_ReceiveOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"接单成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
 }
@@ -251,7 +252,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_ConfirmOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"确认成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
 }
@@ -264,7 +265,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_CancelReceiveOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"取消接货成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
 }
@@ -277,7 +278,7 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_CancelDistributionOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"拒绝配送成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
 }
@@ -290,9 +291,14 @@
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_DistributionOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"配送成功"];
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            [weakSelf pushOrderList];
         }
     }];
+}
+
+-(void)pushOrderList {
+    JSAllOrderVC *vc =(JSAllOrderVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAllOrderVC"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

@@ -143,7 +143,23 @@
 //返回
 - (void)backAction {
     timeout = -1;
-    [self.navigationController popViewControllerAnimated:YES];
+    timeout = -1;
+    if (_backPriority==0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (_backPriority==-1) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else {
+        NSInteger count = self.navigationController.viewControllers.count;
+        if (count-_backPriority-2>0) {
+            UIViewController *vc = self.navigationController.viewControllers[count-_backPriority-2];
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+        else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
 }
 
 //初始化页面
