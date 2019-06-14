@@ -9,10 +9,13 @@
 #import "JSMyRouteVC.h"
 #import "JSAddRouteVC.h"
 #import "JSMyRouteDetailVC.h"
+#import "RouteModel.h"
 
 @interface JSMyRouteVC ()
-/** <#object#> */
-@property (nonatomic,retain) NSMutableArray *listData;
+
+/** 路线列表 */
+@property (nonatomic,retain) NSMutableArray <RouteModel *> *listData;
+
 @end
 
 @implementation JSMyRouteVC
@@ -39,13 +42,13 @@
 }
 
 - (void)getData {
+    self.listData = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     NSDictionary *dic = [NSDictionary dictionary];
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_MyLines] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
-                [weakSelf.listData removeAllObjects];
-                NSArray *arr = responseData[@"records"];
+                NSArray *arr = [RouteModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
                 [weakSelf.listData addObjectsFromArray:arr];
             }
         }
@@ -60,19 +63,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyRouteTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyRouteTabCell"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSDictionary *dic = self.listData[indexPath.row];
-    [cell.startAddressBtn setTitle:dic[@"startAddressCodeName"] forState:UIControlStateNormal];
-    [cell.endAddressBtn setTitle:dic[@"arriveAddressCodeName"] forState:UIControlStateNormal];
-    if ([dic[@"arriveAddressCode"] integerValue]==0) {
+    RouteModel *model = self.listData[indexPath.row];
+    [cell.startAddressBtn setTitle:model.startAddressCodeName forState:UIControlStateNormal];
+    [cell.endAddressBtn setTitle:model.arriveAddressCodeName forState:UIControlStateNormal];
+    if ([model.arriveAddressCode integerValue]==0) {
         [cell.endAddressBtn setTitle:@"全国" forState:UIControlStateNormal];
     }
-    if ([dic[@"startAddressCode"] integerValue]==0) {
+    if ([model.startAddressCode integerValue]==0) {
         [cell.startAddressBtn setTitle:@"全国" forState:UIControlStateNormal];
     }
-    NSString *jingpin = [dic[@"classic"] integerValue]==1?@"精品":@"";
-    cell.infoLab.text = [NSString stringWithFormat:@"%@ %@ %@",jingpin,dic[@"carLengthName"],dic[@"carModelName"]];
-    cell.infoLab.text = [cell.infoLab.text stringByReplacingOccurrencesOfString:@"," withString:@"/"];
-    if ([dic[@"classic"] integerValue]==1) {
+    NSString *jingpin = [model.classic integerValue]==1?@"精品":@"";
+    cell.infoLab.text = [NSString stringWithFormat:@"%@ %@ %@",jingpin,model.carLengthName,model.carModelName];
+    if ([model.classic integerValue]==1) {
         // 创建Attributed
         NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:cell.infoLab.text];
         // 改变颜色
@@ -84,9 +86,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *dic = self.listData[indexPath.row];
+    RouteModel *model = self.listData[indexPath.row];
     JSMyRouteDetailVC *vc = (JSMyRouteDetailVC *)[Utils getViewController:@"Mine" WithVCName:@"JSMyRouteDetailVC"];
-    vc.routeID = [NSString stringWithFormat:@"%@",dic[@"id"]];
+    vc.routeID = [NSString stringWithFormat:@"%@",model.ID];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -102,11 +104,11 @@
 //设置返回存放侧滑按钮数组
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //这是iOS8以后的方法
-    NSDictionary *dataDic = self.listData[indexPath.row];
+    RouteModel *model = self.listData[indexPath.row];
     __weak typeof(self) weakSelf = self;
     UITableViewRowAction *deleBtn = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         NSDictionary *dic = [NSDictionary dictionary];
-        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_LineDelete,dataDic[@"id"]] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_LineDelete,model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
             if (status == Request_Success) {
                 [Utils showToast:@"删除成功"];
                 [weakSelf getData];
@@ -117,7 +119,7 @@
     
     UITableViewRowAction *moreBtn = [UITableViewRowAction  rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         JSAddRouteVC *vc = (JSAddRouteVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddRouteVC"];
-        vc.routeID = [NSString stringWithFormat:@"%@",dataDic[@"id"]];
+        vc.routeID = [NSString stringWithFormat:@"%@",model.ID];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     //设置背景颜色，他们的大小会分局文字内容自适应，所以不用担心

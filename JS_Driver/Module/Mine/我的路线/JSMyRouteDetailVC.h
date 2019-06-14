@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *carLengthLab;
 @property (weak, nonatomic) IBOutlet UILabel *carModelLab;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLab;
+@property (weak, nonatomic) IBOutlet UIButton *openOrCloseBtn;
+@property (weak, nonatomic) IBOutlet UIButton *applyJingpinBtn;
 
 - (IBAction)openOrCloseAction:(id)sender;
 - (IBAction)applyJingpinAction:(UIButton *)sender;

@@ -11,6 +11,7 @@
 #import "ZHPickView.h"
 #import "JSMyCarVC.h"
 #import <UIButton+WebCache.h>
+#import "CarModel.h"
 
 @interface JSAddCarVC ()
 {
@@ -30,52 +31,67 @@
 @property (nonatomic,copy) NSString *image1;
 /** 图2 */
 @property (nonatomic,copy) NSString *image2;
+
 /** 车数据 */
-@property (nonatomic,retain) MyCarInfoModel *carModel;
+@property (nonatomic,retain) CarModel *carModel;
+/** 车辆状态，0待审核，1通过，2拒绝，3审核中 */
+@property (nonatomic,assign) NSInteger authState;
+
 @end
 
 @implementation JSAddCarVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"添加车辆";
+    self.baseTab.tableFooterView = [[UIView alloc]init];
+    _useCarTypeStr = @"";
+    _useCarLengthStr = @"";
+    [self getCarModelInfo];
+    [self getCarLengthInfo];
+    
     if (![NSString isEmpty:_carDetaileID]) {
         self.title = @"车辆详情";
-        _rightBtn1.hidden = YES;
-        _rightBtn2.hidden = YES;
-        _carModelBtn.hidden = YES;
-        _carLengthModelBtn.hidden = YES;
-        [_submitBtn setTitle:@"解绑" forState:UIControlStateNormal];
-        _submitBtn.backgroundColor = RGBValue(0xD0021B);
-        _carNumLab.userInteractionEnabled = NO;
-        _carWeightTF.userInteractionEnabled = NO;
-        _carSpaceTF.userInteractionEnabled = NO;
-        
         [self getData];
     }
-    else {
-        _useCarTypeStr = @"";
-        _useCarLengthStr = @"";
-        [self getCarModelInfo];
-        [self getCarLengthInfo];
-    }
-    
-    // Do any additional setup after loading the view.
 }
 
--(void)getData {
+- (void)getData {
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     NSString *url = [NSString stringWithFormat:@"%@/%@",URL_GetCarDetail,_carDetaileID];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
-            weakSelf.carModel = [MyCarInfoModel mj_objectWithKeyValues:responseData];
+            weakSelf.carModel = [CarModel mj_objectWithKeyValues:responseData];
             [weakSelf refrehsUI];
         }
     }];
 }
 
 - (void)refrehsUI {
+    
+    self.authState = [_carModel.state integerValue];
+    if (self.authState == 2) {
+        [_submitBtn setTitle:@"重新提交" forState:UIControlStateNormal];
+    } else {
+        [self changeView];
+        if (self.authState == 1) {
+            [_submitBtn setTitle:@"解绑" forState:UIControlStateNormal];
+            _submitBtn.backgroundColor = RGBValue(0xD0021B);
+        } else {
+//            _submitBtn.hidden = YES;
+            _submitH.constant = 0;
+
+        }
+    }
+    _carDriverLab.text = @"车辆行驶证";
+    _carHeadImgLab.text = @"车头照";
+    _rightBtn1.hidden = YES;
+    _rightBtn2.hidden = YES;
+    self.authCarH.constant = 40;
+    self.authStateLab.text = _carModel.stateName;
+    self.authStateLab.textColor = kCarStateColorDic[@(_authState)];
     _carNumLab.text = _carModel.cphm;
     _carTypeLab.text = _carModel.carModelName;
     _carLengthLab.text = _carModel.carLengthName;
@@ -85,6 +101,19 @@
     [self.carHeadIMgBtn sd_setImageWithURL:[NSURL URLWithString:_carModel.image2] forState:UIControlStateNormal placeholderImage:DefaultImage];
 }
 
+- (void)changeView {
+    _carModelBtn.hidden = YES;
+    _carLengthModelBtn.hidden = YES;
+    _carNumLab.userInteractionEnabled = NO;
+    _carWeightTF.userInteractionEnabled = NO;
+    _carSpaceTF.userInteractionEnabled = NO;
+    _carDriverBtn.userInteractionEnabled = NO;
+    _carHeadIMgBtn.userInteractionEnabled = NO;
+    
+    _carTypeLab.right = WIDTH-12;
+    _carLengthLab.right = WIDTH-12;
+    _bottomH = 0;
+}
 
 #pragma mark - 车长
 /** 车长 */
@@ -117,20 +146,9 @@
         }
     }];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)carDrivingLicenseAction:(UIButton *)sender {
-    if (_carDetaileID.length>0) {
-        return;
-    }
+ 
     imageType = 1;
     __weak typeof(self) weakSelf = self;
     TZImagePickerController *vc = [[TZImagePickerController alloc]initWithMaxImagesCount:1 delegate:nil];;
@@ -147,9 +165,7 @@
 }
 
 - (IBAction)carHeadImgAction:(UIButton *)sender {
-    if (_carDetaileID.length>0) {
-        return;
-    }
+ 
     imageType = 2;
     __weak typeof(self) weakSelf = self;
     TZImagePickerController *vc = [[TZImagePickerController alloc]initWithMaxImagesCount:1 delegate:nil];;
@@ -217,7 +233,7 @@
     };
 }
 
-- (void)UntyingCar {
+- (void)unbindingCar {
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     NSString *url = [NSString stringWithFormat:@"%@/%@",URL_UnbindingCar,_carDetaileID];
@@ -231,10 +247,12 @@
 }
 
 - (IBAction)submitDataAction:(id)sender {
-    if (_carDetaileID.length>0) {
-        [self UntyingCar];
+    
+    if ([_submitBtn.titleLabel.text isEqualToString:@"解绑"]) {
+        [self unbindingCar];
         return;
     }
+    
     if (_carNumLab.text.length==0) {
         [Utils showToast:@"请输入车牌号码"];
         return;
@@ -273,7 +291,11 @@
     [dic setObject:_image1 forKey:@"image1"];
     [dic setObject:_image2 forKey:@"image2"];
     [dic setObject:@"0" forKey:@"state"];
-    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@",URL_AddCar] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+    NSString *urlStr = URL_AddCar;
+    if ([_submitBtn.titleLabel.text isEqualToString:@"重新提交"]) {
+        urlStr = [NSString stringWithFormat:@"%@/%@",URL_ReAuditCar,_carDetaileID];
+    }
+    [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
             [Utils showToast:@"提交审核成功，请等待审核结果"];
             [[NSNotificationCenter defaultCenter] postNotificationName:kAddCarSuccNotification object:nil];
@@ -281,5 +303,15 @@
         }
     }];
 }
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

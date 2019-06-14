@@ -140,6 +140,8 @@
 		A0A9F180222FF57200580C6A /* BaseTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F17F222FF57200580C6A /* BaseTabBarVC.m */; };
 		A0A9F18C222FFC5300580C6A /* JSFindGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F18B222FFC5300580C6A /* JSFindGoodsVC.m */; };
 		A0A9F195222FFC9F00580C6A /* JSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F194222FFC9F00580C6A /* JSServiceVC.m */; };
+		A0B31E2E22B329EB007DB7A4 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B31E2D22B329EB007DB7A4 /* CarModel.m */; };
+		A0B31E3122B32B5E007DB7A4 /* RouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B31E3022B32B5E007DB7A4 /* RouteModel.m */; };
 		A0E927022285284400D07C58 /* AEFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E927002285284300D07C58 /* AEFilePath.m */; };
 		C4E2E61BA69A23F1952E5B4B /* libPods-JS_Driver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D27DC42609271027D306F2 /* libPods-JS_Driver.a */; };
 /* End PBXBuildFile section */
@@ -367,6 +369,10 @@
 		A0A9F18B222FFC5300580C6A /* JSFindGoodsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSFindGoodsVC.m; sourceTree = "<group>"; };
 		A0A9F193222FFC9F00580C6A /* JSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSServiceVC.h; sourceTree = "<group>"; };
 		A0A9F194222FFC9F00580C6A /* JSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSServiceVC.m; sourceTree = "<group>"; };
+		A0B31E2C22B329EB007DB7A4 /* CarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
+		A0B31E2D22B329EB007DB7A4 /* CarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
+		A0B31E2F22B32B5E007DB7A4 /* RouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteModel.h; sourceTree = "<group>"; };
+		A0B31E3022B32B5E007DB7A4 /* RouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteModel.m; sourceTree = "<group>"; };
 		A0E927002285284300D07C58 /* AEFilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEFilePath.m; sourceTree = "<group>"; };
 		A0E927012285284400D07C58 /* AEFilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFilePath.h; sourceTree = "<group>"; };
 		A0E9270622852F9D00D07C58 /* JSAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAuthenticationVC.m; sourceTree = "<group>"; };
@@ -935,10 +941,14 @@
 				A03B902722AA96C400E75D7D /* PayRouteModel.m */,
 				A03B902922AA96C400E75D7D /* TradeRecordModel.h */,
 				A03B902822AA96C400E75D7D /* TradeRecordModel.m */,
-				A03B902D22ACECDD00E75D7D /* DriverModel.h */,
-				A03B902E22ACECDD00E75D7D /* DriverModel.m */,
 				20A71ECC22AF8CF700A37179 /* OrderInfoModel.h */,
 				20A71ECD22AF8CF700A37179 /* OrderInfoModel.m */,
+				A0B31E2C22B329EB007DB7A4 /* CarModel.h */,
+				A0B31E2D22B329EB007DB7A4 /* CarModel.m */,
+				A03B902D22ACECDD00E75D7D /* DriverModel.h */,
+				A03B902E22ACECDD00E75D7D /* DriverModel.m */,
+				A0B31E2F22B32B5E007DB7A4 /* RouteModel.h */,
+				A0B31E3022B32B5E007DB7A4 /* RouteModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1171,6 +1181,7 @@
 				203DF01A228028C500015587 /* JSCommunityVC.m in Sources */,
 				203DF061228029AD00015587 /* JSSystemMessageVC.m in Sources */,
 				2045454C22852EDE00E65742 /* JSAuthenticationVC.m in Sources */,
+				A0B31E3122B32B5E007DB7A4 /* RouteModel.m in Sources */,
 				A0A9F17A222FF35500580C6A /* Config.m in Sources */,
 				A0A9F171222FF1C100580C6A /* NetworkUtil.m in Sources */,
 				A0A9F15A222FF1C100580C6A /* XLGAlertView.m in Sources */,
@@ -1209,6 +1220,7 @@
 				A0A9F16E222FF1C100580C6A /* XLGChangeServerVC.m in Sources */,
 				203DF04F2280299E00015587 /* JSPayVC.m in Sources */,
 				205D52772275934B0053F176 /* JSForgetPwdVC.m in Sources */,
+				A0B31E2E22B329EB007DB7A4 /* CarModel.m in Sources */,
 				A0A9F173222FF1C100580C6A /* CZNotNetAvailableVC.m in Sources */,
 				A0A9F153222FF1C100580C6A /* CZStarView.m in Sources */,
 				203DF0522280299E00015587 /* JSAllOrderVC.m in Sources */,
