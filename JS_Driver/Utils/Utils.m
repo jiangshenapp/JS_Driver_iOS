@@ -406,7 +406,7 @@ static Utils *_utils = nil;
     return dic;
 }
 
-+(NSString *)getTimeStrToCurrentDateWith:(NSString *)dateStr1 {
++ (NSString *)getTimeStrToCurrentDateWith:(NSString *)dateStr1 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
     fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
@@ -450,7 +450,7 @@ static Utils *_utils = nil;
      return dateStr1;
 }
 
-+(NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2{
++ (NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2 {
     CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:lat1 longitude:lng1];
     CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:lat2 longitude:lng2];
     double  distance  = [curLocation distanceFromLocation:otherLocation];

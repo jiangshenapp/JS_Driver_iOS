@@ -57,7 +57,7 @@
     _areaCode2 = @"";
     _sort = @"2";
     _dataSource = [NSMutableArray array];
-   NSDictionary *locDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"loc"];
+    NSDictionary *locDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"loc"];
     _currentLoc = CLLocationCoordinate2DMake([locDic[@"lat"] floatValue], [locDic[@"lng"] floatValue]);
     titleArr1 = @[@"发货地",@"收货地",@"默认排序",@"筛选"];
     CGFloat btW = WIDTH/4.0;
@@ -118,7 +118,6 @@
     }];
 }
 
-
 #pragma mark - 获取数据
 - (void)getNetData {
     __weak typeof(self) weakSelf = self;
@@ -178,7 +177,7 @@
         cell.orderNOLab.attributedText = attributeStr;
     }
    
-    cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:model.createTime ];
+    cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:model.createTime];
     [cell.startDotNameLab setTitle:model.sendAddress forState:UIControlStateNormal];
     [cell.endDotNameLab setTitle:model.receiveAddress forState:UIControlStateNormal];
     cell.priceLab.text = [NSString stringWithFormat:@"¥%.2f",[model.fee floatValue]];
@@ -186,7 +185,7 @@
     cell.orderCarInfoLab.text = infoStr;
     
     NSDictionary *locDic = [Utils dictionaryWithJsonString:model.sendPosition];
-   NSString *distanceStr = [NSString stringWithFormat:@"距离您：%@",[Utils distanceBetweenOrderBy:_currentLoc.latitude :[locDic[@"latitude"] floatValue] :_currentLoc.longitude :[locDic[@"longitude"] floatValue]]];
+    NSString *distanceStr = [NSString stringWithFormat:@"距离您：%@",[Utils distanceBetweenOrderBy:_currentLoc.latitude :[locDic[@"latitude"] floatValue] :_currentLoc.longitude :[locDic[@"longitude"] floatValue]]];
     cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间：%@ %@",model.loadingTime,distanceStr];
     
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.getGoodsTimeLab.text];
@@ -229,7 +228,7 @@
 }
 
 #pragma mark 定位
--(void)startLocation{
+- (void)startLocation {
     if ([CLLocationManager locationServicesEnabled]) {//判断定位操作是否被允许
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;//遵循代理
@@ -251,7 +250,6 @@
     [[NSUserDefaults standardUserDefaults]setObject:locDic forKey:@"loc"];;
     NSLog(@"经度=%f 纬度=%f 高度=%f", currLocation.coordinate.latitude, currLocation.coordinate.longitude, currLocation.altitude);
 }
-
 
 /*
 #pragma mark - Navigation

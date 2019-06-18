@@ -146,6 +146,7 @@
 @end
 
 @implementation MyOrderTabCell
+
 - (void)setContentWithModel:(OrderInfoModel *)model {
     
     self.orderNoLab.text = [NSString stringWithFormat:@"订单编号:%@",model.orderNo];
@@ -153,9 +154,8 @@
     self.startAddressLab.text = model.sendAddress;
     self.endAddressLab.text = model.receiveAddress;
     
-     NSDictionary *sendlocDic = [Utils dictionaryWithJsonString:model.sendPosition];
-    
-    NSDictionary *locDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"loc"];
+    NSDictionary *sendlocDic = [Utils dictionaryWithJsonString:model.sendPosition];
+    NSDictionary *locDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
     NSString *distanceStr = [NSString stringWithFormat:@"距离您%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[sendlocDic[@"latitude"] floatValue] :[locDic[@"lng"] floatValue] :[sendlocDic[@"longitude"] floatValue]]];
     _distanceLab.text = distanceStr;
 
