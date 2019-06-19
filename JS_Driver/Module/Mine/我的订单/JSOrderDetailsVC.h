@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSOrderDetailsVC : BaseVC
+
 /** 订单编号 */
 @property (nonatomic,copy) NSString *orderID;
 

@@ -77,11 +77,21 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; //取消选择状态
-    CarModel *model = self.listData[indexPath.row];
-    JSAddCarVC *vc = (JSAddCarVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
-    vc.carDetaileID = model.ID;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if (self.isSelect == YES) {
+        if (self.selectCarBlock) {
+            CarModel *model = self.listData[indexPath.row];
+            self.selectCarBlock(model);
+            [self backAction];
+        }
+    } else {
+        CarModel *model = self.listData[indexPath.row];
+        JSAddCarVC *vc = (JSAddCarVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAddCarVC"];
+        vc.carDetaileID = model.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)addCarAction {

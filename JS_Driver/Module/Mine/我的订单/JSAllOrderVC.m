@@ -23,6 +23,13 @@
 
 @implementation JSAllOrderVC
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.page = 1;
+    [self getData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的订单";
@@ -31,10 +38,8 @@
         UIButton *sender = [self.view viewWithTag:100+_typeFlage];
         [self titleBtnAction:sender];
     }
-    _page = 1;
     _listData = [NSMutableArray array];
     [self initOrderState:_typeFlage];
-    [self getData];
     __weak typeof(self) weakSelf = self;
     self.baseTabView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.page = 1;

@@ -102,7 +102,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [self.baseTabView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (self.isSelect == YES) {
+        if (self.selectDriverBlock) {
+            DriverModel *model = self.listData[indexPath.row];
+            self.selectDriverBlock(model);
+            [self backAction];
+        }
+    }
 }
 
 #pragma mark - 解绑司机
