@@ -84,8 +84,7 @@
         UIScrollView.appearance.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     
-    _viewConstraintH.constant = MIN(autoScaleH(50), 60);
-    _viewTopY.constant = 44;
+    
     self.tableFrame = CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH);
     if (self.baseTabView.tableFooterView==nil) {
         self.baseTabView.tableFooterView = [[UIView alloc]init];
@@ -99,6 +98,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkDisappear) name:@"kNetDisAppear" object:nil];
     //有网络通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAppear) name:@"kNetAppear" object:nil];
+}
+
+
+-(void)addTabMJ_FootView {
+    __weak typeof(self) weakSelf = self;
+    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf getData];
+    }];
 }
 
 //没有网络了
