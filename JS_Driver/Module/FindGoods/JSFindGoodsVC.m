@@ -47,7 +47,7 @@
     self.title = @"找货";
     [self setupView];
     [self getDicList];
-    [self getNetData];
+    [self getData];
     [self startLocation];
 }
 
@@ -117,7 +117,7 @@
 }
 
 #pragma mark - 获取数据
-- (void)getNetData {
+- (void)getData {
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:_areaCode2 forKey:@"arriveAddressCode"];
