@@ -49,6 +49,7 @@
         if (status == Request_Success) {
             if ([responseData[@"records"] isKindOfClass:[NSArray class]]) {
                 NSArray *arr = [RouteModel mj_objectArrayWithKeyValuesArray:responseData[@"records"]];
+                [self.listData removeAllObjects];
                 [weakSelf.listData addObjectsFromArray:arr];
             }
         }
