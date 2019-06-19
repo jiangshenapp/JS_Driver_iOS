@@ -111,11 +111,9 @@
     
     self.baseTabView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.page = 1;
-        [weakSelf getNetData];
+        [weakSelf getData];
     }];
-    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf getNetData];
-    }];
+    [self addTabMJ_FootView];
 }
 
 #pragma mark - 获取数据
@@ -146,7 +144,12 @@
         if ([weakSelf.baseTabView.mj_header isRefreshing]) {
             [weakSelf.baseTabView.mj_header endRefreshing];
         }
-        
+        if (weakSelf.dataSource.count==[responseData[@"total"] integerValue]) {
+            weakSelf.baseTabView.mj_footer = nil;
+        }
+        else {
+            [weakSelf addTabMJ_FootView];
+        }
     }];
 }
 

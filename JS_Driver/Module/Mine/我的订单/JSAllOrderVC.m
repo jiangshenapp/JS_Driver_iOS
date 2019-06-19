@@ -45,9 +45,7 @@
         weakSelf.page = 1;
         [weakSelf getData];
     }];
-    self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf getData];
-    }];
+    [self addTabMJ_FootView];
     // Do any additional setup after loading the view.
 }
 
@@ -93,6 +91,12 @@
         }
         if ([weakSelf.baseTabView.mj_footer isRefreshing]) {
             [weakSelf.baseTabView.mj_footer endRefreshing];
+        }
+        if (weakSelf.listData.count==[responseData[@"total"] integerValue]) {
+            weakSelf.baseTabView.mj_footer = nil;
+        }
+        else {
+            [weakSelf addTabMJ_FootView];
         }
     }];
 }
