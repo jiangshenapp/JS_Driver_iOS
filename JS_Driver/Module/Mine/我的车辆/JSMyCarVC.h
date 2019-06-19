@@ -7,12 +7,21 @@
 //
 
 #import "BaseVC.h"
+#import "CarModel.h"
+
+typedef void (^SelectCarBlock) (CarModel * _Nullable carModel);
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyCarVC : BaseVC
 
+/** 选择车辆回调 */
+@property (nonatomic,copy) SelectCarBlock selectCarBlock;
+/** 选择车辆入口 YES */
+@property (nonatomic,assign) BOOL isSelect;
+
 @property (weak, nonatomic) IBOutlet UITextField *searchTF;
+
 - (IBAction)cancleSearchTF:(UIButton *)sender;
 
 @end

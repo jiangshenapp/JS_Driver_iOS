@@ -8,6 +8,7 @@
 
 #import "JSOrderDetailsVC.h"
 #import "JSAllOrderVC.h"
+#import "JSOrderDistributionVC.h"
 
 @interface JSOrderDetailsVC ()
 /** 订单数据 */
@@ -286,17 +287,13 @@
 #pragma mark - 开始配送
 /** 开始配送 */
 - (void)distributionOrder {
-    __weak typeof(self) weakSelf = self;
-    NSDictionary *dic = [NSDictionary dictionary];
-    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_DistributionOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
-        if (status == Request_Success) {
-            [Utils showToast:@"配送成功"];
-            [weakSelf pushOrderList];
-        }
-    }];
+    
+    JSOrderDistributionVC *vc = (JSOrderDistributionVC *)[Utils getViewController:@"Mine" WithVCName:@"JSOrderDistributionVC"];
+    vc.orderID = self.model.ID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)pushOrderList {
+- (void)pushOrderList {
     JSAllOrderVC *vc =(JSAllOrderVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAllOrderVC"];
     [self.navigationController pushViewController:vc animated:YES];
 }

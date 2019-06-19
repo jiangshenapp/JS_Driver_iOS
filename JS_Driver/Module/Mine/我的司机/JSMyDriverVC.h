@@ -9,9 +9,16 @@
 #import "BaseVC.h"
 #import "DriverModel.h"
 
+typedef void (^SelectDriverBlock) (DriverModel * _Nullable driverModel);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSMyDriverVC : BaseVC
+
+/** 选择司机回调 */
+@property (nonatomic,copy) SelectDriverBlock selectDriverBlock;
+/** 选择司机入口 YES */
+@property (nonatomic,assign) BOOL isSelect;
 
 @property (weak, nonatomic) IBOutlet UIView *addView;
 @property (weak, nonatomic) IBOutlet UIView *bgShdowView;
