@@ -4875,6 +4875,7 @@ Cg
                         <outlet property="goodsPayTypeLab" destination="xpH-4A-dEW" id="ZR2-aV-2MQ"/>
                         <outlet property="goodsTomeLab" destination="BD4-MF-gPs" id="DLe-MS-WG9"/>
                         <outlet property="goodsTypeLab" destination="uga-yO-WOv" id="VBs-Ii-hvC"/>
+                        <outlet property="headImgView" destination="zax-V7-b4g" id="IWQ-kY-zRX"/>
                         <outlet property="introduceLab" destination="HTC-I5-eaB" id="vim-2I-xZ7"/>
                         <outlet property="iphoneBtn" destination="ThU-co-pLW" id="kkJ-kO-6hu"/>
                         <outlet property="nameLab" destination="LDj-mk-fZ5" id="bbC-2h-e57"/>
@@ -4893,7 +4894,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6DD-7M-6Nc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="881"/>
+            <point key="canvasLocation" x="-92" y="880.20989505247383"/>
         </scene>
         <!--分配司机-->
         <scene sceneID="ZRB-9U-sXU">

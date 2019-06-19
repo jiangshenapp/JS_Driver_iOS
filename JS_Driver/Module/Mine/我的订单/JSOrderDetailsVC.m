@@ -18,11 +18,19 @@
 @implementation JSOrderDetailsVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    _bgScroView.contentSize = CGSizeMake(0, _receiptView.bottom+50);
+    
     self.title = @"订单详情";
+    
+    _bgScroView.contentSize = CGSizeMake(0, _receiptView.bottom+50);
+    
     self.tileView1.hidden = YES;
     self.titleView2.hidden = NO;
+    
+    self.bottomBtn.backgroundColor = AppThemeColor;
+    [self.bottomBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
+    
     [self getOrderInfo];
 }
 
@@ -39,11 +47,11 @@
 }
 
 - (void)refreshUI {
-//    [self.headImgView2 sd_setImageWithURL:[NSURL URLWithString:self.model.driverAvatar] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
-//    self.nameLab.text = self.model.driverName;
-//    self.introduceLab.text = self.model.driverPhone;
+//    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:self.model.driverAvatar] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
+    self.nameLab.text = self.model.sendName;
+    self.introduceLab.text = self.model.sendMobile;
     self.orderNoLab.text = [NSString stringWithFormat:@"订单编号：%@",self.model.orderNo];
-    self.orderStatusLab.text = self.model.stateNameConsignor;
+    self.orderStatusLab.text = self.model.stateNameDriver;
     self.startAddressLab.text = self.model.sendAddress;
     self.endAddressLab.text = self.model.receiveAddress;
     self.goodsTomeLab.text = self.model.loadingTime;
@@ -75,20 +83,8 @@
 #pragma mark - init view
 - (void)initView {
     
-    //1发布中，2待司机接单，3待司机确认，4待支付，5待司机接货, 6待收货，7待评价，8已完成，9已取消，10已关闭
+    //2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待货主评价，8已完成，9已取消，10已关闭
     NSInteger state = [self.model.state integerValue];
-    if (state == 1 || state == 2) {
-        self.tileView1.hidden = NO;
-        self.titleView2.hidden = YES;
-//        self.bookTimeLab.text = [NSString stringWithFormat:@"已为您通知%@个司机",self.model.driverNum];
-    } else {
-//        if (![Utils isBlankString:self.model.dotName]) {
-//            self.tileView1.hidden = NO;
-//            self.titleView2.hidden = YES;
-//            [self.headImgView1 sd_setImageWithURL:[NSURL URLWithString:self.model.driverAvatar] placeholderImage:[UIImage imageNamed:@"personalcenter_driver_icon_head_land"]];
-//            self.bookTimeLab.text = self.model.dotName;
-//        }
-    }
     switch (state) {
         case 1:
         case 2://待接单
@@ -144,11 +140,11 @@
 
 /** 打电话 */
 - (IBAction)callPhone:(id)sender {
-    if ([Utils isBlankString:self.model.receiveMobile]) {
+    if ([Utils isBlankString:self.model.sendMobile]) {
         [Utils showToast:@"电话号码是空号"];
         return;
     }
-    [Utils call:self.model.receiveMobile];
+    [Utils call:self.model.sendMobile];
 }
 
 /** 聊天 */

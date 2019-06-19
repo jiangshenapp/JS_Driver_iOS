@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *titleView2;
 /** 预约N分钟 */
 @property (weak, nonatomic) IBOutlet UILabel *bookTimeLab;
+/** 头像 */
+@property (weak, nonatomic) IBOutlet UIImageView *headImgView;
 /** 姓名 */
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 /** 介绍文字 */
