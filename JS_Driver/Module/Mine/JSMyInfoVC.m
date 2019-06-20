@@ -184,13 +184,15 @@
 
 /* 安全退出 */
 - (IBAction)logoutAction:(id)sender {
-    [Utils showToast:@"安全退出成功"];
+    
     [Utils logout:YES];
-    NSDictionary *dic = [NSDictionary dictionary];
-    [[NetworkManager sharedManager] postJSON:URL_Logout parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
-        if (status == Request_Success) {
-        }
-    }];
+    
+//    [Utils showToast:@"安全退出成功"];
+//    NSDictionary *dic = [NSDictionary dictionary];
+//    [[NetworkManager sharedManager] postJSON:URL_Logout parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+//        if (status == Request_Success) {
+//        }
+//    }];
 }
 
 /*

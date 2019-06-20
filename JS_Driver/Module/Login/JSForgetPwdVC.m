@@ -9,7 +9,7 @@
 #import "JSForgetPwdVC.h"
 #import "JSResetPswVC.h"
 
-@interface JSForgetPwdVC ()
+@interface JSForgetPwdVC ()<UITextFieldDelegate>
 
 @end
 
@@ -72,6 +72,18 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField.tag == 100) {
+        if (textField.text.length + string.length > 11) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 /*

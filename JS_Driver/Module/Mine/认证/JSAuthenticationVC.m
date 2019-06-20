@@ -361,12 +361,13 @@
 
 #pragma mark - 园区提交认证
 - (void)parkCommitAction {
+    
     if ([NSString isEmpty:self.parkNameTF.text]) {
         [Utils showToast:@"请输入代理点名称/个人姓名"];
         return;
     }
     if ([NSString isEmpty:self.organizationTypeTF.text]) {
-        [Utils showToast:@"请选择服务中心/车代点/网点"];
+        [Utils showToast:@"请选择机构类型"];
         return;
     }
     if ([NSString isEmpty:self.IDNumberTF.text]) {
@@ -392,7 +393,7 @@
     
     NSDictionary *paramDic = [NSDictionary dictionaryWithObjectsAndKeys:
                          self.parkNameTF.text, @"companyName",
-                         @"1", @"companyType",
+                         kCompanyTypeStrDic[self.organizationTypeTF.text], @"companyType",
                          self.IDNumberTF.text, @"registrationNumber",
                          self.parkAddressLab.text, @"address",
                          self.parkDetailAddressTF.text, @"detailAddress",

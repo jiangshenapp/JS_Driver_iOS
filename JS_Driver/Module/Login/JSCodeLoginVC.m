@@ -8,7 +8,7 @@
 
 #import "JSCodeLoginVC.h"
 
-@interface JSCodeLoginVC ()
+@interface JSCodeLoginVC ()<UITextFieldDelegate>
 
 @end
 
@@ -83,6 +83,18 @@
 /* 用户协议 */
 - (IBAction)protocalAction:(id)sender {
     
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField.tag == 100) {
+        if (textField.text.length + string.length > 11) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 /*

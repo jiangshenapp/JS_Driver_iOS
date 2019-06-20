@@ -58,6 +58,7 @@
 #define kAuthStateStrDic @{@(0):@"未提交",@(1):@"认证中",@(2):@"已认证",@(3):@"认证失败"}
 #define kAuthStateColorDic @{@(0):kVerifiedUnCommitColor,@(1):kVerifiedOnColor,@(2):AppThemeColor,@(3):kVerifiedFailColor}
 #define kCarStateColorDic @{@(0):RGBValue(0xECA73F),@(1):RGBValue(0x4A90E2),@(2):RGBValue(0xD0021B),@(3):RGBValue(0xECA73F)}
+#define kCompanyTypeStrDic @{@"全部":@"",@"服务中心":@"1",@"车代点":@"2",@"网点":@"3"}
 
 /******************************通知****************************/
 

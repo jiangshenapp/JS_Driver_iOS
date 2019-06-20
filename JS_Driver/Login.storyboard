@@ -39,13 +39,16 @@
                                             <rect key="frame" x="28" y="120" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15737936517" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i0Z-D5-zwf">
+                                                <textField opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="i0Z-D5-zwf">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="xoQ-xE-mmA" id="IQV-Jz-vPI"/>
+                                                    </connections>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMO-LV-48G">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -59,7 +62,7 @@
                                             <rect key="frame" x="27" y="180" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RTa-Mu-pOD">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RTa-Mu-pOD">
                                                     <rect key="frame" x="0.0" y="0.0" width="213" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
@@ -157,13 +160,13 @@
                                             <rect key="frame" x="28" y="120" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Mt-7M-xVp">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8Mt-7M-xVp">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJk-a7-3iZ">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -177,13 +180,13 @@
                                             <rect key="frame" x="27" y="180" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oVx-P5-Ty7">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oVx-P5-Ty7">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bkY-sE-94C">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -294,13 +297,16 @@
                                             <rect key="frame" x="28" y="120" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15737936517" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZt-HU-SUm">
+                                                <textField opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sZt-HU-SUm">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="OxN-dF-jhC" id="Juq-ba-6J3"/>
+                                                    </connections>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGi-km-lDS">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -314,13 +320,13 @@
                                             <rect key="frame" x="27" y="180" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000000" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICA-n8-1Md">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ICA-n8-1Md">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eML-5v-8lY">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -451,13 +457,16 @@
                                             <rect key="frame" x="28" y="77" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15737936517" placeholder="请输入11位有效手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UN3-W4-gNf">
+                                                <textField opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位有效手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UN3-W4-gNf">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="iiU-tv-fz7" id="Sk5-ds-oSs"/>
+                                                    </connections>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FS2-Zy-Njo">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -471,13 +480,13 @@
                                             <rect key="frame" x="27" y="137" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="000000" placeholder="请设置6-16位密码（字母、数字）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rDy-iv-iUF">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请设置6-16位密码（字母、数字）" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rDy-iv-iUF">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXI-wE-bJq">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -491,7 +500,7 @@
                                             <rect key="frame" x="27" y="197" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hua-dw-LzZ">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hua-dw-LzZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
@@ -661,13 +670,16 @@
                                             <rect key="frame" x="28" y="120" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GW-YR-HtR">
+                                                <textField opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6GW-YR-HtR">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="0dg-5R-c1U" id="1ir-mR-M8p"/>
+                                                    </connections>
                                                 </textField>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-eX-C4F">
                                                     <rect key="frame" x="0.0" y="49" width="320" height="1"/>
@@ -681,7 +693,7 @@
                                             <rect key="frame" x="27" y="180" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZg-bK-ALE">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fZg-bK-ALE">
                                                     <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="tintColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
@@ -794,7 +806,7 @@
         <image name="app_agreement_icon_selected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pYs-Tj-eKZ"/>
-        <segue reference="H4R-Tg-bmJ"/>
+        <segue reference="xsX-l8-PKl"/>
+        <segue reference="rSx-mF-Hwa"/>
     </inferredMetricsTieBreakers>
 </document>

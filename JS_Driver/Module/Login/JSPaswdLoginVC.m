@@ -8,7 +8,7 @@
 
 #import "JSPaswdLoginVC.h"
 
-@interface JSPaswdLoginVC ()
+@interface JSPaswdLoginVC ()<UITextFieldDelegate>
 
 @end
 
@@ -21,6 +21,14 @@
 }
 
 #pragma mark - methods
+
+/* 返回 */
+- (void)backAction {
+    self.tabBarController.selectedIndex = 0;
+    // 跳转到首页
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 /* 登录 */
 - (IBAction)loginAction:(id)sender {
     
@@ -62,6 +70,18 @@
 /* 用户协议 */
 - (IBAction)protocalAction:(id)sender {
     [Utils showToast:@"用户协议"];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField.tag == 100) {
+        if (textField.text.length + string.length > 11) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 /*
