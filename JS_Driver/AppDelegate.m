@@ -35,9 +35,9 @@
     [[UITabBar appearance] setTranslucent:NO];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    BaseTabBarVC *tabBarVC = [[BaseTabBarVC alloc] init];
-    tabBarVC.delegate = self;
-    self.window.rootViewController = tabBarVC;
+    _tabVC = [[BaseTabBarVC alloc] init];
+    _tabVC.delegate = self;
+    self.window.rootViewController = _tabVC;
     [self.window makeKeyAndVisible];
     
     return YES;

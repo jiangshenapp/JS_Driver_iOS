@@ -48,6 +48,8 @@
 		2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068A8972281348F00287CD0 /* JSAuthencationHomeVC.m */; };
 		20A71ECE22AF8CF700A37179 /* OrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A71ECD22AF8CF700A37179 /* OrderInfoModel.m */; };
 		20DC7D5C22BB39D5003CB4FD /* noDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DC7D5B22BB39D5003CB4FD /* noDataView.xib */; };
+		20DC7D5F22BB5C00003CB4FD /* XLGMapNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DC7D5D22BB5C00003CB4FD /* XLGMapNavVC.m */; };
+		20DC7D6322BB5C2E003CB4FD /* LocationTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DC7D6222BB5C2D003CB4FD /* LocationTransform.m */; };
 		20FFCC5222ACA271002F94EB /* CityCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFCC4922ACA270002F94EB /* CityCustomView.m */; };
 		20FFCC5322ACA271002F94EB /* SortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFCC4A22ACA270002F94EB /* SortView.m */; };
 		20FFCC5422ACA271002F94EB /* Address.json in Resources */ = {isa = PBXBuildFile; fileRef = 20FFCC4E22ACA271002F94EB /* Address.json */; };
@@ -224,6 +226,10 @@
 		20A71ECC22AF8CF700A37179 /* OrderInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderInfoModel.h; sourceTree = "<group>"; };
 		20A71ECD22AF8CF700A37179 /* OrderInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderInfoModel.m; sourceTree = "<group>"; };
 		20DC7D5B22BB39D5003CB4FD /* noDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = noDataView.xib; sourceTree = "<group>"; };
+		20DC7D5D22BB5C00003CB4FD /* XLGMapNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGMapNavVC.m; sourceTree = "<group>"; };
+		20DC7D5E22BB5C00003CB4FD /* XLGMapNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGMapNavVC.h; sourceTree = "<group>"; };
+		20DC7D6122BB5C2D003CB4FD /* LocationTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTransform.h; sourceTree = "<group>"; };
+		20DC7D6222BB5C2D003CB4FD /* LocationTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTransform.m; sourceTree = "<group>"; };
 		20FFCC4922ACA270002F94EB /* CityCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCustomView.m; sourceTree = "<group>"; };
 		20FFCC4A22ACA270002F94EB /* SortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortView.m; sourceTree = "<group>"; };
 		20FFCC4B22ACA270002F94EB /* FilterCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCustomView.h; sourceTree = "<group>"; };
@@ -547,6 +553,17 @@
 			path = "认证";
 			sourceTree = "<group>";
 		};
+		20DC7D6022BB5C2D003CB4FD /* LocationTransform */ = {
+			isa = PBXGroup;
+			children = (
+				20DC7D5E22BB5C00003CB4FD /* XLGMapNavVC.h */,
+				20DC7D5D22BB5C00003CB4FD /* XLGMapNavVC.m */,
+				20DC7D6122BB5C2D003CB4FD /* LocationTransform.h */,
+				20DC7D6222BB5C2D003CB4FD /* LocationTransform.m */,
+			);
+			path = LocationTransform;
+			sourceTree = "<group>";
+		};
 		20FFCC4822ACA270002F94EB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +732,7 @@
 		A0A9F0E6222FF1C000580C6A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				20DC7D6022BB5C2D003CB4FD /* LocationTransform */,
 				A0A9F0E7222FF1C000580C6A /* Utils.h */,
 				A0A9F0FD222FF1C000580C6A /* Utils.m */,
 				A0E927012285284400D07C58 /* AEFilePath.h */,
@@ -1182,6 +1200,7 @@
 				A0A9F17D222FF3E000580C6A /* UserInfo.m in Sources */,
 				A0A9F15B222FF1C100580C6A /* XLGLottie.m in Sources */,
 				203DF07922802FE200015587 /* JSMyDepositVC.m in Sources */,
+				20DC7D5F22BB5C00003CB4FD /* XLGMapNavVC.m in Sources */,
 				A0A9F160222FF1C100580C6A /* BaseNC.m in Sources */,
 				2018EB6B22A8F3B400D9E7C6 /* ZHPickView.m in Sources */,
 				A0A9F151222FF1C100580C6A /* KeyChainUtil.m in Sources */,
@@ -1236,6 +1255,7 @@
 				203DF0522280299E00015587 /* JSAllOrderVC.m in Sources */,
 				20A71ECE22AF8CF700A37179 /* OrderInfoModel.m in Sources */,
 				20FFCC5622ACA271002F94EB /* BaseCustomView.m in Sources */,
+				20DC7D6322BB5C2E003CB4FD /* LocationTransform.m in Sources */,
 				A0A9F158222FF1C100580C6A /* AEIndicator.m in Sources */,
 				A0A9F163222FF1C100580C6A /* BaseWebVC.m in Sources */,
 				203DF0542280299E00015587 /* JSOrderDetailMapVC.m in Sources */,

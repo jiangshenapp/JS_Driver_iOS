@@ -100,7 +100,7 @@
 + (NSString *)getTimeStrToCurrentDateWith:(NSString *)dateStr1;
 
 /** 计算经纬度 */
-+ (NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2;
++ (NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lng1 andOther:(double) lat2 :(double) lng2;
 
 //打电话
 + (UIWebView *)call:(NSString *)phoneAccount;

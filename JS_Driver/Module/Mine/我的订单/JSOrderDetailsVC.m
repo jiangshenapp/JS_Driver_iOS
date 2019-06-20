@@ -9,8 +9,13 @@
 #import "JSOrderDetailsVC.h"
 #import "JSAllOrderVC.h"
 #import "JSOrderDistributionVC.h"
+#import "XLGMapNavVC.h"
 
 @interface JSOrderDetailsVC ()
+{
+    NSDictionary *startLocDic;
+    NSDictionary *endLocDic;
+}
 /** 订单数据 */
 @property (nonatomic,retain) OrderInfoModel *model;
 @end
@@ -53,7 +58,9 @@
     self.orderNoLab.text = [NSString stringWithFormat:@"订单编号：%@",self.model.orderNo];
     self.orderStatusLab.text = self.model.stateNameDriver;
     self.startAddressLab.text = self.model.sendAddress;
+    self.startAddressAreaLab.text = self.model.sendAddressCodeName;
     self.endAddressLab.text = self.model.receiveAddress;
+    self.endAddressAreaLab.text = self.model.receiveAddressCodeName;
     self.goodsTomeLab.text = self.model.loadingTime;
     self.carInfoLab.text = [NSString stringWithFormat:@"%@%@米/%@方/%@吨",self.model.carModelName,self.model.carLength,self.model.goodsVolume,self.model.goodsWeight];;
     self.goodsTypeLab.text = self.model.goodsType;
@@ -76,7 +83,11 @@
     self.explainLab.text = self.model.remark;
     self.receiptNameLab.text = self.model.receiveName;
     self.receiptNumerLab.text = self.model.receiveMobile;
-    
+    startLocDic = [Utils dictionaryWithJsonString:self.model.sendPosition];
+    endLocDic = [Utils dictionaryWithJsonString:self.model.receivePosition];
+    NSDictionary *locDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
+    _distance1Lab.text = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[startLocDic[@"latitude"] floatValue] :[startLocDic[@"longitude"] floatValue]]];;
+    _distance2Lab.text = [NSString stringWithFormat:@"总里程:%@",[Utils distanceBetweenOrderBy:[startLocDic[@"latitude"] floatValue] :[startLocDic[@"longitude"] floatValue] andOther:[endLocDic[@"latitude"] floatValue] :[endLocDic[@"longitude"] floatValue]]];;;
     [self initView];
 }
 
@@ -188,6 +199,16 @@
     }
 }
 
+- (IBAction)showNav1Action:(UIButton *)sender {
+    [XLGMapNavVC share].destionName = _model.sendAddress;
+    [XLGMapNavVC startNavWithEndPt:CLLocationCoordinate2DMake([startLocDic[@"latitude"] floatValue], [startLocDic[@"longitude"] floatValue])];
+}
+
+- (IBAction)showNav2Action:(id)sender {
+    [XLGMapNavVC share].destionName = _model.receiveAddress;
+    [XLGMapNavVC startNavWithEndPt:CLLocationCoordinate2DMake([endLocDic[@"latitude"] floatValue], [endLocDic[@"longitude"] floatValue])];
+}
+
 #pragma mark - 我已送达
 /** 我已送达 */
 - (void)commenOrder {
@@ -245,6 +266,10 @@
 /** 立即确认 */
 - (void)confirmOrder {
     __weak typeof(self) weakSelf = self;
+    if ([self.model.feeType integerValue]==2) {
+        [Utils showToast:@"价格不可为电议 ，请联系货主修改！"];
+        return;
+    }
     NSDictionary *dic = [NSDictionary dictionary];
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_ConfirmOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {

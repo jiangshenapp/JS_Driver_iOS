@@ -188,8 +188,9 @@
     NSString *infoStr = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",model.carModelName,model.carLengthName,model.goodsVolume,model.goodsWeight];
     cell.orderCarInfoLab.text = infoStr;
     
+    NSDictionary *currentDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
     NSDictionary *locDic = [Utils dictionaryWithJsonString:model.sendPosition];
-    NSString *distanceStr = [NSString stringWithFormat:@"距离您：%@",[Utils distanceBetweenOrderBy:_currentLoc.latitude :[locDic[@"latitude"] floatValue] :_currentLoc.longitude :[locDic[@"longitude"] floatValue]]];
+    NSString *distanceStr = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[locDic[@"latitude"] floatValue] :[locDic[@"longitude"] floatValue]]];
     cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间：%@ %@",model.loadingTime,distanceStr];
     
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.getGoodsTimeLab.text];
@@ -252,7 +253,7 @@
     _currentLoc = currLocation.coordinate;
     NSDictionary *locDic = @{@"lat":@(_currentLoc.latitude),@"lng":@(_currentLoc.longitude)};
     [[NSUserDefaults standardUserDefaults]setObject:locDic forKey:@"loc"];;
-    NSLog(@"经度=%f 纬度=%f 高度=%f", currLocation.coordinate.latitude, currLocation.coordinate.longitude, currLocation.altitude);
+    [self.baseTabView reloadData];
 }
 
 /*

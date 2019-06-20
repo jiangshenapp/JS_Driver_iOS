@@ -166,8 +166,7 @@
     
     NSDictionary *sendlocDic = [Utils dictionaryWithJsonString:model.sendPosition];
     NSDictionary *locDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
-    NSString *distanceStr = [NSString stringWithFormat:@"距离您%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[sendlocDic[@"latitude"] floatValue] :[locDic[@"lng"] floatValue] :[sendlocDic[@"longitude"] floatValue]]];
-    _distanceLab.text = distanceStr;
+    _distanceLab.text = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[sendlocDic[@"latitude"] floatValue] :[sendlocDic[@"longitude"] floatValue]]];;
 
     self.goodsDetaileLab.text = [NSString stringWithFormat:@"%@/%@米/%@方/%@吨",model.goodsType,model.carLength,model.goodsVolume,model.goodsWeight];
     if ([Utils isBlankString:model.fee]) {
