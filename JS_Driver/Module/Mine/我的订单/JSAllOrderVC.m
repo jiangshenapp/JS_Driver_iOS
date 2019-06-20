@@ -97,7 +97,7 @@
         else {
             [weakSelf addTabMJ_FootView];
         }
-        weakSelf.noDataView.height = weakSelf.listData.count==0?weakSelf.baseTabView.height:0;
+        [weakSelf hiddenNoDataView:weakSelf.listData.count];
         [weakSelf.baseTabView reloadData];
     }];
 }

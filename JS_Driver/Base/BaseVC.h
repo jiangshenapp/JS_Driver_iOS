@@ -27,7 +27,11 @@
 
 @property (nonatomic,retain) UITableView *tableView;
 @property (nonatomic,assign) CGRect tableFrame;
+
+/** 添加上拉加载 */
 -(void)addTabMJ_FootView ;
+/** 是否隐藏无数据 */
+-(void)hiddenNoDataView:(BOOL)hidden;
 /*!
  *  @brief 无网络
  */

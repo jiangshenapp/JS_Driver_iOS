@@ -91,6 +91,7 @@
     }
     _noDataView = [[[NSBundle mainBundle]loadNibNamed:@"noDataView" owner:self options:nil]firstObject];
     _noDataView.height = 0;
+    _noDataView.hidden = YES;
     if (!self.baseTabView.tableHeaderView) {
         self.baseTabView.tableHeaderView = _noDataView;
     }
@@ -111,6 +112,11 @@
     self.baseTabView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakSelf getData];
     }];
+}
+
+-(void)hiddenNoDataView:(BOOL)hidden {
+    self.noDataView.hidden = hidden;
+    self.noDataView.height = hidden?0:self.baseTabView.height;
 }
 
 //没有网络了

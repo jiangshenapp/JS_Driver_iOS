@@ -149,7 +149,7 @@
         else {
             [weakSelf addTabMJ_FootView];
         }
-        weakSelf.noDataView.height = weakSelf.dataSource.count==0?weakSelf.baseTabView.height:0;
+        [weakSelf hiddenNoDataView:weakSelf.dataSource.count];
         [weakSelf.baseTabView reloadData];
     }];
 }
@@ -191,7 +191,7 @@
     NSDictionary *currentDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
     NSDictionary *locDic = [Utils dictionaryWithJsonString:model.sendPosition];
     NSString *distanceStr = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[locDic[@"latitude"] floatValue] :[locDic[@"longitude"] floatValue]]];
-    cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间：%@ %@",model.loadingTime,distanceStr];
+    cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间:%@ %@",model.loadingTime,distanceStr];
     
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.getGoodsTimeLab.text];
     [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x4A90E2) range:NSMakeRange(cell.getGoodsTimeLab.text.length-distanceStr.length, distanceStr.length)];
