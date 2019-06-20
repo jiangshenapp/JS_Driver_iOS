@@ -89,6 +89,11 @@
     if (self.baseTabView.tableFooterView==nil) {
         self.baseTabView.tableFooterView = [[UIView alloc]init];
     }
+    _noDataView = [[[NSBundle mainBundle]loadNibNamed:@"noDataView" owner:self options:nil]firstObject];
+    _noDataView.height = 0;
+    if (!self.baseTabView.tableHeaderView) {
+        self.baseTabView.tableHeaderView = _noDataView;
+    }
     [self setNavBar];
     
     __weak id weakSelf = self;

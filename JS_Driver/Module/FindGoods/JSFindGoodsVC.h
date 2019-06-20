@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSFindGoodsVC : BaseVC<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *filterView;
-@property (weak, nonatomic) IBOutlet UIView *noDataView;
 
 @end
 
