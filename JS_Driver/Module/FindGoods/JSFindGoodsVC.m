@@ -137,7 +137,6 @@
             [weakSelf.dataSource addObjectsFromArray:arr];
             weakSelf.page++;
         }
-        [weakSelf.baseTabView reloadData];
         if ([weakSelf.baseTabView.mj_footer isRefreshing]) {
             [weakSelf.baseTabView.mj_footer endRefreshing];
         }
@@ -150,6 +149,9 @@
         else {
             [weakSelf addTabMJ_FootView];
         }
+        
+        weakSelf.noDataView.height = weakSelf.dataSource.count==0?weakSelf.baseTabView.height:0;
+        [weakSelf.baseTabView reloadData];
     }];
 }
 

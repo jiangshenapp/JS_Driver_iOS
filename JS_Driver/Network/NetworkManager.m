@@ -30,10 +30,10 @@ static NetworkManager *_manager = nil;
       parameters:(NSDictionary *)parameters
       completion:(RequestCompletion)completion {
     
-    if (![Utils getNetStatus]) {
-        [Utils showToast:@"检测到您的网络异常，请检查网络"];
-        return;
-    }
+//    if (![Utils getNetStatus]) {
+//        [Utils showToast:@"检测到您的网络异常，请检查网络"];
+//        return;
+//    }
     
     [self configNetManager];
     
