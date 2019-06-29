@@ -100,13 +100,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_abutus_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Jm7-5y-NXj">
-                                <rect key="frame" x="179" y="98" width="17" height="16"/>
+                                <rect key="frame" x="119" y="98" width="137" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Jm7-5y-NXj" secondAttribute="height" multiplier="137:128" id="GXF-Gl-inN"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOg-kI-Stb">
-                                <rect key="frame" x="28" y="148" width="319" height="58"/>
+                                <rect key="frame" x="28" y="260" width="319" height="58"/>
                                 <attributedString key="attributedText">
                                     <fragment content="AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、无限可能的数据可视化最佳实践。">
                                         <attributes>
@@ -2045,7 +2045,7 @@
                                                     <rect key="frame" x="12" y="36" width="186" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="Authentication_img_idpositive"/>
+                                                    <state key="normal" image="Authentication_img_id"/>
                                                     <connections>
                                                         <action selector="uploadIdCardFrontAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="gcN-AF-qkc"/>
                                                     </connections>
@@ -2073,7 +2073,7 @@
                                                     <rect key="frame" x="12" y="39" width="186" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="Authentication_img_id"/>
+                                                    <state key="normal" image="authentication_img_body"/>
                                                     <connections>
                                                         <action selector="uploadIdCardHandAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="zJR-Nx-mJ8"/>
                                                     </connections>
@@ -2101,7 +2101,7 @@
                                                     <rect key="frame" x="12" y="39" width="186" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="authentication_img_body"/>
+                                                    <state key="normal" image="authentication_img_driver"/>
                                                     <connections>
                                                         <action selector="uploadDriveLincenceAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="0de-tV-EAZ"/>
                                                     </connections>
@@ -2129,9 +2129,9 @@
                                                     <rect key="frame" x="12" y="36" width="186" height="112"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="Authentication_img_idpositive"/>
+                                                    <state key="normal" image="Authentication_img_id"/>
                                                     <connections>
-                                                        <action selector="uploadIdCardFrontAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="uti-5V-RGS"/>
+                                                        <action selector="uploadDriverWorkAction:" destination="qan-oY-Ki6" eventType="touchUpInside" id="WD4-y6-9wp"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h9-m3-LYb">
@@ -2344,6 +2344,7 @@
                         <outlet property="driverLicenceTypeTF" destination="GJE-Rg-CQG" id="myh-om-Le1"/>
                         <outlet property="driverTabHeadView" destination="rjG-EL-uUc" id="m5E-fD-lp3"/>
                         <outlet property="driverTabView" destination="y7c-b2-SdQ" id="pXs-xY-ccb"/>
+                        <outlet property="driverWorkBtn" destination="Qa6-mg-ek9" id="Pp4-9d-rKE"/>
                         <outlet property="idCardFrontBtn" destination="EYe-n4-rBE" id="Ttf-yV-bOv"/>
                         <outlet property="idCardHandBtn" destination="oUh-Db-FX2" id="wtJ-Tf-8K1"/>
                         <outlet property="idCardTF" destination="xTt-sL-m5Z" id="2jZ-Fk-q4f"/>
@@ -5164,7 +5165,6 @@ Cg
     <resources>
         <image name="Authentication_icon_idpositive" width="80" height="98"/>
         <image name="Authentication_img_id" width="186" height="112"/>
-        <image name="Authentication_img_idpositive" width="186" height="112"/>
         <image name="app_abutus_logo" width="137" height="128"/>
         <image name="app_agreement_icon_default" width="16" height="16"/>
         <image name="app_agreement_icon_selected" width="16" height="16"/>
@@ -5185,6 +5185,7 @@ Cg
         <image name="authentication_icon_license" width="80" height="98"/>
         <image name="authentication_img_body" width="186" height="112"/>
         <image name="authentication_img_car" width="186" height="112"/>
+        <image name="authentication_img_driver" width="186" height="112"/>
         <image name="authentication_img_headcar" width="186" height="112"/>
         <image name="authentication_lite_icon_default" width="14" height="14"/>
         <image name="authentication_lite_icon_selected" width="14" height="14"/>

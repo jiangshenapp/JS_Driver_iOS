@@ -38,6 +38,13 @@
     return _driverImage;
 }
 
+- (NSString *)cyzgzImage {
+    if (![_cyzgzImage containsString:@"http"]) {
+        _cyzgzImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_cyzgzImage];
+    }
+    return _cyzgzImage;
+}
+
 - (NSString *)businessLicenceImage {
     if (![_businessLicenceImage containsString:@"http"]) {
         _businessLicenceImage = [NSString stringWithFormat:@"%@%@",PIC_URL(),_businessLicenceImage];

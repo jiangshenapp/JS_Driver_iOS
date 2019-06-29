@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *idCardFrontBtn;
 @property (weak, nonatomic) IBOutlet UIButton *idCardHandBtn;
 @property (weak, nonatomic) IBOutlet UIButton *driverLicenceBtn;
+@property (weak, nonatomic) IBOutlet UIButton *driverWorkBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *idCardTF;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;

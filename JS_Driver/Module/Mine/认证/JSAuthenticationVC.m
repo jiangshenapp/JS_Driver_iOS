@@ -13,11 +13,12 @@
 @interface JSAuthenticationVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, assign) NSInteger authState; //0未认证，1审核中，2已认证，3认证失败
-@property (nonatomic, assign) NSInteger photoType; //1、身份证正面 2、手持身份证 3、驾驶证 4、公司营业执照
+@property (nonatomic, assign) NSInteger photoType; //1、身份证正面 2、手持身份证 3、驾驶证 4、公司营业执照 5、司机从业资格证
 @property (nonatomic, copy) NSString *idCardFrontPhoto;
 @property (nonatomic, copy) NSString *idCardHandPhoto;
 @property (nonatomic, copy) NSString *driverLincencePhoto;
 @property (nonatomic, copy) NSString *businessLicensePhoto;
+@property (nonatomic, copy) NSString *driverWorkPhoto;
 
 @property (nonatomic, copy) NSString *currentProvince;
 @property (nonatomic, copy) NSString *currentCity;
@@ -32,12 +33,14 @@
 
     if (self.type == 0) {
         self.title = @"司机身份认证";
+        self.driverTabView.hidden = NO;
         self.parkTabView.hidden = YES;
         _authState = [[UserInfo share].driverVerified integerValue];
     }
     else {
         self.title = @"园区成员认证";
         self.driverTabView.hidden = YES;
+        self.parkTabView.hidden = NO;
         _authState = [[UserInfo share].parkVerified integerValue];
     }
     if (_authState == 0) { //未认证
@@ -62,9 +65,10 @@
         [[NetworkManager sharedManager] postJSON:URL_GetDriverVerifiedInfo parameters:paramDic completion:^(id responseData, RequestState status, NSError *error) {
             if (status == Request_Success) {
                 AuthInfo *authInfo = [AuthInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
-                [self.idCardFrontBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.idImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_idpositive"]];
-                [self.idCardHandBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.idHandImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_id"]];
-                [self.driverLicenceBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.driverImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"authentication_img_body"]];
+                [self.idCardFrontBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.idImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_id"]];
+                [self.idCardHandBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.idHandImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"authentication_img_body"]];
+                [self.driverLicenceBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.driverImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"authentication_img_driver"]];
+                [self.driverWorkBtn sd_setImageWithURL:[NSURL URLWithString:authInfo.cyzgzImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Authentication_img_id"]];
                 self.nameTF.text = authInfo.personName;
                 self.idCardTF.text = authInfo.idCode;
                 self.addressTF.text = authInfo.address;
@@ -122,6 +126,12 @@
 /* 上传驾驶证 */
 - (IBAction)uploadDriveLincenceAction:(id)sender {
     self.photoType = 3;
+    [self selectPhoto];
+}
+
+/* 上传司机从业资格证 */
+- (IBAction)uploadDriverWorkAction:(id)sender {
+    self.photoType = 5;
     [self selectPhoto];
 }
 
@@ -197,6 +207,9 @@
     if (self.photoType == 4) {
         [self.businessLicenseBtn setImage:iconImage forState:UIControlStateNormal];
     }
+    if (self.photoType == 5) {
+        [self.driverWorkBtn setImage:iconImage forState:UIControlStateNormal];
+    }
     
     [picker dismissViewControllerAnimated:NO completion:^{
         NSData *imageData = UIImageJPEGRepresentation(iconImage, 0.01);
@@ -218,6 +231,9 @@
                 }
                 if (self.photoType == 4) {
                     self.businessLicensePhoto = photo;
+                }
+                if (self.photoType == 5) {
+                    self.driverWorkPhoto = photo;
                 }
             }
         }];
@@ -343,6 +359,7 @@
                          _idCardFrontPhoto, @"idImage",
                          _idCardHandPhoto, @"idHandImage",
                          _driverLincencePhoto, @"driverImage",
+                         _driverWorkPhoto, @"cyzgzImage",
                          self.nameTF.text, @"personName",
                          self.idCardTF.text, @"idCode",
                          self.addressTF.text, @"address",

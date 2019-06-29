@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *idImage; //身份证正面
 @property (nonatomic,copy) NSString *idBackImage; //身份证反面
 @property (nonatomic,copy) NSString *idHandImage; //手持身份证
-@property (nonatomic,copy) NSString *driverImage; //驾驶证
+@property (nonatomic,copy) NSString *driverImage;
+    //驾驶证
+@property (nonatomic,copy) NSString *cyzgzImage;
+    //司机从业资格证
 @property (nonatomic,copy) NSString *driverLevel; //驾驶证类别
 @property (nonatomic,copy) NSString *personName; //名字
 @property (nonatomic,copy) NSString *address; //地址
