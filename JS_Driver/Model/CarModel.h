@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *carModelName;
 /** 车长中文 */
 @property (nonatomic,copy) NSString *carLengthName;
+/** 营运许可 */
+@property (nonatomic,copy) NSString *tradingNo;
+/** 运输许可 */
+@property (nonatomic,copy) NSString *transportNo;
 
 @end
 

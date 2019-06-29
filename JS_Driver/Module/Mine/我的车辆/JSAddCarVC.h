@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *carLengthLab;
 @property (weak, nonatomic) IBOutlet UIButton *carModelBtn;
 @property (weak, nonatomic) IBOutlet UIButton *carLengthModelBtn;
+@property (weak, nonatomic) IBOutlet UITextField *tradingNoTF;
+@property (weak, nonatomic) IBOutlet UITextField *transportNoTF;
+
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn1;
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn2;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;

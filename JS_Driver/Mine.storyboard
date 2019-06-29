@@ -4516,6 +4516,8 @@ Cg
                         <outlet property="rightBtn2" destination="nY1-pC-fLg" id="j7D-4t-cIO"/>
                         <outlet property="submitBtn" destination="mSI-Na-aok" id="MNv-YM-81t"/>
                         <outlet property="submitH" destination="U6f-UJ-lcZ" id="CaL-nF-97o"/>
+                        <outlet property="tradingNoTF" destination="9jN-4E-lc0" id="bIB-mP-LQN"/>
+                        <outlet property="transportNoTF" destination="m6R-rJ-3Gy" id="fMX-d6-aSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3FD-fN-c0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>

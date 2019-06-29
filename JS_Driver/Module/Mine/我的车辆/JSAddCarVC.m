@@ -80,9 +80,7 @@
             [_submitBtn setTitle:@"解绑" forState:UIControlStateNormal];
             _submitBtn.backgroundColor = RGBValue(0xD0021B);
         } else {
-//            _submitBtn.hidden = YES;
             _submitH.constant = 0;
-
         }
     }
     _carDriverLab.text = @"车辆行驶证";
@@ -93,6 +91,8 @@
     self.authStateLab.text = _carModel.stateName;
     self.authStateLab.textColor = kCarStateColorDic[@(_authState)];
     _carNumLab.text = _carModel.cphm;
+    _tradingNoTF.text = _carModel.tradingNo;
+    _transportNoTF.text = _carModel.transportNo;
     _carTypeLab.text = _carModel.carModelName;
     _carLengthLab.text = _carModel.carLengthName;
     _carSpaceTF.text = [NSString stringWithFormat:@"%@方",_carModel.capacityVolume];
@@ -106,6 +106,8 @@
     _carLengthModelBtn.hidden = YES;
     _carNumLab.userInteractionEnabled = NO;
     _carWeightTF.userInteractionEnabled = NO;
+    _tradingNoTF.userInteractionEnabled = NO;
+    _transportNoTF.userInteractionEnabled = NO;
     _carSpaceTF.userInteractionEnabled = NO;
     _carDriverBtn.userInteractionEnabled = NO;
     _carHeadIMgBtn.userInteractionEnabled = NO;
@@ -284,6 +286,8 @@
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:_carWeightTF.text forKey:@"capacityTonnage"];
+    [dic setObject:_tradingNoTF.text forKey:@"tradingNo"];
+    [dic setObject:_transportNoTF.text forKey:@"transportNo"];
     [dic setObject:_carSpaceTF.text forKey:@"capacityVolume"];
     [dic setObject:_useCarLengthStr forKey:@"carLengthId"];
     [dic setObject:_useCarTypeStr forKey:@"carModelId"];
