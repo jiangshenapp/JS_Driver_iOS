@@ -96,7 +96,7 @@
 #pragma mark - init view
 - (void)initView {
     
-    //2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待货主评价，8已完成，9已取消，10已关闭
+    //2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待确认收货，8待回单收到确认，9待货主评价，10已完成，11取消，12已关闭
     NSInteger state = [self.model.state integerValue];
     switch (state) {
         case 1:
@@ -123,25 +123,31 @@
             self.bottomRightBtn.hidden = YES;
             [self.bottomBtn setTitle:@"我已送达" forState:UIControlStateNormal];
             break;
-        case 7: //待评价
+        case 7: //待货主确认收货
+            
+            break;
+        case 8: //待回单收到确认
             self.bottomBtn.hidden = NO;
             self.bottomLeftBtn.hidden = YES;
             self.bottomRightBtn.hidden = YES;
-            [self.bottomBtn setTitle:@"上传回单" forState:UIControlStateNormal];
+            [self.bottomBtn setTitle:@"上传回执" forState:UIControlStateNormal];
             break;
-        case 8: //已完成
+        case 9: //待货主评价
+            
+            break;
+        case 10: //已完成
             self.orderStatusLab.hidden = YES;
             self.bottomLeftBtn.hidden = YES;
             self.bottomRightBtn.hidden = YES;
             self.bottomBtn.hidden = YES;
             break;
-        case 9: //已取消
+        case 11: //已取消
             self.bottomBtn.hidden = NO;
             self.bottomLeftBtn.hidden = YES;
             self.bottomRightBtn.hidden = YES;
             [self.bottomBtn setTitle:@"已取消" forState:UIControlStateNormal];
             break;
-        case 10://已关闭
+        case 12://已关闭
             
             break;
         default:
@@ -197,7 +203,7 @@
         [self completeDistributionOrder];
     }
     else if ([title isEqualToString:@"上传回执"]) {
-        [self commenOrder];
+        [self commentOrder];
     }
 }
 
@@ -211,9 +217,9 @@
     [XLGMapNavVC startNavWithEndPt:CLLocationCoordinate2DMake([endLocDic[@"latitude"] floatValue], [endLocDic[@"longitude"] floatValue])];
 }
 
-#pragma mark - 我已送达
-/** 我已送达 */
-- (void)commenOrder {
+#pragma mark - 回执评价
+/** 回执评价 */
+- (void)commentOrder {
     __weak typeof(self) weakSelf = self;
     NSDictionary *dic = [NSDictionary dictionary];
     [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_CommentOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
@@ -223,7 +229,6 @@
         }
     }];
 }
-
 
 #pragma mark - 我已送达
 /** 我已送达 */

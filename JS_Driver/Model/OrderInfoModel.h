@@ -29,9 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property  (nonatomic , copy) NSString *commentImage3;
 /**  */
 @property  (nonatomic , copy) NSString *payTime;
-/** 状态 0全部 货主端：（ 1发布中，2待司机接单，3待司机确认，4待支付，5待司机接货, 6待收货，7待评价，8已完成，9已取消，10已关闭） 司机端：（2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待货主评价，8已完成，9已取消，10已关闭）
- 
- */
+/** 状态 0全部 货主端： (1发布中，2待司机接单，3待司机确认，4待支付，5待司机接货, 6待收货，7待确认收货，8待回单收到确认，9待评价，10已完成，11已取消，12已关闭） 司机端：（2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待确认收货，8待回单收到确认，9待货主评价，10已完成，11取消，12已关闭）*/
 @property  (nonatomic , copy) NSString *state;
 /** 72 */
 @property  (nonatomic , copy) NSString *ID;
