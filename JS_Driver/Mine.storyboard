@@ -4744,7 +4744,7 @@ Cg
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="货物名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezt-5z-wFH">
-                                                        <rect key="frame" x="14" y="0.0" width="58" height="17"/>
+                                                        <rect key="frame" x="14" y="0.0" width="66" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -5035,14 +5035,16 @@ Cg
                         <outlet property="bottomRightBtn" destination="Hom-q4-rHL" id="yyz-Wt-MqX"/>
                         <outlet property="carInfoLab" destination="xLv-a1-sav" id="IBm-p3-yHR"/>
                         <outlet property="carTypeLab" destination="Iwc-Xk-9sd" id="7IL-LA-sCP"/>
+                        <outlet property="depositLab" destination="c7N-G1-2s8" id="HcO-i6-emq"/>
                         <outlet property="distance1Lab" destination="sAn-iw-V47" id="Pbg-tG-MDf"/>
                         <outlet property="distance2Lab" destination="Y05-W0-tU1" id="fQj-gX-j3S"/>
                         <outlet property="endAddressAreaLab" destination="nLr-x2-S7U" id="ASg-g7-DUl"/>
                         <outlet property="endAddressLab" destination="8qf-zn-3VY" id="IgY-Yl-2O8"/>
                         <outlet property="explainLab" destination="8AT-nO-vhW" id="sSq-wx-9Sg"/>
+                        <outlet property="goodsNameLab" destination="uga-yO-WOv" id="qer-b6-Yzq"/>
+                        <outlet property="goodsPackTypeLab" destination="ROi-Ou-j0M" id="4DL-7l-tPE"/>
                         <outlet property="goodsPayTypeLab" destination="xpH-4A-dEW" id="ZR2-aV-2MQ"/>
                         <outlet property="goodsTomeLab" destination="BD4-MF-gPs" id="DLe-MS-WG9"/>
-                        <outlet property="goodsTypeLab" destination="uga-yO-WOv" id="VBs-Ii-hvC"/>
                         <outlet property="headImgView" destination="zax-V7-b4g" id="IWQ-kY-zRX"/>
                         <outlet property="introduceLab" destination="HTC-I5-eaB" id="vim-2I-xZ7"/>
                         <outlet property="iphoneBtn" destination="ThU-co-pLW" id="kkJ-kO-6hu"/>

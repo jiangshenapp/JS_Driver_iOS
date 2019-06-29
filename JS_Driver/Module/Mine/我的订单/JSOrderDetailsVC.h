@@ -45,8 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *goodsTomeLab;
 /** 车辆信息 */
 @property (weak, nonatomic) IBOutlet UILabel *carInfoLab;
-/** 获物类型 */
-@property (weak, nonatomic) IBOutlet UILabel *goodsTypeLab;
+/** 获物名称 */
+@property (weak, nonatomic) IBOutlet UILabel *goodsNameLab;
+/** 包装类型 */
+@property (weak, nonatomic) IBOutlet UILabel *goodsPackTypeLab;
+/** 保证金 */
+@property (weak, nonatomic) IBOutlet UILabel *depositLab;
 /** 用车类型 */
 @property (weak, nonatomic) IBOutlet UILabel *carTypeLab;
 /** 支付方式 */
