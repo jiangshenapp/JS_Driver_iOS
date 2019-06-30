@@ -1428,7 +1428,7 @@
 			baseConfigurationReference = AE7315DD7F81A3DDD59C5C4C /* Pods-JS_Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K3A6XD8P7R;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = JS_Driver/JS.pch;
@@ -1440,6 +1440,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.js.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = JSCommon;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1449,7 +1450,7 @@
 			baseConfigurationReference = E578D31DC4BE0A8D8095EBC1 /* Pods-JS_Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K3A6XD8P7R;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = JS_Driver/JS.pch;
@@ -1461,6 +1462,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.js.driver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = JSCommon;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
