@@ -11,13 +11,17 @@
 #import "JSOrderDistributionVC.h"
 #import "XLGMapNavVC.h"
 
-@interface JSOrderDetailsVC ()
+@interface JSOrderDetailsVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSDictionary *startLocDic;
     NSDictionary *endLocDic;
 }
 /** 订单数据 */
 @property (nonatomic,retain) OrderInfoModel *model;
+@property (nonatomic, assign) NSInteger photoType; //1、回执图片1 2、回执图片2 3、回执图片3
+@property (nonatomic, copy) NSString *commentImage1Photo;
+@property (nonatomic, copy) NSString *commentImage2Photo;
+@property (nonatomic, copy) NSString *commentImage3Photo;
 @end
 
 @implementation JSOrderDetailsVC
@@ -28,7 +32,7 @@
     
     self.title = @"订单详情";
     
-    _bgScroView.contentSize = CGSizeMake(0, _receiptView.bottom+50);
+    _bgScroView.contentSize = CGSizeMake(0, _otherInfoView.bottom+50);
     
     self.tileView1.hidden = YES;
     self.titleView2.hidden = NO;
@@ -98,6 +102,19 @@
     
     //2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待确认收货，8待回单收到确认，9待货主评价，10已完成，11取消，12已关闭
     NSInteger state = [self.model.state integerValue];
+    if (state >= 7) {
+        _receiptView.height = 120;
+        _bgScroView.contentSize = CGSizeMake(0, _receiptView.bottom+10);
+        [_commentImage1Btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",PIC_URL(),self.model.commentImage1]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"order_upload_icon_photo"]];
+        [_commentImage2Btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",PIC_URL(),self.model.commentImage2]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"order_upload_icon_photo"]];
+        [_commentImage3Btn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",PIC_URL(),self.model.commentImage3]] forState:UIControlStateNormal
+            placeholderImage:[UIImage imageNamed:@"order_upload_icon_photo"]];
+        if (state == 7 || state == 8) {
+            _commentImage1Btn.enabled = YES;
+            _commentImage2Btn.enabled = YES;
+            _commentImage3Btn.enabled = YES;
+        }
+    }
     switch (state) {
         case 1:
         case 2://待接单
@@ -124,8 +141,6 @@
             [self.bottomBtn setTitle:@"我已送达" forState:UIControlStateNormal];
             break;
         case 7: //待货主确认收货
-            
-            break;
         case 8: //待回单收到确认
             self.bottomBtn.hidden = NO;
             self.bottomLeftBtn.hidden = YES;
@@ -133,13 +148,10 @@
             [self.bottomBtn setTitle:@"上传回执" forState:UIControlStateNormal];
             break;
         case 9: //待货主评价
-            
-            break;
         case 10: //已完成
             self.orderStatusLab.hidden = YES;
-            self.bottomLeftBtn.hidden = YES;
-            self.bottomRightBtn.hidden = YES;
-            self.bottomBtn.hidden = YES;
+            self.bottomView.hidden = YES;
+            _bgScroView.height += 50;
             break;
         case 11: //已取消
             self.bottomBtn.hidden = NO;
@@ -217,14 +229,122 @@
     [XLGMapNavVC startNavWithEndPt:CLLocationCoordinate2DMake([endLocDic[@"latitude"] floatValue], [endLocDic[@"longitude"] floatValue])];
 }
 
+/** 上传回执图片1 */
+- (IBAction)uploadCommentImage1Action:(id)sender {
+    self.photoType = 1;
+    [self selectPhoto];
+}
+
+/** 上传回执图片2 */
+- (IBAction)uploadCommentImage2Action:(id)sender {
+    self.photoType = 2;
+    [self selectPhoto];
+}
+
+/** 上传回执图片3 */
+- (IBAction)uploadCommentImage3Action:(id)sender {
+    self.photoType = 3;
+    [self selectPhoto];
+}
+
+/* 选择照片 */
+- (void)selectPhoto {
+    [self.view endEditing:YES]; //隐藏键盘
+    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"本地相册",@"拍照",  nil];
+    [sheet showInView:self.view];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.allowsEditing = YES;
+            picker.delegate = self;
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:NO completion:^{}];
+        }
+            break;
+        case 1:
+        {
+            if ([Utils isCameraPermissionOn]) {
+                UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                imagePickerController.allowsEditing = YES;
+                imagePickerController.delegate = self;
+                
+                if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
+                    self.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+                }
+                [self presentViewController:imagePickerController animated:NO completion:nil];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *iconImage = info[UIImagePickerControllerEditedImage];
+    if (self.photoType == 1) {
+        [self.commentImage1Btn setImage:iconImage forState:UIControlStateNormal];
+    }
+    if (self.photoType == 2) {
+        [self.commentImage2Btn setImage:iconImage forState:UIControlStateNormal];
+    }
+    if (self.photoType == 3) {
+        [self.commentImage3Btn setImage:iconImage forState:UIControlStateNormal];
+    }
+    
+    [picker dismissViewControllerAnimated:NO completion:^{
+        NSData *imageData = UIImageJPEGRepresentation(iconImage, 0.01);
+        NSMutableArray *imageDataArr = [NSMutableArray arrayWithObjects:imageData, nil];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"pigx",@"resourceId", nil];
+        [[NetworkManager sharedManager] postJSON:URL_FileUpload parameters:dic imageDataArr:imageDataArr imageName:@"file" completion:^(id responseData, RequestState status, NSError *error) {
+            
+            if (status == Request_Success) {
+                
+                NSString *photo = responseData;
+                if (self.photoType == 1) {
+                    self.commentImage1Photo = photo;
+                }
+                if (self.photoType == 2) {
+                    self.commentImage2Photo = photo;
+                }
+                if (self.photoType == 3) {
+                    self.commentImage3Photo = photo;
+                }
+            }
+        }];
+    }];
+}
+
 #pragma mark - 回执评价
 /** 回执评价 */
 - (void)commentOrder {
+    if ([NSString isEmpty:_commentImage1Photo]
+        && [NSString isEmpty:_commentImage2Photo]
+        && [NSString isEmpty:_commentImage3Photo]) {
+        [Utils showToast:@"请上传回执图片"];
+        return;
+    }
     __weak typeof(self) weakSelf = self;
-    NSDictionary *dic = [NSDictionary dictionary];
-    [[NetworkManager sharedManager] postJSON:[NSString stringWithFormat:@"%@/%@",URL_CommentOrder,self.model.ID] parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_commentImage1Photo,@"commentImage1",
+                         _commentImage2Photo,@"commentImage2",
+                         _commentImage3Photo,@"commentImage3",
+                         self.model.ID,@"id",nil];
+    [[NetworkManager sharedManager] postJSON:URL_CommentOrder parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status == Request_Success) {
-            [Utils showToast:@"评价成功"];
+            [Utils showToast:@"上传回执成功"];
             [weakSelf pushOrderList];
         }
     }];

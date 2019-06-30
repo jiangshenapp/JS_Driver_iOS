@@ -100,7 +100,7 @@ NSString *PIC_URL(void);
 #define URL_CancelDistributionOrder @"/app/driver/order/cancelDistribution"//拒绝配送"
 #define URL_DistributionOrder @"/app/driver/order/distribution"//开始配送"
 #define URL_CompleteDistributionOrder  @"/app/driver/order/completeDistribution"//完成配送"
-#define URL_CommentOrder @"app/driver/order/comment"//回执评价"
+#define URL_CommentOrder @"/app/driver/order/comment"//回执评价"
 
 #pragma mark - ---------------H5地址---------------
 

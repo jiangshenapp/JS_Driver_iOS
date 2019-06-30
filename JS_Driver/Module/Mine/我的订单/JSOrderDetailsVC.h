@@ -65,8 +65,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *receiptNameLab;
 /** 收件人电话 */
 @property (weak, nonatomic) IBOutlet UILabel *receiptNumerLab;
+@property (weak, nonatomic) IBOutlet UIView *otherInfoView;
 @property (weak, nonatomic) IBOutlet UIView *receiptView;
+@property (weak, nonatomic) IBOutlet UIButton *commentImage1Btn;
+@property (weak, nonatomic) IBOutlet UIButton *commentImage2Btn;
+@property (weak, nonatomic) IBOutlet UIButton *commentImage3Btn;
 
+/** 底部视图 */
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 /** 底部左按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *bottomLeftBtn;
 /** 底部右按钮 */

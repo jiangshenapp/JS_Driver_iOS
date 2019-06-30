@@ -1051,7 +1051,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="non-R6-URT">
-                                                    <rect key="frame" x="12" y="37" width="100" height="36"/>
+                                                    <rect key="frame" x="12" y="37" width="99" height="36"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.92549019610000005" green="0.65490196079999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1462,7 +1462,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFx-Kf-wZY">
-                                                <rect key="frame" x="186" y="0.0" width="189" height="70"/>
+                                                <rect key="frame" x="185" y="0.0" width="190" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="personalcenter_icon_wallet" translatesAutoresizingMaskIntoConstraints="NO" id="j6I-9U-t0p">
@@ -1470,14 +1470,14 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdw-sP-9hv">
-                                                        <rect key="frame" x="47" y="13" width="137" height="20"/>
+                                                        <rect key="frame" x="47" y="13" width="138" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mx-Xa-IKZ">
-                                                        <rect key="frame" x="47" y="33" width="137" height="20"/>
+                                                        <rect key="frame" x="47" y="33" width="138" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -3689,7 +3689,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyV-Rc-dEf">
-                                        <rect key="frame" x="297" y="0.0" width="78" height="44"/>
+                                        <rect key="frame" x="296" y="0.0" width="79" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="待送达">
@@ -4080,7 +4080,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITy-ps-l8v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="1555"/>
+            <point key="canvasLocation" x="-92" y="1696"/>
         </scene>
         <!--我的车辆-->
         <scene sceneID="rmu-IZ-cP7">
@@ -4533,7 +4533,7 @@ Cg
                         <viewControllerLayoutGuide type="bottom" id="z3h-LF-hFE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OmC-xA-K4h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNZ-fX-SAj">
@@ -4751,7 +4751,7 @@ Cg
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用车类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ma-7o-pr4">
-                                                        <rect key="frame" x="200" y="0.0" width="66" height="44"/>
+                                                        <rect key="frame" x="199" y="0.0" width="66" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -4817,7 +4817,7 @@ Cg
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="运费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwt-I2-Cpk">
-                                                        <rect key="frame" x="200" y="0.0" width="66" height="44"/>
+                                                        <rect key="frame" x="199" y="0.0" width="66" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -4869,7 +4869,7 @@ Cg
                                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 保证金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjJ-YL-aGM">
-                                                        <rect key="frame" x="200" y="0.0" width="66" height="44"/>
+                                                        <rect key="frame" x="199" y="0.0" width="66" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -4958,11 +4958,52 @@ Cg
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ped-qc-PJB">
+                                        <rect key="frame" x="0.0" y="670" width="375" height="0.0"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="回执" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzW-nB-lpR">
+                                                <rect key="frame" x="8" y="8" width="350" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLe-QX-N6U">
+                                                <rect key="frame" x="10" y="36" width="100" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="order_upload_icon_photo"/>
+                                                <connections>
+                                                    <action selector="uploadCommentImage1Action:" destination="ULz-j3-HQB" eventType="touchUpInside" id="mPP-8S-VXt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dY-Fi-14c">
+                                                <rect key="frame" x="135" y="36" width="100" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="order_upload_icon_photo"/>
+                                                <connections>
+                                                    <action selector="uploadCommentImage2Action:" destination="ULz-j3-HQB" eventType="touchUpInside" id="9L3-pN-QzP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZc-RB-ldG">
+                                                <rect key="frame" x="260" y="36" width="100" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="order_upload_icon_photo"/>
+                                                <connections>
+                                                    <action selector="uploadCommentImage3Action:" destination="ULz-j3-HQB" eventType="touchUpInside" id="wuw-6V-WZ1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egx-rp-ExA">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="880" width="375" height="50"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fq-eN-dj5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -4977,7 +5018,7 @@ Cg
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K40-b7-SuA">
-                                        <rect key="frame" x="0.0" y="0.0" width="157" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="156" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="取消发布">
@@ -5027,14 +5068,19 @@ Cg
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hSo-1J-1wn"/>
+                    <size key="freeformSize" width="375" height="930"/>
                     <connections>
                         <outlet property="bgScroView" destination="gNZ-fX-SAj" id="auX-UX-Jve"/>
                         <outlet property="bookTimeLab" destination="pkY-Ji-0J3" id="e7S-uz-b72"/>
                         <outlet property="bottomBtn" destination="8fq-eN-dj5" id="PNA-Tk-vrQ"/>
                         <outlet property="bottomLeftBtn" destination="K40-b7-SuA" id="hdb-ox-wd4"/>
                         <outlet property="bottomRightBtn" destination="Hom-q4-rHL" id="yyz-Wt-MqX"/>
+                        <outlet property="bottomView" destination="egx-rp-ExA" id="S60-E8-UgQ"/>
                         <outlet property="carInfoLab" destination="xLv-a1-sav" id="IBm-p3-yHR"/>
                         <outlet property="carTypeLab" destination="Iwc-Xk-9sd" id="7IL-LA-sCP"/>
+                        <outlet property="commentImage1Btn" destination="BLe-QX-N6U" id="FQC-V7-QHE"/>
+                        <outlet property="commentImage2Btn" destination="7dY-Fi-14c" id="4Uj-P7-3e1"/>
+                        <outlet property="commentImage3Btn" destination="IZc-RB-ldG" id="E4q-YN-1iP"/>
                         <outlet property="depositLab" destination="c7N-G1-2s8" id="HcO-i6-emq"/>
                         <outlet property="distance1Lab" destination="sAn-iw-V47" id="Pbg-tG-MDf"/>
                         <outlet property="distance2Lab" destination="Y05-W0-tU1" id="fQj-gX-j3S"/>
@@ -5052,10 +5098,11 @@ Cg
                         <outlet property="orderFeeLab" destination="Ymw-8f-RC4" id="iIg-tI-RIb"/>
                         <outlet property="orderNoLab" destination="XCK-MN-4Fg" id="omg-fa-4dU"/>
                         <outlet property="orderStatusLab" destination="eXx-gk-dQS" id="Cyl-H1-hBQ"/>
+                        <outlet property="otherInfoView" destination="iIQ-R0-2qe" id="kTx-Yn-Gwa"/>
                         <outlet property="payTypeLab" destination="jnQ-Ni-bfu" id="Mi1-Qz-u7c"/>
                         <outlet property="receiptNameLab" destination="QQe-cd-S0M" id="18j-MU-Nxf"/>
                         <outlet property="receiptNumerLab" destination="Lrq-rH-qKS" id="OMY-EO-TVA"/>
-                        <outlet property="receiptView" destination="iIQ-R0-2qe" id="PyN-gn-En8"/>
+                        <outlet property="receiptView" destination="ped-qc-PJB" id="boI-0v-rZ3"/>
                         <outlet property="sendMSgBtn" destination="FZ2-td-3dR" id="gV0-Sa-Y0y"/>
                         <outlet property="startAddressAreaLab" destination="DdZ-YZ-KFe" id="Ozj-G5-ZZM"/>
                         <outlet property="startAddressLab" destination="ls5-Wy-NR8" id="1q6-uh-xhf"/>
@@ -5200,6 +5247,7 @@ Cg
         <image name="logistics_map_icon_starting" width="26" height="26"/>
         <image name="order_end_icon_navigation" width="22" height="22"/>
         <image name="order_rise_icon_navigation" width="22" height="22"/>
+        <image name="order_upload_icon_photo" width="40" height="40"/>
         <image name="personalcenter_driver_icon_head_land" width="60" height="60"/>
         <image name="personalcenter_icon_circle" width="36" height="36"/>
         <image name="personalcenter_icon_collect" width="28" height="28"/>
