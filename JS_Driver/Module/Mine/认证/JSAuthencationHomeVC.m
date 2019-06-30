@@ -17,8 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = kWhiteColor;
+
     NSInteger driverVerified = [[UserInfo share].driverVerified integerValue];
     NSInteger parkVerified = [[UserInfo share].parkVerified integerValue];
     self.driverVerifiedLab.text = kAuthStateStrDic[@(driverVerified)];

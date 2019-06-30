@@ -242,6 +242,7 @@
 
 /* 选择区域 */
 - (IBAction)selectAddressAction:(id)sender {
+    [self.view endEditing:YES]; //隐藏键盘
     // 这里传进去的self.currentProvince 等等的都是本页面的存储值
     HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
     selectV.confirmSelect = ^(NSArray *address) {
@@ -255,6 +256,7 @@
 
 /* 选择驾驶证类型 */
 - (IBAction)selectDriveLincenceTypeAction:(id)sender {
+    [self.view endEditing:YES]; //隐藏键盘
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"关闭" destructiveButtonTitle:nil otherButtonTitles:@"A1",@"A2",@"A3",@"B1",@"B2",@"C1",@"C2",@"C3",@"C4",@"D",@"E",@"F",@"M",@"N",@"P", nil];
     sheet.tag = 101;
     [sheet showInView:self.view];
@@ -262,6 +264,7 @@
 
 /* 选择机构类型 */
 - (IBAction)selectOrganizationTypeAction:(id)sender {
+    [self.view endEditing:YES]; //隐藏键盘
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"关闭" destructiveButtonTitle:nil otherButtonTitles:@"服务中心",@"车代点",@"网点", nil];
     sheet.tag = 102;
     [sheet showInView:self.view];
@@ -281,6 +284,7 @@
 
 /* 园区选择所在地 */
 - (IBAction)selectParkAddressAction:(id)sender {
+    [self.view endEditing:YES]; //隐藏键盘
     // 这里传进去的self.currentProvince 等等的都是本页面的存储值
     HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
     selectV.confirmSelect = ^(NSArray *address) {
@@ -311,7 +315,7 @@
 /* 提交审核 */
 - (IBAction)commitAction:(id)sender {
     
-    [self.view endEditing:YES];
+    [self.view endEditing:YES]; //隐藏键盘
     
     if (self.type == 0) { //司机认证
         [self driverCommitAction];

@@ -10,6 +10,7 @@
 #import "JSAllOrderVC.h"
 #import "JSOrderDistributionVC.h"
 #import "XLGMapNavVC.h"
+#import "JSAuthencationHomeVC.h"
 
 @interface JSOrderDetailsVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -199,6 +200,9 @@
 - (IBAction)bottomRightBtnAction:(UIButton *)sender {
     NSString *title = sender.titleLabel.text;
     if ([title isEqualToString:@"立即接单"]) {
+        if (![Utils isVerified]) {
+            return;
+        }
         [self receiveOrder];
     }
     else if ([title isEqualToString:@"立即确认"]) {

@@ -177,6 +177,23 @@ static Utils *_utils = nil;
 }
 
 /**
+ 判断用户是否认证
+ */
++ (BOOL)isVerified {
+    if ([[UserInfo share].driverVerified integerValue] != 2
+        && [[UserInfo share].parkVerified integerValue] != 2) {
+        XLGAlertView *alert = [[XLGAlertView alloc] initWithTitle:@"温馨提示" content:@"您尚未认证" leftButtonTitle:@"暂不认证" rightButtonTitle:@"前往认证"];
+        alert.doneBlock = ^{
+            UIViewController *vc = [Utils getViewController:@"Mine" WithVCName:@"JSAuthencationHomeVC"];
+            [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
+        };
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+/**
  判断字符串是否为空
  
  @param string 字符串

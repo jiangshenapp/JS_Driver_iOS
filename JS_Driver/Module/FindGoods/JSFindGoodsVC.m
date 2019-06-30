@@ -11,6 +11,7 @@
 #import "SortView.h"
 #import "FilterCustomView.h"
 #import "JSOrderDetailsVC.h"
+#import "JSAllOrderVC.h"
 
 @interface JSFindGoodsVC ()<CLLocationManagerDelegate>
 {
@@ -45,6 +46,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"找货";
+    UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+    [rightBtn setTitle:@"我的运单" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [rightBtn addTarget:self action:@selector(myOrderInfo) forControlEvents:UIControlEventTouchUpInside];
+    self.navItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     [self setupView];
     [self getDicList];
     [self getData];
@@ -164,6 +171,15 @@
         }
         
     }];
+}
+
+#pragma mark - 我的运单
+- (void)myOrderInfo {
+    
+    JSAllOrderVC *vc = (JSAllOrderVC *)[Utils getViewController:@"Mine" WithVCName:@"JSAllOrderVC"];
+    vc.typeFlage = 0;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

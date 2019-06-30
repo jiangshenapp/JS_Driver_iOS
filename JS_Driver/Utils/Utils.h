@@ -39,6 +39,9 @@
 #pragma mark - 1、退出登录，2、是否跳转到登录页面
 + (void)logout:(BOOL)isJumpLoginVC;
 
+#pragma mark - 判断用户是否认证
++ (BOOL)isVerified;
+
 #pragma mark - 判断字符串是否为空
 + (BOOL)isBlankString:(id)string;
 
