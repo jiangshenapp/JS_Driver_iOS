@@ -2054,7 +2054,7 @@
                                                     <rect key="frame" x="253" y="40" width="85" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="Authentication_icon_idpositive"/>
+                                                    <state key="normal" image="authentication_icon_id"/>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2082,7 +2082,7 @@
                                                     <rect key="frame" x="253" y="46" width="80" height="98"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="authentication_icon_id"/>
+                                                    <state key="normal" image="authentication_icon_body"/>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2110,7 +2110,7 @@
                                                     <rect key="frame" x="253" y="46" width="80" height="98"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="authentication_icon_body"/>
+                                                    <state key="normal" image="authentication_icon_driver"/>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2138,7 +2138,7 @@
                                                     <rect key="frame" x="253" y="40" width="85" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="Authentication_icon_idpositive"/>
+                                                    <state key="normal" image="authentication_icon_practitioners"/>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5214,7 +5214,6 @@ Cg
         </scene>
     </scenes>
     <resources>
-        <image name="Authentication_icon_idpositive" width="80" height="98"/>
         <image name="Authentication_img_id" width="186" height="112"/>
         <image name="app_abutus_logo" width="137" height="128"/>
         <image name="app_agreement_icon_default" width="16" height="16"/>
@@ -5231,9 +5230,11 @@ Cg
         <image name="app_payment_icon_weixin" width="30" height="30"/>
         <image name="authentication_icon_body" width="80" height="98"/>
         <image name="authentication_icon_car" width="80" height="98"/>
+        <image name="authentication_icon_driver" width="80" height="98"/>
         <image name="authentication_icon_headcar" width="80" height="98"/>
         <image name="authentication_icon_id" width="80" height="98"/>
         <image name="authentication_icon_license" width="80" height="98"/>
+        <image name="authentication_icon_practitioners" width="80" height="98"/>
         <image name="authentication_img_body" width="186" height="112"/>
         <image name="authentication_img_car" width="186" height="112"/>
         <image name="authentication_img_driver" width="186" height="112"/>
