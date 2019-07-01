@@ -35,7 +35,6 @@
     _payType = 0;
     
     self.currentMoneyLab.text = [NSString stringWithFormat:@"%@元",self.accountInfo.driverDeposit];
-    self.needMoneyLab.text = [NSString stringWithFormat:@"%@元",self.accountInfo.tradeDeposit];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payFail) name:kPayFailNotification object:nil];
@@ -84,16 +83,6 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)ExplainAction:(UIButton *)sender {
     [Utils showToast:@"违约说明"];
 }
@@ -116,12 +105,19 @@
 }
 
 - (IBAction)rechagreBtnAction:(UIButton *)sender {
+    
+    [self.view endEditing:YES];
+    
     if (self.selectBtn.selected == NO) {
         [Utils showToast:@"请勾选保证金协议"];
         return;
     }
-    if ([self.needMoneyLab.text floatValue]<=0) {
-        [Utils showToast:@"缴纳保证金不能低于0元"];
+    if ([NSString isEmpty:self.moneyTF.text]) {
+        [Utils showToast:@"请输入您要充值的保证金金额"];
+        return;
+    }
+    if ([self.moneyTF.text floatValue]<=0) {
+        [Utils showToast:@"缴纳保证金金额不能低于0元"];
         return;
     }
     if (self.payType == 0) { //支付宝
@@ -140,7 +136,7 @@
     
     //tradeType 交易类型, 1账户充值, 5运费支付，10运力端保证金，11货主端保证金
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    NSString *urlStr = [NSString stringWithFormat:@"%@?tradeType=%@&channelType=%@&money=%@&routeId=%@",URL_Recharge,@"10",_alipayRoute.channelType,self.needMoneyLab.text,_alipayRoute.routeId];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?tradeType=%@&channelType=%@&money=%@&routeId=%@",URL_Recharge,@"10",_alipayRoute.channelType,self.moneyTF.text,_alipayRoute.routeId];
     [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (status==Request_Success) {
             //应用注册scheme,在Info.plist定义URL types
@@ -189,7 +185,7 @@
     } else {
         //tradeType 交易类型, 1账户充值, 5运费支付，10运力端保证金，11货主端保证金
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        NSString *urlStr = [NSString stringWithFormat:@"%@?tradeType=%@&channelType=%@&money=%@&routeId=%@",URL_Recharge,@"10",_wechatRoute.channelType,self.needMoneyLab.text,_wechatRoute.routeId];
+        NSString *urlStr = [NSString stringWithFormat:@"%@?tradeType=%@&channelType=%@&money=%@&routeId=%@",URL_Recharge,@"10",_wechatRoute.channelType,self.moneyTF.text,_wechatRoute.routeId];
         [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
             if (status==Request_Success) {
                 
@@ -216,7 +212,24 @@
 
 #pragma mark - 余额支付
 - (void)balancePay {
-    [Utils showToast:@"余额支付"];
+
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?deposit=%@",URL_RechargeDriverDeposit,self.moneyTF.text];
+    [[NetworkManager sharedManager] postJSON:urlStr parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status==Request_Success) {
+            [self paySuccess];
+        }
+    }];
 }
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

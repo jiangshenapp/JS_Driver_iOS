@@ -21,8 +21,27 @@
     [super viewDidLoad];
     
     self.title = @"我的保证金";
+    
+    [self getData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kChangeMoneyNotification object:nil];
 
     self.depositLab.text = self.accountInfo.driverDeposit;
+}
+
+#pragma mark - get data
+
+- (void)getData {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [[NetworkManager sharedManager] getJSON:URL_GetBySubscriber parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status==Request_Success) {
+            self.accountInfo = [AccountInfo mj_objectWithKeyValues:(NSDictionary *)responseData];
+            if (self.accountInfo!=nil) {
+                self.depositLab.text = self.accountInfo.driverDeposit;
+            }
+        }
+    }];
 }
 
 - (IBAction)explainAction:(id)sender {
