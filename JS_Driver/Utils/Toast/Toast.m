@@ -160,6 +160,9 @@
 }
 
 + (void)showBottomWithText:(NSString *)text bottomOffset:(CGFloat)bottomOffset duration:(CGFloat)duration {
+    if ([NSString isEmpty:text]) {
+        return;
+    }
     Toast *toast = [[Toast alloc] initWithText:text];
     [toast setDuration:duration];
     [toast showFromBottomOffset:bottomOffset];
