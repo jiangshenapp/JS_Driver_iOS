@@ -26,9 +26,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([Utils isLoginWithJump:YES]) {
-        [self getAccountInfo]; //获取账户信息
-    }
+    [self getData];
 }
 
 - (void)viewDidLoad {
@@ -36,10 +34,10 @@
     
     self.navBar.hidden = YES;
     
-    [self getData];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kLoginSuccNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kUserInfoChangeNotification object:nil];
+//    [self getData];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kLoginSuccNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kUserInfoChangeNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kChangeMoneyNotification object:nil];
     
     iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_driver",@"personalcenter_icon_route",@"personalcenter_icon_service",@"personalcenter_icon_invoice",@"personalcenter_icon_collection"];
@@ -98,7 +96,7 @@
     
     if ([Utils isLoginWithJump:YES]) {
         [self getUserInfo]; //获取用户信息
-//        [self getAccountInfo]; //获取账户信息
+        [self getAccountInfo]; //获取账户信息
     }
 }
 

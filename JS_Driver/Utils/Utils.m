@@ -13,6 +13,7 @@
 #import "BaseNC.h"
 #import "TZImageManager.h"
 #import <AddressBook/AddressBook.h>
+#import "JSPaswdLoginVC.h"
 
 @interface Utils ()
 {
@@ -151,10 +152,13 @@ static Utils *_utils = nil;
         return YES;
     } else {
         if (isJump==YES) {
-            //跳转到登录页面
-            UIViewController *vc = [Utils getViewController:@"Login" WithVCName:@"JSPaswdLoginVC"];
-            vc.hidesBottomBarWhenPushed = YES;
-            [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
+            BaseNC *nc = JSAppDelegate.tabVC.selectedViewController;
+            if (![[nc topViewController] isKindOfClass:[JSPaswdLoginVC class]]) {
+                //跳转到登录页面
+                UIViewController *vc = [Utils getViewController:@"Login" WithVCName:@"JSPaswdLoginVC"];
+                vc.hidesBottomBarWhenPushed = YES;
+                [[self getCurrentVC].navigationController pushViewController:vc animated:YES];
+            }
         }
         return NO;
     }
