@@ -184,6 +184,9 @@ static Utils *_utils = nil;
  判断用户是否认证
  */
 + (BOOL)isVerified {
+    if (![self isLoginWithJump:YES]) { //先判断登录
+        return NO;
+    }
     if ([[UserInfo share].driverVerified integerValue] != 2
         && [[UserInfo share].parkVerified integerValue] != 2) {
         XLGAlertView *alert = [[XLGAlertView alloc] initWithTitle:@"温馨提示" content:@"您尚未认证通过" leftButtonTitle:@"取消" rightButtonTitle:@"前往认证"];
