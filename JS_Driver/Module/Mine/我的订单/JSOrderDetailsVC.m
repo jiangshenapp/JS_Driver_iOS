@@ -69,7 +69,7 @@
     self.goodsTomeLab.text = self.model.loadingTime;
     self.carInfoLab.text = [NSString stringWithFormat:@"%@%@米/%@方/%@吨",self.model.carModelName,self.model.carLength,self.model.goodsVolume,self.model.goodsWeight];;
     self.goodsNameLab.text = self.model.goodsName;
-    self.carTypeLab.text = self.model.useCarType;
+    self.carTypeLab.text = self.model.useCarTypeName;
     self.goodsPackTypeLab.text = self.model.packType;
     if ([self.model.payWay isEqualToString:@"1"]) {
         self.payTypeLab.text = @"线上支付";
@@ -79,7 +79,7 @@
     if ([self.model.feeType isEqualToString:@"1"]) {
         self.orderFeeLab.text = [NSString stringWithFormat:@"￥%@",self.model.fee];
     } else {
-        self.orderFeeLab.text = @"面仪";
+        self.orderFeeLab.text = @"电议";
     }
     if ([self.model.payType isEqualToString:@"1"]) {
         self.goodsPayTypeLab.text = @"到付";

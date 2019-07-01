@@ -200,7 +200,12 @@
     cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:model.createTime];
     [cell.startDotNameLab setTitle:model.sendAddress forState:UIControlStateNormal];
     [cell.endDotNameLab setTitle:model.receiveAddress forState:UIControlStateNormal];
-    cell.priceLab.text = [NSString stringWithFormat:@"¥%.2f",[model.fee floatValue]];
+    if ([model.feeType integerValue]==1) {
+        cell.priceLab.text = [NSString stringWithFormat:@"¥%.2f",[model.fee floatValue]];
+    }
+    else {
+        cell.priceLab.text = [NSString stringWithFormat:@"电议"];
+    }
     NSString *infoStr = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",model.carModelName,model.carLengthName,model.goodsVolume,model.goodsWeight];
     cell.orderCarInfoLab.text = infoStr;
     
