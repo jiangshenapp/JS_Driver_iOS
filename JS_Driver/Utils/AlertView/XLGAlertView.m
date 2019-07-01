@@ -212,7 +212,7 @@
     _contentLab.textAlignment = NSTextAlignmentCenter;
     _contentLab.text = self.textStr;
     _contentLab.font = [UIFont systemFontOfSize:autoScaleW(14.5)];
-    _contentLab.textColor =  RGBValue(0x00CF1F);;
+    _contentLab.textColor =  ButtonColor;
     [bgView addSubview:_contentLab];
     
     CGFloat btnWidth = self.leftTitle.length==0?(bgView.frame.size.width - autoScaleW(18)*2):(bgView.frame.size.width - autoScaleW(18)*3)/2.0;
@@ -272,7 +272,7 @@
     _contentLab.textAlignment = NSTextAlignmentCenter;
     _contentLab.text = self.textStr;
     _contentLab.font = [UIFont systemFontOfSize:autoScaleW(14.5)];
-    _contentLab.textColor =  RGBValue(0x00CF1F);;
+    _contentLab.textColor =  ButtonColor;
     [bgView addSubview:_contentLab];
     
     CGFloat btnWidth = self.leftTitle.length==0?(bgView.frame.size.width - autoScaleW(18)*2):(bgView.frame.size.width - autoScaleW(18)*3)/2.0;

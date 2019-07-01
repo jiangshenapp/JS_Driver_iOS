@@ -9,6 +9,7 @@
 #import "JSMineVC.h"
 #import "JSAllOrderVC.h"
 #import "AccountInfo.h"
+#import "JSMyWalletVC.h"
 
 #define LineCount 3
 
@@ -183,6 +184,15 @@
     [sender setTitle:title forState:UIControlStateNormal];
     sender.titleEdgeInsets = UIEdgeInsetsMake(0, 0, autoScaleW(15), 0);
     return sender;
+}
+
+/** 我的钱包 */
+- (IBAction)myWalletAction:(id)sender {
+    if (![Utils isVerified]) {
+        return;
+    }
+    JSMyWalletVC *vc = (JSMyWalletVC *)[Utils getViewController:@"Mine" WithVCName:@"JSMyWalletVC"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /** 我的圈子 */
