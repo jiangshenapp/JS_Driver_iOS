@@ -104,6 +104,7 @@
 }
 
 - (void)refreshUI {
+    [bgScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _postDic = [NSMutableDictionary dictionary];;
     __weak typeof(self) weakSelf = self;
     allCellViewArr = [NSMutableArray array];
