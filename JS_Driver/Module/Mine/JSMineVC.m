@@ -70,6 +70,9 @@
 }
 
 - (void)showAction:(UIButton *)sender {
+    if (![Utils isVerified]) {
+        return;
+    }
     NSString *vcName = @"";
     if ([sender.currentTitle isEqualToString:@"我的司机"]) {
         vcName = @"JSMyDriverVC";
