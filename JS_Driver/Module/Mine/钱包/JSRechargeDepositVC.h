@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 当前保证金 */
 @property (weak, nonatomic) IBOutlet UILabel *currentMoneyLab;
 /** 需缴纳保证金 */
-@property (weak, nonatomic) IBOutlet UILabel *needMoneyLab;
+@property (weak, nonatomic) IBOutlet UITextField *moneyTF;
 /** 选择协议 */
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 

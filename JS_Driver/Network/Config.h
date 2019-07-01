@@ -31,6 +31,7 @@ NSString *PIC_URL(void);
 #define URL_BalanceWithdraw @"/app/account/balanceWithdraw"//提现申请
 #define URL_GetBySubscriber @"/app/account/getBySubscriber"//账户详情
 #define URL_GetTradeRecord @"/app/account/getTradeRecord"//账单明细
+#define URL_RechargeDriverDeposit @"/app/account/rechargeDriverDeposit"//运力端缴纳保证金
 
 #pragma mark - 根据类型获取字典
 
