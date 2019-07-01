@@ -150,18 +150,11 @@
             break;
         case 9: //待货主评价
         case 10: //已完成
+        case 11: //已取消
+        case 12: //已关闭
             self.orderStatusLab.hidden = YES;
             self.bottomView.hidden = YES;
             _bgScroView.height += 50;
-            break;
-        case 11: //已取消
-            self.bottomBtn.hidden = NO;
-            self.bottomLeftBtn.hidden = YES;
-            self.bottomRightBtn.hidden = YES;
-            [self.bottomBtn setTitle:@"已取消" forState:UIControlStateNormal];
-            break;
-        case 12://已关闭
-            
             break;
         default:
             break;
