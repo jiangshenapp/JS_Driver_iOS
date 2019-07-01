@@ -90,7 +90,7 @@
         self.baseTabView.tableFooterView = [[UIView alloc]init];
     }
     _noDataView = [[[NSBundle mainBundle]loadNibNamed:@"noDataView" owner:self options:nil]firstObject];
-    _noDataView.height = 0;
+    _noDataView.frame = CGRectMake(0, 0, WIDTH, 0.01);
     _noDataView.hidden = YES;
     if (!self.baseTabView.tableHeaderView) {
         self.baseTabView.tableHeaderView = _noDataView;
