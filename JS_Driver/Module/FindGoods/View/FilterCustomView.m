@@ -74,7 +74,7 @@
     
     [bgScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.top.and.right.mas_equalTo(self);
-        make.bottom.mas_equalTo(self).offset(0);
+        make.bottom.mas_equalTo(self).offset(-autoScaleW(50));
     }];
     
     [sender mas_makeConstraints:^(MASConstraintMaker *make) {
