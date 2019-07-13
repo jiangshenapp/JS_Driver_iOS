@@ -72,10 +72,24 @@
             NSString *token = responseData;
             [CacheUtil saveCacher:@"token" withValue:token];
             
+            [self getUserInfo]; //获取用户信息
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccNotification object:nil];
             
             // 跳转到首页
             [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
+}
+
+/* 获取用户信息 */
+- (void)getUserInfo {
+    NSDictionary *dic = [NSDictionary dictionary];
+    [[NetworkManager sharedManager] getJSON:URL_Profile parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
+        if (status == Request_Success) {
+            //缓存用户信息
+            NSDictionary *userDic = responseData;
+            [[UserInfo share] setUserInfo:[userDic mutableCopy]];
         }
     }];
 }
