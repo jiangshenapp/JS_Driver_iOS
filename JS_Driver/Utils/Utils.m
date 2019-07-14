@@ -252,6 +252,20 @@ static Utils *_utils = nil;
     return [mobileTest evaluateWithObject:mobile];
 }
 
+// 加密手机号
++ (NSString *)changeMobile:(NSString *)mobile {
+    mobile = [mobile stringByReplacingOccurrencesOfString:[mobile substringWithRange:NSMakeRange(3,4)]withString:@"****"];
+    return mobile;
+}
+
+// 加密姓名
++ (NSString *)changeName:(NSString *)name {
+    if (name.length>0) {
+        name = [NSString stringWithFormat:@"%@xx",[name substringToIndex:1]];
+    }
+    return name;
+}
+
 /**
  设置控件阴影
  

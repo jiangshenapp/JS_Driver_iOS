@@ -51,6 +51,12 @@
 #pragma mark - 验证手机号
 + (BOOL)validateMobile:(NSString *)mobile;
 
+#pragma mark - 加密手机号
++ (NSString *)changeMobile:(NSString *)mobile;
+
+#pragma mark - 加密姓名
++ (NSString *)changeName:(NSString *)name;
+
 #pragma mark - 设置控件阴影
 + (void)setViewShadowStyle:(UIView *)view;
 

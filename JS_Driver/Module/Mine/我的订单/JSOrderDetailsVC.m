@@ -88,13 +88,11 @@
     }
     self.depositLab.text = [NSString stringWithFormat:@"￥%@",self.model.deposit];
     self.explainLab.text = self.model.remark;
-    self.receiptNameLab.text = self.model.receiveName;
-    self.receiptNumerLab.text = self.model.receiveMobile;
     startLocDic = [Utils dictionaryWithJsonString:self.model.sendPosition];
     endLocDic = [Utils dictionaryWithJsonString:self.model.receivePosition];
     NSDictionary *locDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
-    _distance1Lab.text = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[startLocDic[@"latitude"] floatValue] :[startLocDic[@"longitude"] floatValue]]];;
-    _distance2Lab.text = [NSString stringWithFormat:@"总里程:%@",[Utils distanceBetweenOrderBy:[startLocDic[@"latitude"] floatValue] :[startLocDic[@"longitude"] floatValue] andOther:[endLocDic[@"latitude"] floatValue] :[endLocDic[@"longitude"] floatValue]]];;;
+    _distance1Lab.text = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[startLocDic[@"latitude"] floatValue] :[startLocDic[@"longitude"] floatValue]]];
+    _distance2Lab.text = [NSString stringWithFormat:@"总里程:%@",[Utils distanceBetweenOrderBy:[startLocDic[@"latitude"] floatValue] :[startLocDic[@"longitude"] floatValue] andOther:[endLocDic[@"latitude"] floatValue] :[endLocDic[@"longitude"] floatValue]]];
     [self initView];
 }
 
@@ -103,6 +101,13 @@
     
     //2待接单，3待确认，4待货主付款，5待接货, 6待送达，7待确认收货，8待回单收到确认，9待货主评价，10已完成，11取消，12已关闭
     NSInteger state = [self.model.state integerValue];
+    if (state<=4) { //收货人信息加密
+        self.receiptNameLab.text = [Utils changeName:self.model.receiveName];
+        self.receiptNumerLab.text = [Utils changeMobile:self.model.receiveMobile];
+    } else {
+        self.receiptNameLab.text = self.model.receiveName;
+        self.receiptNumerLab.text = self.model.receiveMobile;
+    }
     if (state >= 7) {
         _receiptView.height = 120;
         _bgScroView.contentSize = CGSizeMake(0, _receiptView.bottom+10);
