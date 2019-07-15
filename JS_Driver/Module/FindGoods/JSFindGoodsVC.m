@@ -63,6 +63,7 @@
     _areaCode1 = @"";
     _areaCode2 = @"";
     _sort = @"2";
+    _allDicKey = @{@"useCarType":@"",@"carLength":@"",@"carModel":@"",@"goodsType":@""};
     _dataSource = [NSMutableArray array];
     NSDictionary *locDic = [[NSUserDefaults standardUserDefaults]objectForKey:@"loc"];
     _currentLoc = CLLocationCoordinate2DMake([locDic[@"lat"] floatValue], [locDic[@"lng"] floatValue]);
@@ -127,10 +128,28 @@
 - (void)getData {
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:_areaCode2 forKey:@"arriveAddressCode"];
-    [dic setObject:_areaCode1 forKey:@"startAddressCode"];
-    [dic setObject:_sort forKey:@"sort"];
-    [dic addEntriesFromDictionary:self.allDicKey];
+    if (![NSString isEmpty:_areaCode1] && ![_areaCode1 isEqualToString:@"0"]) {
+        [dic setObject:_areaCode1 forKey:@"startAddressCode"];
+    }
+    if (![NSString isEmpty:_areaCode2] && ![_areaCode2 isEqualToString:@"0"]) {
+        [dic setObject:_areaCode2 forKey:@"arriveAddressCode"];
+    }
+    if (![NSString isEmpty:_sort]) {
+        [dic setObject:_sort forKey:@"sort"];
+    }
+    if (![NSString isEmpty:self.allDicKey[@"useCarType"]]) {
+        [dic setObject:self.allDicKey[@"useCarType"] forKey:@"useCarType"];
+    }
+    if (![NSString isEmpty:self.allDicKey[@"carLength"]]) {
+        [dic setObject:self.allDicKey[@"carLength"] forKey:@"carLength"];
+    }
+    if (![NSString isEmpty:self.allDicKey[@"carModel"]]) {
+        [dic setObject:self.allDicKey[@"carModel"] forKey:@"carModel"];
+    }
+    if (![NSString isEmpty:self.allDicKey[@"goodsType"]]) {
+        [dic setObject:self.allDicKey[@"goodsType"] forKey:@"goodsType"];
+    }
+//    [dic addEntriesFromDictionary:self.allDicKey];
     NSString *url = [NSString stringWithFormat:@"%@?current=%ld&size=%@",URL_Find,_page,PageSize];
     [[NetworkManager sharedManager] postJSON:url parameters:dic completion:^(id responseData, RequestState status, NSError *error) {
         if (weakSelf.page==1) {
