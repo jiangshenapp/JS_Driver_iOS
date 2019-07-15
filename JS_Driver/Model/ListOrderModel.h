@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property  (nonatomic , copy) NSString *sendAddress;
 /** 收货地地址 */
 @property  (nonatomic , copy) NSString *receiveAddress;
-/** 货物类型,字典表，多个 */
+/** 货物名称,字典表，多个 */
 @property  (nonatomic , copy) NSString *goodsType;
 /** 车长，多选，逗号分隔 */
 @property  (nonatomic , copy) NSString *carLength;

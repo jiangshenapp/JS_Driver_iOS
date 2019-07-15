@@ -40,7 +40,7 @@
 }
 
 - (void)setupView {
-    _allDicKey = @{@"useCarType":@"用车类型",@"carLength":@"车长",@"carModel":@"车型",@"goodsType":@"货物类型"};
+    _allDicKey = @{@"useCarType":@"用车类型",@"carLength":@"车长",@"carModel":@"车型",@"goodsType":@"货物名称"};
     _selectArr = [NSMutableArray array];
     self.frame = CGRectMake(0, kNavBarH+46, WIDTH, HEIGHT-kNavBarH-46-kTabBarSafeH);
     self.backgroundColor = PageColor;
@@ -111,6 +111,10 @@
     CGFloat maxViewBottom = 0;
     NSInteger index = 0;
     for (NSString *keys in _dataDic.allKeys) {
+        
+        if ([keys isEqualToString:@"goodsType"]) { //去掉货物名称筛选
+            continue;
+        }
         NSArray *arr = _dataDic[keys];
         BOOL isSingle = NO;
         NSString *titleStr = _allDicKey[keys];
@@ -118,7 +122,7 @@
             isSingle = YES;
         }
         else {
-            titleStr = [titleStr stringByAppendingString:@":(可多选)"];
+            titleStr = [titleStr stringByAppendingString:@"：(可多选)"];
         }
         MyCustomView *view = [[MyCustomView alloc]initWithdataSource:arr andTilte:titleStr];
         view.top = maxViewBottom;
