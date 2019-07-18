@@ -209,14 +209,14 @@
     FindGoodsTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FindGoodsTabCell"];
     OrderInfoModel *model = self.dataSource[indexPath.row];
     NSString *useCarType = model.useCarTypeName;
-    cell.orderNOLab.text = [NSString stringWithFormat:@"订单编号：%@ %@",model.ID,useCarType];
+    cell.orderNOLab.text = [NSString stringWithFormat:@"订单编号：%@ %@",model.orderNo,useCarType];
     if (useCarType.length>0) {
         NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.orderNOLab.text];
         [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x7ED321) range:NSMakeRange(cell.orderNOLab.text.length-useCarType.length, useCarType.length)];
         cell.orderNOLab.attributedText = attributeStr;
     }
    
-    cell.timeLab.text = [Utils getTimeStrToCurrentDateWith:model.createTime];
+    cell.timeLab.text = [NSString stringWithFormat:@"%@发布",[Utils getTimeStrToCurrentDateWith:model.createTime]];
     [cell.startDotNameLab setTitle:model.sendAddress forState:UIControlStateNormal];
     [cell.endDotNameLab setTitle:model.receiveAddress forState:UIControlStateNormal];
     if ([model.feeType integerValue]==1) {
@@ -230,7 +230,7 @@
     
     NSDictionary *currentDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
     NSDictionary *locDic = [Utils dictionaryWithJsonString:model.sendPosition];
-    NSString *distanceStr = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[locDic[@"latitude"] floatValue] :[locDic[@"longitude"] floatValue]]];
+    NSString *distanceStr = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[currentDic[@"lat"] floatValue] :[currentDic[@"lng"] floatValue] andOther:[locDic[@"latitude"] floatValue] :[locDic[@"longitude"] floatValue]]];
     cell.getGoodsTimeLab.text = [NSString stringWithFormat:@"装货时间:%@ %@",model.loadingTime,distanceStr];
     
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:cell.getGoodsTimeLab.text];

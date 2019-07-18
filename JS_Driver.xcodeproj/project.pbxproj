@@ -147,6 +147,13 @@
 		A0B31E2E22B329EB007DB7A4 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B31E2D22B329EB007DB7A4 /* CarModel.m */; };
 		A0B31E3122B32B5E007DB7A4 /* RouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B31E3022B32B5E007DB7A4 /* RouteModel.m */; };
 		A0E927022285284400D07C58 /* AEFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E927002285284300D07C58 /* AEFilePath.m */; };
+		A0EF606222E03FD3006D3FC7 /* province_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0EF605822E03FD2006D3FC7 /* province_data.xml */; };
+		A0EF606322E03FD3006D3FC7 /* MOFSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF605922E03FD2006D3FC7 /* MOFSDatePicker.m */; };
+		A0EF606422E03FD3006D3FC7 /* MOFSToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF605A22E03FD2006D3FC7 /* MOFSToolView.m */; };
+		A0EF606522E03FD3006D3FC7 /* MOFSPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF605C22E03FD2006D3FC7 /* MOFSPickerManager.m */; };
+		A0EF606622E03FD3006D3FC7 /* MOFSPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF605D22E03FD2006D3FC7 /* MOFSPickerView.m */; };
+		A0EF606722E03FD3006D3FC7 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF605E22E03FD2006D3FC7 /* AddressModel.m */; };
+		A0EF606822E03FD3006D3FC7 /* MOFSAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF606122E03FD2006D3FC7 /* MOFSAddressPickerView.m */; };
 		C4E2E61BA69A23F1952E5B4B /* libPods-JS_Driver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D27DC42609271027D306F2 /* libPods-JS_Driver.a */; };
 /* End PBXBuildFile section */
 
@@ -388,6 +395,19 @@
 		A0E927012285284400D07C58 /* AEFilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFilePath.h; sourceTree = "<group>"; };
 		A0E9270622852F9D00D07C58 /* JSAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAuthenticationVC.m; sourceTree = "<group>"; };
 		A0E9270B228568D800D07C58 /* JSPayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPayVC.h; sourceTree = "<group>"; };
+		A0EF605522E03FD2006D3FC7 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		A0EF605622E03FD2006D3FC7 /* MOFSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSPickerView.h; sourceTree = "<group>"; };
+		A0EF605722E03FD2006D3FC7 /* MOFSPickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSPickerManager.h; sourceTree = "<group>"; };
+		A0EF605822E03FD2006D3FC7 /* province_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = province_data.xml; sourceTree = "<group>"; };
+		A0EF605922E03FD2006D3FC7 /* MOFSDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFSDatePicker.m; sourceTree = "<group>"; };
+		A0EF605A22E03FD2006D3FC7 /* MOFSToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFSToolView.m; sourceTree = "<group>"; };
+		A0EF605B22E03FD2006D3FC7 /* MOFSAddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSAddressPickerView.h; sourceTree = "<group>"; };
+		A0EF605C22E03FD2006D3FC7 /* MOFSPickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFSPickerManager.m; sourceTree = "<group>"; };
+		A0EF605D22E03FD2006D3FC7 /* MOFSPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFSPickerView.m; sourceTree = "<group>"; };
+		A0EF605E22E03FD2006D3FC7 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		A0EF605F22E03FD2006D3FC7 /* MOFSToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSToolView.h; sourceTree = "<group>"; };
+		A0EF606022E03FD2006D3FC7 /* MOFSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSDatePicker.h; sourceTree = "<group>"; };
+		A0EF606122E03FD2006D3FC7 /* MOFSAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFSAddressPickerView.m; sourceTree = "<group>"; };
 		AE7315DD7F81A3DDD59C5C4C /* Pods-JS_Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JS_Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JS_Driver/Pods-JS_Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D27DC42609271027D306F2 /* libPods-JS_Driver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JS_Driver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E578D31DC4BE0A8D8095EBC1 /* Pods-JS_Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JS_Driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-JS_Driver/Pods-JS_Driver.release.xcconfig"; sourceTree = "<group>"; };
@@ -737,6 +757,7 @@
 				A0E927012285284400D07C58 /* AEFilePath.h */,
 				A0E927002285284300D07C58 /* AEFilePath.m */,
 				20DC7D6022BB5C2D003CB4FD /* LocationTransform */,
+				A0EF605422E03FD2006D3FC7 /* MOFSPickerManager */,
 				203DF06822802AFC00015587 /* AddressSelect */,
 				A0A9F0E8222FF1C000580C6A /* Cache */,
 				A0A9F0ED222FF1C000580C6A /* StarView */,
@@ -1019,6 +1040,26 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		A0EF605422E03FD2006D3FC7 /* MOFSPickerManager */ = {
+			isa = PBXGroup;
+			children = (
+				A0EF605522E03FD2006D3FC7 /* AddressModel.h */,
+				A0EF605622E03FD2006D3FC7 /* MOFSPickerView.h */,
+				A0EF605722E03FD2006D3FC7 /* MOFSPickerManager.h */,
+				A0EF605822E03FD2006D3FC7 /* province_data.xml */,
+				A0EF605922E03FD2006D3FC7 /* MOFSDatePicker.m */,
+				A0EF605A22E03FD2006D3FC7 /* MOFSToolView.m */,
+				A0EF605B22E03FD2006D3FC7 /* MOFSAddressPickerView.h */,
+				A0EF605C22E03FD2006D3FC7 /* MOFSPickerManager.m */,
+				A0EF605D22E03FD2006D3FC7 /* MOFSPickerView.m */,
+				A0EF605E22E03FD2006D3FC7 /* AddressModel.m */,
+				A0EF605F22E03FD2006D3FC7 /* MOFSToolView.h */,
+				A0EF606022E03FD2006D3FC7 /* MOFSDatePicker.h */,
+				A0EF606122E03FD2006D3FC7 /* MOFSAddressPickerView.m */,
+			);
+			path = MOFSPickerManager;
+			sourceTree = "<group>";
+		};
 		B00A6A5C54C072E7CC0CE20B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1132,6 +1173,7 @@
 				A0263563228C23BF00C924E2 /* ic_refresh_image_017@2x.png in Resources */,
 				A0263557228C23BF00C924E2 /* ic_refresh_image_029@2x.png in Resources */,
 				A026356A228C23BF00C924E2 /* ic_refresh_image_028@2x.png in Resources */,
+				A0EF606222E03FD3006D3FC7 /* province_data.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,10 +1282,12 @@
 				A07FE601222DE8C60017F2AC /* main.m in Sources */,
 				A0A9F18C222FFC5300580C6A /* JSFindGoodsVC.m in Sources */,
 				A0A9F16D222FF1C100580C6A /* XLGChangeServerModel.m in Sources */,
+				A0EF606522E03FD3006D3FC7 /* MOFSPickerManager.m in Sources */,
 				A03B902A22AA96C400E75D7D /* ListOrderModel.m in Sources */,
 				A0E927022285284400D07C58 /* AEFilePath.m in Sources */,
 				A0A9F152222FF1C100580C6A /* CacheUtil.m in Sources */,
 				2068A8982281348F00287CD0 /* JSAuthencationHomeVC.m in Sources */,
+				A0EF606722E03FD3006D3FC7 /* AddressModel.m in Sources */,
 				A07FE5F3222DE8C30017F2AC /* AppDelegate.m in Sources */,
 				A03B902B22AA96C400E75D7D /* PayRouteModel.m in Sources */,
 				A0A9F16E222FF1C100580C6A /* XLGChangeServerVC.m in Sources */,
@@ -1252,6 +1296,7 @@
 				A0B31E2E22B329EB007DB7A4 /* CarModel.m in Sources */,
 				A0A9F173222FF1C100580C6A /* CZNotNetAvailableVC.m in Sources */,
 				A0A9F153222FF1C100580C6A /* CZStarView.m in Sources */,
+				A0EF606322E03FD3006D3FC7 /* MOFSDatePicker.m in Sources */,
 				203DF0522280299E00015587 /* JSAllOrderVC.m in Sources */,
 				20A71ECE22AF8CF700A37179 /* OrderInfoModel.m in Sources */,
 				20FFCC5622ACA271002F94EB /* BaseCustomView.m in Sources */,
@@ -1270,6 +1315,8 @@
 				205D52762275934B0053F176 /* JSRegisterVC.m in Sources */,
 				203DF04A2280299E00015587 /* JSRechargeVC.m in Sources */,
 				20583A762285653900090E2F /* JSMyCarVC.m in Sources */,
+				A0EF606422E03FD3006D3FC7 /* MOFSToolView.m in Sources */,
+				A0EF606622E03FD3006D3FC7 /* MOFSPickerView.m in Sources */,
 				A0A9F156222FF1C100580C6A /* JHHJView.m in Sources */,
 				A03B903922AD3B5A00E75D7D /* JSAddRouteVC.m in Sources */,
 				A0A9F195222FFC9F00580C6A /* JSServiceVC.m in Sources */,
@@ -1277,6 +1324,7 @@
 				20583A7922856A0D00090E2F /* JSAddCarVC.m in Sources */,
 				A0A9F180222FF57200580C6A /* BaseTabBarVC.m in Sources */,
 				A0A9F172222FF1C100580C6A /* NetworkManager.m in Sources */,
+				A0EF606822E03FD3006D3FC7 /* MOFSAddressPickerView.m in Sources */,
 				203DF0502280299E00015587 /* JSAboutVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

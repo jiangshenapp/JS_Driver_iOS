@@ -7,7 +7,8 @@
 //
 
 #import "JSAuthenticationVC.h"
-#import "HmSelectAdView.h"
+//#import "HmSelectAdView.h"
+#import "MOFSPickerManager.h"
 #import "AuthInfo.h"
 
 @interface JSAuthenticationVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -23,6 +24,7 @@
 @property (nonatomic, copy) NSString *currentProvince;
 @property (nonatomic, copy) NSString *currentCity;
 @property (nonatomic, copy) NSString *currentArea;
+@property (nonatomic, copy) NSString *currentCode;
 
 @end
 
@@ -54,6 +56,10 @@
         }
     }
     self.photoType = 0;
+    self.currentProvince = @"";
+    self.currentCity = @"";
+    self.currentArea = @"";
+    self.currentCode = @"";
     _parkTabView.tableFooterView = [[UIView alloc] init];
     _driverTabView.tableFooterView = [[UIView alloc] init];
 }
@@ -243,15 +249,27 @@
 /* 选择区域 */
 - (IBAction)selectAddressAction:(id)sender {
     [self.view endEditing:YES]; //隐藏键盘
-    // 这里传进去的self.currentProvince 等等的都是本页面的存储值
-    HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
-    selectV.confirmSelect = ^(NSArray *address) {
-        self.currentProvince = address[0];
-        self.currentCity = address[1];
-        self.currentArea = address[2];
+//    // 这里传进去的self.currentProvince 等等的都是本页面的存储值
+//    HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
+//    selectV.confirmSelect = ^(NSArray *address) {
+//        self.currentProvince = address[0];
+//        self.currentCity = address[1];
+//        self.currentArea = address[2];
+//        self.addressTF.text = [NSString stringWithFormat:@"%@%@%@", self.currentProvince, self.currentCity, self.currentArea];
+//    };
+//    [selectV show];
+
+    [[MOFSPickerManager shareManger] showMOFSAddressPickerWithTitle:@"选择地址" cancelTitle:@"取消" commitTitle:@"完成" commitBlock:^(NSString *address, NSString *zipcode) {
+        NSArray *arrAddress = [address componentsSeparatedByString:@"-"];
+        NSArray *arrCode = [zipcode componentsSeparatedByString:@"-"];
+        self.currentProvince = arrAddress[0];
+        self.currentCity = arrAddress[1];
+        self.currentArea = arrAddress[2];
+        self.currentCode = arrCode[2];
         self.addressTF.text = [NSString stringWithFormat:@"%@%@%@", self.currentProvince, self.currentCity, self.currentArea];
-    };
-    [selectV show];
+    } cancelBlock:^{
+        
+    }];
 }
 
 /* 选择驾驶证类型 */
@@ -285,15 +303,27 @@
 /* 园区选择所在地 */
 - (IBAction)selectParkAddressAction:(id)sender {
     [self.view endEditing:YES]; //隐藏键盘
-    // 这里传进去的self.currentProvince 等等的都是本页面的存储值
-    HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
-    selectV.confirmSelect = ^(NSArray *address) {
-        self.currentProvince = address[0];
-        self.currentCity = address[1];
-        self.currentArea = address[2];
+//    // 这里传进去的self.currentProvince 等等的都是本页面的存储值
+//    HmSelectAdView *selectV = [[HmSelectAdView alloc] initWithLastContent:self.currentProvince ? @[self.currentProvince, self.currentCity, self.currentArea] : nil];
+//    selectV.confirmSelect = ^(NSArray *address) {
+//        self.currentProvince = address[0];
+//        self.currentCity = address[1];
+//        self.currentArea = address[2];
+//        self.parkAddressLab.text = [NSString stringWithFormat:@"%@%@%@", self.currentProvince, self.currentCity, self.currentArea];
+//    };
+//    [selectV show];
+    
+    [[MOFSPickerManager shareManger] showMOFSAddressPickerWithTitle:@"选择地址" cancelTitle:@"取消" commitTitle:@"完成" commitBlock:^(NSString *address, NSString *zipcode) {
+        NSArray *arrAddress = [address componentsSeparatedByString:@"-"];
+        NSArray *arrCode = [zipcode componentsSeparatedByString:@"-"];
+        self.currentProvince = arrAddress[0];
+        self.currentCity = arrAddress[1];
+        self.currentArea = arrAddress[2];
+        self.currentCode = arrCode[2];
         self.parkAddressLab.text = [NSString stringWithFormat:@"%@%@%@", self.currentProvince, self.currentCity, self.currentArea];
-    };
-    [selectV show];
+    } cancelBlock:^{
+        
+    }];
 }
 
 /* 上传公司营业执照 */
@@ -416,6 +446,7 @@
                          self.parkNameTF.text, @"companyName",
                          kCompanyTypeStrDic[self.organizationTypeTF.text], @"companyType",
                          self.IDNumberTF.text, @"registrationNumber",
+                         self.currentCode, @"addressCode",
                          self.parkAddressLab.text, @"address",
                          self.parkDetailAddressTF.text, @"detailAddress",
                          _businessLicensePhoto, @"businessLicenceImage",
