@@ -102,7 +102,7 @@
     self.headImgView.image = iconImage;
     
     [picker dismissViewControllerAnimated:YES completion:^{
-        NSData *imageData = UIImageJPEGRepresentation(iconImage, 0.01);
+        NSData *imageData = UIImageJPEGRepresentation(iconImage, 0.1);
         NSMutableArray *imageDataArr = [NSMutableArray arrayWithObjects:imageData, nil];
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"pigx",@"resourceId", nil];
         [[NetworkManager sharedManager] postJSON:URL_FileUpload parameters:dic imageDataArr:imageDataArr imageName:@"file" completion:^(id responseData, RequestState status, NSError *error) {
