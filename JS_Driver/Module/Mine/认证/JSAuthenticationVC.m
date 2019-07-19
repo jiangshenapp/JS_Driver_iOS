@@ -8,7 +8,7 @@
 
 #import "JSAuthenticationVC.h"
 //#import "HmSelectAdView.h"
-#import "MOFSPickerManager.h"
+#import "MOFSPickerManager.h" //https://www.jianshu.com/p/578065eab5ab
 #import "AuthInfo.h"
 
 @interface JSAuthenticationVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>

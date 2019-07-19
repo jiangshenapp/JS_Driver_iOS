@@ -18,6 +18,7 @@
     [super viewDidLoad];
     
     [self.backBtn setImage:[UIImage imageNamed:@"app_navigationbar_icon_close_black"] forState:UIControlStateNormal];
+    self.phoneTF.text = [CacheUtil getCacherWithKey:@"loginPhone"];
 }
 
 #pragma mark - methods
@@ -71,6 +72,7 @@
             
             NSString *token = responseData;
             [CacheUtil saveCacher:@"token" withValue:token];
+            [CacheUtil saveCacher:@"loginPhone" withValue:self.phoneTF.text];
             
             [self getUserInfo]; //获取用户信息
             

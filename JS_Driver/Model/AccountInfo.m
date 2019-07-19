@@ -10,4 +10,9 @@
 
 @implementation AccountInfo
 
+- (NSString *)balance {
+    _balance = [NSString stringWithFormat:@"%.2f",[_balance floatValue]];
+    return _balance;
+}
+
 @end
