@@ -167,12 +167,25 @@
     NSDictionary *sendlocDic = [Utils dictionaryWithJsonString:model.sendPosition];
     NSDictionary *locDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
     _distanceLab.text = [NSString stringWithFormat:@"距离:%@",[Utils distanceBetweenOrderBy:[locDic[@"lat"] floatValue] :[locDic[@"lng"] floatValue] andOther:[sendlocDic[@"latitude"] floatValue] :[sendlocDic[@"longitude"] floatValue]]];;
-
-    self.goodsDetaileLab.text = [NSString stringWithFormat:@"%@/%@米/%@方/%@吨",model.goodsType,model.carLength,model.goodsVolume,model.goodsWeight];
+    NSString *info = @"";
+    if (![NSString isEmpty:model.carModelName]) {
+        info = [info stringByAppendingString:model.carModelName];
+    }
+    if (![NSString isEmpty:model.carLengthName]) {
+        info = [info stringByAppendingString:model.carLengthName];
+    }
+    if (![NSString isEmpty:model.goodsVolume]) {
+        info = [info stringByAppendingString:[NSString stringWithFormat:@"/%@方",model.goodsVolume]];
+    }
+    if (![NSString isEmpty:model.goodsWeight]) {
+        info = [info stringByAppendingString:[NSString stringWithFormat:@"/%@吨",model.goodsWeight]];
+    }
+    self.goodsDetaileLab.text = info;
     if ([Utils isBlankString:model.fee]) {
         self.orderPriceLab.text = @"";
     } else {
         self.orderPriceLab.text = [NSString stringWithFormat:@"￥%@",model.fee];
     }
 }
+
 @end

@@ -67,7 +67,20 @@
     self.endAddressLab.text = self.model.receiveAddress;
     self.endAddressAreaLab.text = self.model.receiveAddressCodeName;
     self.goodsTomeLab.text = self.model.loadingTime;
-    self.carInfoLab.text = [NSString stringWithFormat:@"%@%@米/%@方/%@吨",self.model.carModelName,self.model.carLength,self.model.goodsVolume,self.model.goodsWeight];;
+    NSString *info = @"";
+    if (![NSString isEmpty:self.model.carModelName]) {
+        info = [info stringByAppendingString:self.model.carModelName];
+    }
+    if (![NSString isEmpty:self.model.carLengthName]) {
+        info = [info stringByAppendingString:self.model.carLengthName];
+    }
+    if (![NSString isEmpty:self.model.goodsVolume]) {
+        info = [info stringByAppendingString:[NSString stringWithFormat:@"/%@方",self.model.goodsVolume]];
+    }
+    if (![NSString isEmpty:self.model.goodsWeight]) {
+        info = [info stringByAppendingString:[NSString stringWithFormat:@"/%@吨",self.model.goodsWeight]];
+    }
+    self.carInfoLab.text = info;
     self.goodsNameLab.text = self.model.goodsName;
     self.carTypeLab.text = self.model.useCarTypeName;
     self.goodsPackTypeLab.text = self.model.packType;

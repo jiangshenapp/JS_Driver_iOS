@@ -254,7 +254,7 @@ static Utils *_utils = nil;
 
 // 加密手机号
 + (NSString *)changeMobile:(NSString *)mobile {
-    mobile = [mobile stringByReplacingOccurrencesOfString:[mobile substringWithRange:NSMakeRange(3,4)]withString:@"****"];
+    mobile = [mobile stringByReplacingCharactersInRange:NSMakeRange(3,4) withString:@"****"];
     return mobile;
 }
 

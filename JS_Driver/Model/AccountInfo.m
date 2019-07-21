@@ -11,8 +11,23 @@
 @implementation AccountInfo
 
 - (NSString *)balance {
-    _balance = [NSString stringWithFormat:@"%.2f",[_balance floatValue]];
+    _balance = [NSString stringWithFormat:@"%.2f",[_balance doubleValue]];
     return _balance;
+}
+
+- (NSString *)driverDeposit {
+    _driverDeposit = [NSString stringWithFormat:@"%.2f",[_driverDeposit doubleValue]];
+    return _driverDeposit;
+}
+
+- (NSString *)tradeDeposit {
+    _tradeDeposit = [NSString stringWithFormat:@"%.2f",[_tradeDeposit doubleValue]];
+    return _tradeDeposit;
+}
+
+- (NSString *)consignorDeposit {
+    _consignorDeposit = [NSString stringWithFormat:@"%.2f",[_consignorDeposit doubleValue]];
+    return _consignorDeposit;
 }
 
 @end
