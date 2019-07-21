@@ -225,8 +225,20 @@
     else {
         cell.priceLab.text = [NSString stringWithFormat:@"电议"];
     }
-    NSString *infoStr = [NSString stringWithFormat:@"%@ %@/%@方/%@吨",model.carModelName,model.carLengthName,model.goodsVolume,model.goodsWeight];
-    cell.orderCarInfoLab.text = infoStr;
+    NSString *info = @"";
+    if (![NSString isEmpty:model.carModelName]) {
+        info = [info stringByAppendingString:model.carModelName];
+    }
+    if (![NSString isEmpty:model.carLengthName]) {
+        info = [info stringByAppendingString:model.carLengthName];
+    }
+    if (![NSString isEmpty:model.goodsVolume]) {
+        info = [info stringByAppendingString:[NSString stringWithFormat:@"/%@方",model.goodsVolume]];
+    }
+    if (![NSString isEmpty:model.goodsWeight]) {
+        info = [info stringByAppendingString:[NSString stringWithFormat:@"/%@吨",model.goodsWeight]];
+    }
+    cell.orderCarInfoLab.text = info;
     
     NSDictionary *currentDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"loc"];
     NSDictionary *locDic = [Utils dictionaryWithJsonString:model.sendPosition];
