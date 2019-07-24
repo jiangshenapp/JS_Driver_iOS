@@ -40,8 +40,8 @@ NSString *PIC_URL(void);
 
 #pragma mark - APP会员注册登录接口
 
-#define URL_Login @"/app/subscriber/login" //密码登录
-#define URL_SmsLogin @"/app/subscriber/smsLogin" //短信验证码登录
+#define URL_Login @"/app/subscriber/login2" //密码登录
+#define URL_SmsLogin @"/app/subscriber/smsLogin2" //短信验证码登录
 #define URL_Logout @"/app/subscriber/logout" //退出登录
 #define URL_Profile @"/app/subscriber/profile" //获取当前登录人信息
 #define URL_Registry @"/app/subscriber/registry" //会员注册
