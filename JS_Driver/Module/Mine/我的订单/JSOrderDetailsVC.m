@@ -38,6 +38,10 @@
     self.tileView1.hidden = YES;
     self.titleView2.hidden = NO;
     
+    self.commentImage1Photo = @"";
+    self.commentImage2Photo = @"";
+    self.commentImage3Photo = @"";
+    
     self.bottomBtn.backgroundColor = AppThemeColor;
     [self.bottomBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
     
