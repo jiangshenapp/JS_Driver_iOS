@@ -7,6 +7,7 @@
 //
 
 #import "JSPaswdLoginVC.h"
+#import "CustomEaseUtils.h"
 
 @interface JSPaswdLoginVC ()<UITextFieldDelegate>
 
@@ -61,10 +62,11 @@
             NSString *token = responseData;
             [CacheUtil saveCacher:@"token" withValue:token];
             [CacheUtil saveCacher:@"loginPhone" withValue:self.phoneTF.text];
-            
+            [CustomEaseUtils EaseMobLoginWithUser:self.phoneTF.text completion:nil];
+
             [self getUserInfo]; //获取用户信息
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginStateChangeNotification object:@YES];
             
             // 跳转到首页
             [self.navigationController popToRootViewControllerAnimated:YES];

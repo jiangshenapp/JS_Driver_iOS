@@ -31,6 +31,9 @@
 #import <MJRefresh.h>
 #import "XLGAlertView.h"
 #import <FXToast.h>
+//3.6.0
+#import <HyphenateLite/HyphenateLite.h>
+#import "EMDefines.h"
 #endif
 
 // AppDelegate
@@ -49,6 +52,7 @@
 
 // 网络请求key
 #define kSignKey   @"ghOwfR7Wz44cbKU93KVSxwYXPGloNu"
+#define EaseMobKey @"1114190326030612#android-driver"
 #define kNonceStr  [SignKeyUtil getNonceString]
 
 // cache key
@@ -64,8 +68,8 @@
 
 /******************************通知****************************/
 
-#define kLoginSuccNotification  @"kLoginSuccNotification"
-#define kLogoutSuccNotification  @"kLogoutSuccNotification"
+#define kLoginStateChangeNotification @"kLoginStateChangeNotification"
+
 #define kUserInfoChangeNotification  @"kUserInfoChangeNotification"
 
 #define kPaySuccNotification  @"kPaySuccNotification"
@@ -168,6 +172,8 @@
 #define kVerifiedUnCommitColor RGBValue(0xB4B4B4)
 #define kVerifiedOnColor RGBValue(0x0091FF)
 #define kVerifiedFailColor RGBValue(0xE02020)
+
+
 
 #define JSFontMin(size) [UIFont systemFontOfSize:MAX(size, autoScaleW(size))]
 

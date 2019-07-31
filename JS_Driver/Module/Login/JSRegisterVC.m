@@ -7,6 +7,7 @@
 //
 
 #import "JSRegisterVC.h"
+#import "CustomEaseUtils.h"
 
 @interface JSRegisterVC ()<UITextFieldDelegate>
 
@@ -54,7 +55,9 @@
 
         if (status == Request_Success) {
             [Utils showToast:@"注册成功"];
+            [CustomEaseUtils EaseMobRegisteWithUser:self.phoneTF.text completion:nil];
             [Utils isLoginWithJump:YES];
+
         }
     }];
 }

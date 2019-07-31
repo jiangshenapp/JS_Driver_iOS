@@ -13,7 +13,11 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 
-@interface AppDelegate ()<WXApiDelegate>
+#import <UserNotifications/UserNotifications.h>
+#import "CustomEaseUtils.h"
+#import "EMNotificationHelper.h"
+
+@interface AppDelegate ()<WXApiDelegate,UNUserNotificationCenterDelegate>
 
 @end
 
@@ -27,6 +31,8 @@
     
     //键盘事件
     [self processKeyBoard];
+    
+    [self initEmData];
     
     NSString *WechatDescription = @"微信注册";
     [WXApi registerApp:kWechatKey withDescription:WechatDescription];
@@ -150,6 +156,71 @@
         return YES;
     }
 }
+
+- (void)initEmData {
+    //注册登录状态监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginStateChange:) name:ACCOUNT_LOGIN_CHANGED object:nil];
+    //注册推送
+    [self _registerRemoteNotification];
+    
+    EMOptions *options = [EMOptions optionsWithAppkey:EaseMobKey];
+    options.apnsCertName = @"";
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    [CustomEaseUtils shareHelper];
+    [EMNotificationHelper shared];
+    
+}
+
+//注册远程通知
+- (void)_registerRemoteNotification
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    application.applicationIconBadgeNumber = 0;
+    
+    if (NSClassFromString(@"UNUserNotificationCenter")) {
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert completionHandler:^(BOOL granted, NSError *error) {
+            if (granted) {
+#if !TARGET_IPHONE_SIMULATOR
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [application registerForRemoteNotifications];
+                });
+#endif
+            }
+        }];
+        return;
+    }
+    
+    if([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+    
+#if !TARGET_IPHONE_SIMULATOR
+    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+        [application registerForRemoteNotifications];
+    } else {
+        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
+    }
+#endif
+}
+
+- (void)loginStateChange:(NSNotification *)aNotif
+{
+    UINavigationController *navigationController = nil;
+    
+    BOOL loginSuccess = [aNotif.object boolValue];
+    if (loginSuccess) {//登录成功加载主窗口控制器
+        navigationController = (UINavigationController *)self.window.rootViewController;
+    } else {//登录失败加载登录页面控制器
+        [Utils logout:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginStateChangeNotification object:@NO];
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
