@@ -368,6 +368,8 @@
 		A07FE5FE222DE8C60017F2AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07FE5FC222DE8C60017F2AC /* LaunchScreen.storyboard */; };
 		A07FE601222DE8C60017F2AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE600222DE8C60017F2AC /* main.m */; };
 		A07FE60D222DF1950017F2AC /* Service.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07FE60B222DF1950017F2AC /* Service.storyboard */; };
+		A0925F4823014EC900CF88E0 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205D6FF422F172670033F3FC /* HyphenateLite.framework */; };
+		A0925F4923014EC900CF88E0 /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 205D6FF422F172670033F3FC /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0A9F0CD222DF35800580C6A /* FindGoods.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A9F0C8222DF35800580C6A /* FindGoods.storyboard */; };
 		A0A9F150222FF1C100580C6A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F0E4222FF1C000580C6A /* Reachability.m */; };
 		A0A9F151222FF1C100580C6A /* KeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9F0EB222FF1C000580C6A /* KeyChainUtil.m */; };
@@ -418,6 +420,20 @@
 		A0EF606822E03FD3006D3FC7 /* MOFSAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF606122E03FD2006D3FC7 /* MOFSAddressPickerView.m */; };
 		C4E2E61BA69A23F1952E5B4B /* libPods-JS_Driver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D27DC42609271027D306F2 /* libPods-JS_Driver.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A0925F4A23014ECA00CF88E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A0925F4923014EC900CF88E0 /* HyphenateLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2018EB6922A8F3B400D9E7C6 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
@@ -1064,6 +1080,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				205D70C022F172680033F3FC /* libopencore-amrwb.a in Frameworks */,
+				A0925F4823014EC900CF88E0 /* HyphenateLite.framework in Frameworks */,
 				205D70C122F172680033F3FC /* libopencore-amrnb.a in Frameworks */,
 				C4E2E61BA69A23F1952E5B4B /* libPods-JS_Driver.a in Frameworks */,
 				205D70F622F172680033F3FC /* HyphenateLite.framework in Frameworks */,
@@ -2518,6 +2535,7 @@
 				A07FE5EB222DE8C30017F2AC /* Frameworks */,
 				A07FE5EC222DE8C30017F2AC /* Resources */,
 				A3D26E66C2F7DF7E21868B5F /* [CP] Copy Pods Resources */,
+				A0925F4A23014ECA00CF88E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
