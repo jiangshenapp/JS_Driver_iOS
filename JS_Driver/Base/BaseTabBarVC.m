@@ -22,15 +22,25 @@
 }
 
 - (void)createTabBar {
+//    //视图数组
+//    NSArray *controllerArr = @[@"JSFindGoodsVC",@"JSServiceVC",@"JSMessageVC",@"JSCommunityVC",@"JSMineVC"];
+//    //标题数组
+//    NSArray *titleArr = @[@"找货",@"服务",@"消息",@"社区",@"我的"];
+//    //图片数组
+//    NSArray *picArr = @[@"app_menubar_icon_searchcar_black",@"app_menubar_icon_goods_black",@"app_menubar_icon_news_black",@"app_menubar_icon_community_black",@"app_menubar_icon_my_black"];
+//
+//    //storyboard name 数组
+//    NSArray *storyArr = @[@"FindGoods",@"Service",@"Message",@"Community",@"Mine"];
+    
     //视图数组
-    NSArray *controllerArr = @[@"JSFindGoodsVC",@"JSServiceVC",@"JSMessageVC",@"JSCommunityVC",@"JSMineVC"];
+    NSArray *controllerArr = @[@"JSFindGoodsVC",@"JSMineVC"];
     //标题数组
-    NSArray *titleArr = @[@"找货",@"服务",@"消息",@"社区",@"我的"];
+    NSArray *titleArr = @[@"找货",@"我的"];
     //图片数组
-    NSArray *picArr = @[@"app_menubar_icon_searchcar_black",@"app_menubar_icon_goods_black",@"app_menubar_icon_news_black",@"app_menubar_icon_community_black",@"app_menubar_icon_my_black"];
+    NSArray *picArr = @[@"app_menubar_icon_searchcar_black",@"app_menubar_icon_my_black"];
     
     //storyboard name 数组
-    NSArray *storyArr = @[@"FindGoods",@"Service",@"Message",@"Community",@"Mine"];
+    NSArray *storyArr = @[@"FindGoods",@"Mine"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     

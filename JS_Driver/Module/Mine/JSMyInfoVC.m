@@ -155,6 +155,11 @@
     }
 }
 
+/* 园区地址 */
+- (IBAction)parkAddressAction:(id)sender {
+    [Utils showToast:@"该功能暂未开通，敬请期待"];
+}
+
 /* 清除缓存 */
 - (IBAction)clearCacheAction:(id)sender {
     NSString *message = [NSString stringWithFormat:@"确定清除%@缓存吗？",[AEFilePath folderSizeAtPath:kCachePath]];
@@ -180,6 +185,11 @@
     }]];
     //弹出提示框；
     [self presentViewController:alert animated:true completion:nil];
+}
+
+/* 隐私政策 */
+- (IBAction)privacyAction:(id)sender {
+    [BaseWebVC showWithContro:self withUrlStr:[NSString stringWithFormat:@"%@%@",h5Url(),H5_Privacy] withTitle:@"隐私保护指引" isPresent:NO];
 }
 
 /* 安全退出 */
