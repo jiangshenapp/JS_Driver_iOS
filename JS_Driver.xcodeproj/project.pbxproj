@@ -3210,7 +3210,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = K3A6XD8P7R;
+				DEVELOPMENT_TEAM = P8463X2LVX;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3227,9 +3227,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JS_Driver/Vendor/EaseUI/EMUIKit/Helper/3rdParty/VoiceConvert",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.js.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.js.transporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = JSCommon;
+				PROVISIONING_PROFILE_SPECIFIER = TransporterDev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3239,8 +3239,9 @@
 			baseConfigurationReference = E578D31DC4BE0A8D8095EBC1 /* Pods-JS_Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = K3A6XD8P7R;
+				DEVELOPMENT_TEAM = P8463X2LVX;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3257,9 +3258,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JS_Driver/Vendor/EaseUI/EMUIKit/Helper/3rdParty/VoiceConvert",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.js.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.js.transporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = JSCommon;
+				PROVISIONING_PROFILE_SPECIFIER = TransporterDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

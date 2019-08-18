@@ -42,13 +42,10 @@
 
 /******************************keys****************************/
 
-#define kAPPScheme  @"com.js.driver"
+#define kAPPScheme  @"com.js.transporter"
 
 // 微信key
 #define kWechatKey @"wxbba5c5b208ed8f31"
-
-// 友盟key
-#define kUMKey     @"5c710878b465f5fa50000071"
 
 // 网络请求key
 #define kSignKey   @"ghOwfR7Wz44cbKU93KVSxwYXPGloNu"

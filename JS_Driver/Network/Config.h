@@ -109,6 +109,7 @@ NSString *h5Url(void);
 
 #pragma mark - ---------------H5名称---------------
 
-#define H5_Privacy @"#/hybrid/chaozhi/privacy" //隐私协议
+#define H5_Privacy @"yszc.html" //隐私协议
+#define H5_Register @"yhzcxy.html" //用户注册协议
 
 @end

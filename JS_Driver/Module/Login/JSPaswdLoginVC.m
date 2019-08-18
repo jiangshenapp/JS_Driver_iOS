@@ -88,7 +88,7 @@
 
 /* 用户协议 */
 - (IBAction)protocalAction:(id)sender {
-    [Utils showToast:@"用户协议"];
+    [BaseWebVC showWithContro:self withUrlStr:[NSString stringWithFormat:@"%@%@",h5Url(),H5_Register] withTitle:@"用户协议" isPresent:NO];
 }
 
 #pragma mark - UITextFieldDelegate
