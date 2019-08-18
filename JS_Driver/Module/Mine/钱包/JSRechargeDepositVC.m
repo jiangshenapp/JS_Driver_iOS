@@ -108,10 +108,10 @@
     
     [self.view endEditing:YES];
     
-    if (self.selectBtn.selected == NO) {
-        [Utils showToast:@"请勾选保证金协议"];
-        return;
-    }
+//    if (self.selectBtn.selected == NO) {
+//        [Utils showToast:@"请勾选保证金协议"];
+//        return;
+//    }
     if ([NSString isEmpty:self.moneyTF.text]) {
         [Utils showToast:@"请输入您要充值的保证金金额"];
         return;
