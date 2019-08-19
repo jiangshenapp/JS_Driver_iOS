@@ -526,7 +526,9 @@ static CustomEaseUtils *helper = nil;
             [[EMClient sharedClient].options setIsAutoLogin:YES];
             //发送自动登录状态通知
             [[NSNotificationCenter defaultCenter] postNotificationName:ACCOUNT_LOGIN_CHANGED object:@YES];
-            completion(aUsername,aError);
+            if (completion) {
+                completion(aUsername,aError);
+            }
             return ;
         }
         else {
@@ -536,14 +538,18 @@ static CustomEaseUtils *helper = nil;
                     if (!aError) {
                         [CustomEaseUtils EaseMobLoginWithUser:name completion:^(NSString * _Nonnull aName, EMError * _Nonnull error) {
                             if (!aError) {
-                                completion(aName,error);
+                                if (completion) {
+                                    completion(aName,error);
+                                }
                             }
                         }];
                     }
                 }];
             }
             else {
-                completion(@"",aError);
+                if (completion) {
+                    completion(@"",aError);
+                }
             }
             
 //            switch (aError.code) {

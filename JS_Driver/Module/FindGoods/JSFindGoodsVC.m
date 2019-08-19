@@ -249,6 +249,11 @@
     [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBValue(0x4A90E2) range:NSMakeRange(cell.getGoodsTimeLab.text.length-distanceStr.length, distanceStr.length)];
     cell.getGoodsTimeLab.attributedText = attributeStr;
 
+    cell.iphoneBtn.tag = 1000+indexPath.section;
+    cell.chatBtn.tag = 2000+indexPath.section;
+    [cell.iphoneBtn addTarget:self action:@selector(callAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.chatBtn addTarget:self action:@selector(chatAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -260,6 +265,22 @@
     JSOrderDetailsVC *vc = (JSOrderDetailsVC *)[Utils getViewController:@"Mine" WithVCName:@"JSOrderDetailsVC"];;
     vc.orderID = model.ID;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+/** 打电话 */
+- (void)callAction:(UIButton *)sender {
+    OrderInfoModel *model = self.dataSource[sender.tag-1000];
+    if ([Utils isBlankString:model.sendMobile]) {
+        [Utils showToast:@"电话号码是空号"];
+        return;
+    }
+    [Utils call:model.sendMobile];
+}
+
+/** 聊天 */
+- (void)chatAction:(UIButton *)sender {
+    OrderInfoModel *model = self.dataSource[sender.tag-2000];
+    [Utils showToast:@"该功能暂未开放"];
 }
 
 - (void)showViewAction:(FilterButton *)sender {
@@ -364,6 +385,5 @@
         _imgView.image = [UIImage imageNamed:@"app_tab_arrow_down"];
     }
 }
-
 
 @end

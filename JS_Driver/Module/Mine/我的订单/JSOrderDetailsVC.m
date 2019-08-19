@@ -196,7 +196,7 @@
 
 /** 聊天 */
 - (IBAction)chatAction:(id)sender {
-    [Utils showToast:@"功能暂未开通，敬请期待"];
+    [Utils showToast:@"该功能暂未开放"];
 }
 
 - (IBAction)bottomLeftBtnAction:(UIButton *)sender {
