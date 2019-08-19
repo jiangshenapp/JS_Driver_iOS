@@ -112,6 +112,6 @@
 + (NSString *)distanceBetweenOrderBy:(double) lat1 :(double) lng1 andOther:(double) lat2 :(double) lng2;
 
 //打电话
-+ (UIWebView *)call:(NSString *)phoneAccount;
++ (void)call:(NSString *)phoneAccount;
 
 @end
