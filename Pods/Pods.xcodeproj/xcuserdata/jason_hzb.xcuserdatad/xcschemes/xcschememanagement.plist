@@ -13,11 +13,15 @@
 		</dict>
 		<key>AlipaySDK-iOS.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
 		<key>FXToast.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
@@ -30,11 +34,15 @@
 		</dict>
 		<key>JPush-iOS-SDK.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
 		<key>JSONModel.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>17</integer>
 		</dict>
@@ -96,6 +104,8 @@
 		</dict>
 		<key>UMengAnalytics-NO-IDFA.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
@@ -115,6 +125,8 @@
 		</dict>
 		<key>libWeChatSDK.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
@@ -127,6 +139,37 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>4847ACB1E2799345AA74D9E317048D58</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>796531B66EA1E8FC8D94C8A6835B4A5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C0363034C200F4451A186070BC68B45</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB24AFD7C29F33B49F2707FE39AD32C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0A385A0388EF6ACA6CB555DD9F40DF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0EAF4371C6E4B30A1779D513CB4355B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -40,8 +40,10 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kUserInfoChangeNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:kChangeMoneyNotification object:nil];
     
-    iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_driver",@"personalcenter_icon_route",@"personalcenter_icon_service",@"personalcenter_icon_invoice",@"personalcenter_icon_collection"];
-    menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线",@"我的客服",@"我的发票",@"推广达人"];
+//    iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_driver",@"personalcenter_icon_route",@"personalcenter_icon_service",@"personalcenter_icon_invoice",@"personalcenter_icon_collection"];
+//    menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线",@"我的客服",@"我的发票",@"推广达人"];
+    iconArr = @[@"personalcenter_icon_cars",@"personalcenter_icon_driver",@"personalcenter_icon_route"];
+    menuTileArr = @[@"我的车辆",@"我的司机",@"我的路线"];
     [self createUI];
 }
 
